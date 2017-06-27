@@ -1,0 +1,54 @@
+<div class="clear"></div>
+<div class="colorfoot">
+    <div class="cateintro">
+        <div class="introleft">{$city[cityname]}{$cat[catname]}频道</div>
+        <div class="introright">{$city[cityname]}{$cat[catname]}频道为您提供{$city[cityname]}{$cat[catname]}信息，在此有大量{$city[cityname]}{$cat[catname]}信息供您选择，您可以免费查看和发布{$city[cityname]}{$cat[catname]}信息。</div>
+    </div>
+    <!--{if $area_list}-->
+    <div class="clearfix"></div>
+    <div class="cateintro relate">
+    <div class="introleft">{$cat[catname]}相关区域</div>
+    <div class="introflink">
+    <!--{loop $area_list $mymps}-->
+    {if $mymps[areaid]}<a href='{$city[domain]}{$mymps[uri]}' target="_blank">{$mymps[areaname]}{$cat[catname]}</a>{/if}
+    <!--{/loop}-->
+    </div>
+    </div>
+    <!--{/if}-->
+    <!--{php $nearbycities = get_nearby_cities($city['provinceid']);}-->
+    <!--{if $nearbycities}-->
+    <div class="cateintro relate">
+    <div class="introleft">{$cat[catname]}附近分站</div>
+    <div class="introflink">
+    <!--{loop $nearbycities $mymps}-->
+    <!--{if $mymps[cityid] != $city[cityid]}-->
+    <a href='{$mymps[domain]}{$cat[caturi]}' target="_blank">{$mymps[cityname]}{$cat[catname]}</a>
+    <!--{/if}-->
+    <!--{/loop}-->
+    </div>
+    </div>
+    <!--{/if}-->
+    <!--{if $hotcities}-->
+    <div class="cateintro relate">
+    <div class="introleft">{$cat[catname]}热门分站</div>
+    <div class="introflink">
+    <!--{loop $hotcities $mymps}-->
+    <a href='{$mymps[domain]}{$cat[caturi]}' target="_blank">{$mymps[cityname]}{$cat[catname]}</a>
+    <!--{/loop}-->
+    </div>
+    </div>
+    <!--{/if}-->
+	
+    <!--{if $friendlink}-->
+    <div class="clearfix"></div>
+    <div class="cateintro">
+    <div class="introleft">频道友情链接</div>
+    <div class="introflink">
+    <!--{loop $friendlink $mymps}-->
+    <a href='{$mymps[url]}' target='_blank'>{$mymps[name]}</a>
+    <!--{/loop}-->
+    </div>
+    </div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/hover_bg.js"></script>

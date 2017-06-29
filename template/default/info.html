@@ -91,7 +91,7 @@
                                 {if $info[qq]}<li><span>Q Q：</span><font class="tel">{$info[qqnum]}</font><a class="_chat" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$info[qq]}&site=qq&menu=yes">QQ在线交谈</a></li>{/if}
                                 {if $info[email]}<li><span>邮箱：</span><font class="tel">{$info[email]}</font></li>{/if}
                                 <li><span>联系人：</span><font class="tel">{$info[contact_who]}</font></li>
-                                <li class="qqbm"><span>电话：</span><font class="tel red">{$info[telephone]}</font> <a rel="nofollow" href="javascript:void(0);" onclick="setbg('查看完整电话',420,330,'{$mymps_global[SiteUrl]}/box.php?part=seecontact_tel&id={$info[id]}&tel_base64={$info[tel_base64]}')" class="_qq">点击查看完整号码</a></li>
+                                <li class="qqbm"><span>电话：</span><font class="tel red">{$info[telephone]}</font> <a rel="nofollow" href="javascript:void(0);" onclick="{if $iflogin == 0}alert('您在登录后可以免费查看并拨打电话给商家');{else}setbg('查看完整电话',420,330,'{$mymps_global[SiteUrl]}/box.php?part=seecontact_tel&id={$info[id]}&tel_base64={$info[tel_base64]}'){/if}" class="_qq">点击查看完整号码</a></li>
                                 <div class="clear5"></div>
                                 <div class="notice"><ul><strong>{$mymps_global[SiteName]}提醒您：</strong>让你提前汇款，或者价格明显低于市价，均有骗子嫌疑，不要轻易相信。</ul></div>
                                 <!--{else}-->

@@ -9,6 +9,7 @@ function showPosition(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
 
+    console.log(lat+':'+lng);
     $.ajax({
         url:'sync.php',
         type:"POST",

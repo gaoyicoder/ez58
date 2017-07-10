@@ -8,7 +8,7 @@ function showPosition(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
 
-    console.log(lat+':'+lng);
+    alert(lat+':'+lng);
     $.ajax({
         url:'sync.php',
         type:"POST",
@@ -26,5 +26,5 @@ function showPosition(position) {
 }
 
 $(function() {
-    setInterval("keepOnLine()",1000);
+    setInterval("keepOnLine()",5000);
 });

@@ -1,5 +1,7 @@
 function keepOnLine(){
-    navigator.geolocation.getCurrentPosition(showPosition);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
 }
 
 function showPosition(position) {

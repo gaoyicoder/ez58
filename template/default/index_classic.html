@@ -59,8 +59,8 @@
                         <!--{/loop}-->
                     </ul>
                 </div>
-                
-                
+
+
                 <div class="focuscorp">
                     <div class="focustop">
                         <div class="banner">
@@ -82,7 +82,7 @@
                         </div>
                         <ul class="arrow sel"><li class="prev"></li><li class="next"></li></ul>
                         </div>
-                        
+
                     </div>
                     <div class="announcepost">
                         <div class="announcecorp">
@@ -131,13 +131,13 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!--{php $members = mymps_get_members(14,NULL,NULL,NULL,2,NULL,NULL,$cityid);}-->
         <!--{if $members}-->
         <div class="clear5"></div>
@@ -149,7 +149,7 @@
                         <div id="List1">
                         <!--{loop $members $k}-->
                         <div class="pic">
-                        <a href="{$k[uri]}" target="_blank" ><img src="{$mymps_global[SiteUrl]}{$k[prelogo]}"  alt="{$k[tname]}"/></a> 
+                        <a href="{$k[uri]}" target="_blank" ><img src="{$mymps_global[SiteUrl]}{$k[prelogo]}"  alt="{$k[tname]}"/></a>
                         <span class="schoolname cfix"><a href="{$k[uri]}" target="_blank" title="{$k[tname]}">{echo cutstr($k[tname],20)}</a></span>
                         <span class="seecourse"><a href="{$k[uri]}" target="_blank" class="red">查看店铺</a></span>
                         </div>
@@ -162,7 +162,7 @@
             </div>
 		</div>
         <!--{/if}-->
-		
+
         <div class="clearfix"></div>
 		<div class="infolist">
         {php $i=1;}
@@ -192,7 +192,7 @@
         {php $i++;}
         <!--{/loop}-->
 		</div>
-		
+
 		<!--{php if(ifplugin('goods')){$goods = mymps_get_goods($tpl_index['goods'],1,NULL,NULL,NULL,NULL,$cityid);}-->
         <div class="clearfix"></div>
 		<div class="goods">
@@ -216,7 +216,7 @@
             </div>
 		</div>
 		<!--{/if}-->
-        
+
     	<!--{if $telephone}-->
         <div class="clear"></div>
 		<div class="telephone">
@@ -236,7 +236,7 @@
                         <!--{/loop}-->
                     </ul>
                 </div>
-                
+
                 <div class="tablist lifebd none">
                     <ul>
                     <!--{loop $lifebox $k $mymps}-->
@@ -244,12 +244,12 @@
                     <!--{/loop}-->
                     </ul>
                 </div>
-                
+
             </div>
             </div>
 		</div>
 		<!--{/if}-->
-        
+
 		<div class="clear"></div>
 		<div class="flink">
         <div class="ul">

@@ -27,10 +27,23 @@ function showPosition(position) {
     });
 }
 
+
 function showMessage() {
+    $(".pop,.filter").css("display","block");
+
+	$(".shut").click(function(){
+        $(".pop,.filter").css("display","none")
+	});
+	$(".filter").bind("click",function(){
+		$(".pop,.filter").css("display","none");
+	});
 
 }
 
+
+
 $(function() {
+    showMessage();
     setInterval("keepOnLine()",30000);
+
 });

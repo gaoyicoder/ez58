@@ -36,3 +36,69 @@ $('#login_ico').addClass('ico_ok');
 <!--{/if}-->
 if(window['current']){$('#ipageTitle').html(window['current']).show()}else{$('#ipageTitle').show()}
 </script>
+<!-- 对话框 -->
+<div class="pop" id="popo">
+	<ul>
+		<li><h3>您收到3条信息</h3></li>
+		<li><input type="submit" value="确定" name="" class="sure"></li>
+		<i class="shut">&#xe601;</i>
+
+	</ul>
+</div>
+<!-- 遮罩层 -->
+<div class="filter"></div>
+
+<style>
+	.pop{
+		position: absolute;
+		background: #fff;
+		width: 80%;
+		top:40%;
+		left: 10%;
+		z-index: 11;
+		text-align: center;
+		line-height: 34px;
+		padding: 10px 0;
+		border-radius: 6px;
+		display: none;
+
+	}
+.pop .sure{
+	border: 0;
+	background: #50E8C2;
+	padding:0 5px;
+	font-size: 12px;
+	font-style: #fff;
+	border-radius: 4px;
+	width: 60px;
+	color: #fff;
+	line-height: 26px;
+
+}
+.filter{
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,0,.5);
+	z-index: 10;
+	display: none;
+}
+.pop .shut{
+	font-family: "iconfont";
+	position: absolute;
+	top:4px;
+	right: 10px;
+	font-size: 20px;
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 222020 */
+  src: url('//at.alicdn.com/t/font_otcfsst087z7u8fr.eot');
+  src: url('//at.alicdn.com/t/font_otcfsst087z7u8fr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_otcfsst087z7u8fr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_otcfsst087z7u8fr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_otcfsst087z7u8fr.svg#iconfont') format('svg');
+}
+
+</style>

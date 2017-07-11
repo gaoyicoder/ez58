@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+
 </head>
 <body>
 <script>
+$(document).ready(function(){
+
+	$("#button1").click(function(){
+		x1=$('#x1').val();
+		x2=$('#x2').val();
+		x3=$('#x3').val();
+
+		$.ajax({
+			url:'result.php',
+			type:"POST",
+			dataType:"json",
+			data:{x1: x1, x2: x2, x3: x3},
+			success:function(data){
+				if(data.status==0){
+					$("#result1").text("输入非法字符，请重新输入");
+				}else{
+
+				$("#result1").text(data.result);
+			}
+
+			}
+
+		});
+	});
+});
 
 </script>
 <label for="x1">x1</label><input id="x1" name="x1" value=""><br />
-<label for="x2">x2</label><input id="x2" name="x1" value=""><br />
-<label for="x3">x3</label><input id="x3" name="x1" value=""><br />
+<label for="x2">x2</label><input id="x2" name="x2" value=""><br />
+<label for="x3">x3</label><input id="x3" name="x3" value=""><br />
 <button onclick="" id="button1"> Submit </button><br />
 Result: <span id="result1"></span>
 </body>
+
 </html>

@@ -10,7 +10,7 @@ function showPosition(position) {
 
     alert(lat+':'+lng);
     $.ajax({
-        url:'sync.php',
+        url:'index.php?mod=sync',
         type:"POST",
         dataType:"json",
         data:{

@@ -18,13 +18,19 @@ function showPosition(position) {
             lng:lng
         },
         success:function(data){
-
+            if(data.hasmessage==1) {
+                showMessage();
+            }
         }
 
 
     });
 }
 
+function showMessage() {
+
+}
+
 $(function() {
-    setInterval("keepOnLine()",5000);
+    setInterval("keepOnLine()",30000);
 });

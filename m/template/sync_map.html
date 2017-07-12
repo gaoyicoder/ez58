@@ -52,7 +52,7 @@
 
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
-                var point = new BMap.Point(r.point.lng,r.point.lat);
+                var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
                 bm.centerAndZoom(point,12);
             });
 

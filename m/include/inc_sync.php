@@ -30,5 +30,8 @@ if ($s_uid) {
         if($row_message) {
             echo json_encode(array('hasmessage'=>1));
         }
+
+        $db->query("UPDATE `{$db_mymps}message_sync` SET isread=1
+                                WHERE touserid = '{$s_uid}' and isread=0");
     }
 }

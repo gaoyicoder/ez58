@@ -53,7 +53,7 @@
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
                 var point = new BMap.Point(r.point.lng,r.point.lat);
-                map.centerAndZoom(point,12);
+                bm.centerAndZoom(point,12);
             });
 
 

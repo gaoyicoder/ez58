@@ -47,7 +47,7 @@
 
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
-                var ggPoint = new BMap.Point(39.8141182046,92.9507699318);
+                var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
                 bm.centerAndZoom(ggPoint,12);
             });
 
@@ -56,8 +56,7 @@
 
                 var point = new BMap.Point(gpsArray[i][0], gpsArray[i][1]);
                 var myIcon=new BMap.Icon("ico.png", new BMap.Size(100,100))
-                // addMarker(point)
-                // var marker = new BMap.Marker(new BMap.Point(gpsArray[i][0], gpsArray[i][1]));
+
                 var marker = new BMap.Marker(point,{icon:myIcon});
 
                 bm.addOverlay(marker);
@@ -86,8 +85,8 @@
                     borderRadius:"15px"
                 });
                 bm.addOverlay(label);
-                marker.addEventListener("click",attribute)
-                label.addEventListener("click",attribute)
+                marker.addEventListener("click",attribute);
+                label.addEventListener("click",attribute);
 
 
 

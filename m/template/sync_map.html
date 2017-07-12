@@ -32,6 +32,13 @@
 
         <script type="text/javascript">
 
+            function showBaiduPosition(position) {
+                var xPerson1 = position.coords.longitude;
+                var yPerson1 = position.coords.latitude;
+                var ggPoint = new BMap.Point(xPerson1,yPerson1);
+                bm.centerAndZoom(ggPoint, 15);
+
+            }
 
             var gpsArray = new Array();
             {loop $row $k $v}
@@ -95,13 +102,7 @@
                     window.location.href="API2.html"
                 }
 
-                function showBaiduPosition(position) {
-                    var xPerson1 = position.coords.longitude;
-                    var yPerson1 = position.coords.latitude;
-                    var ggPoint = new BMap.Point(xPerson1,yPerson1);
-                    bm.centerAndZoom(ggPoint, 15);
 
-                }
 
             }
 

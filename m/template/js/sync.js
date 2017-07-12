@@ -18,7 +18,6 @@ function showPosition(position) {
         },
         success:function(data){
             if(data.hasmessage==1) {
-                alert(data.message);
                 showMessage();
             }
         }
@@ -41,7 +40,4 @@ function showMessage() {
 
 
 
-$(function() {
-    setInterval("keepOnLine()",30000);
 
-});

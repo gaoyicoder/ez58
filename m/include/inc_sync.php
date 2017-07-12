@@ -24,4 +24,11 @@ if ($s_uid) {
             }
         }
     }
+
+    if ($iflogin == 1) {
+        $row_message = $db->getRow("SELECT * FROM `{$db_mymps}message_sync` WHERE touserid = '{$s_uid}' and isread=0");
+        if($row_message) {
+            echo json_encode(array('hasmessage'=>1));
+        }
+    }
 }

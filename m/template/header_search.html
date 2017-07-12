@@ -102,3 +102,11 @@ if(window['current']){$('#ipageTitle').html(window['current']).show()}else{$('#i
 }
 
 </style>
+<script>
+    $(function() {
+        <!--{if $iflogin==1}-->
+        setInterval("keepOnLine()",30000);
+        <!--{/if}-->
+
+    });
+</script>

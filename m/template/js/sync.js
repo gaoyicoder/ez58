@@ -8,7 +8,6 @@ function showPosition(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
 
-    alert(lat+':'+lng);
     $.ajax({
         url:'index.php?mod=sync',
         type:"POST",
@@ -22,7 +21,6 @@ function showPosition(position) {
                 showMessage();
             }
         }
-
 
     });
 }

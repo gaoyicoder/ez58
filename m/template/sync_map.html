@@ -19,7 +19,7 @@
         #r-result{height:100%;width:20%;float:left;}
         #contactbar{display: none;}
     </style>
-    <script type="text/javascript" src="https://api.map.baidu.com/getscript?v=2.0&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2&services=&t=20170707103901"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2"></script>
 
 </head>
 
@@ -31,68 +31,71 @@
         <div id="container"></div>
 
         <script type="text/javascript">
-            $(function() {
-                navigator.geolocation.getCurrentPosition(showBaiduPosition);
-            });
+            
 
-            function showBaiduPosition(position) {
-                var gpsArray = new Array();
-                {loop $row $k $v}
-                gpsArray[{$k}] = [{$v[lng]}, {$v[lat]}];
-                {/loop}
+            var gpsArray = new Array();
+            {loop $row $k $v}
+            gpsArray[{$k}] = [{$v[lng]}, {$v[lat]}];
+            {/loop}
 
 
-                var xPerson = position.coords.longitude;;
-                var yPerson = position.coords.latitude;;
-                var ggPoint = new BMap.Point(xPerson,yPerson);
+            var xPerson = 108.953260;
+            var yPerson = 34.26959;
+            var ggPoint = new BMap.Point(xPerson,yPerson);
 
-                //地图初始化
-                var bm = new BMap.Map("container");
-                bm.centerAndZoom(ggPoint, 15);
-                bm.addControl(new BMap.NavigationControl());
-                bm.enableScrollWheelZoom(true);
-                bm.addControl(new BMap.MapTypeControl());
+            //地图初始化
+            var bm = new BMap.Map("container");
+            bm.centerAndZoom(ggPoint, 15);
+            bm.addControl(new BMap.NavigationControl());
+            bm.enableScrollWheelZoom(true);
+            bm.addControl(new BMap.MapTypeControl());
 
-                for (var i = 0; i < gpsArray.length; i ++) {
+            for (var i = 0; i < gpsArray.length; i ++) {
 
-                    var point = new BMap.Point(gpsArray[i][0], gpsArray[i][1]);
-                    var myIcon=new BMap.Icon("ico.png", new BMap.Size(100,100))
-                    // addMarker(point)
-                    // var marker = new BMap.Marker(new BMap.Point(gpsArray[i][0], gpsArray[i][1]));
-                    var marker = new BMap.Marker(point,{icon:myIcon});
+                var point = new BMap.Point(gpsArray[i][0], gpsArray[i][1]);
+                var myIcon=new BMap.Icon("ico.png", new BMap.Size(100,100))
+                // addMarker(point)
+                // var marker = new BMap.Marker(new BMap.Point(gpsArray[i][0], gpsArray[i][1]));
+                var marker = new BMap.Marker(point,{icon:myIcon});
 
-                    bm.addOverlay(marker);
+                bm.addOverlay(marker);
 
 
 
-                    function attribute(e){
-                        var p = e.target;
-                        window.location.href="API2.html"
-                    }
-
-                    var opts = {
-                        position : point,    // 指定文本标注所在的地理位置
-                        offset   : new BMap.Size(-76, -88)    //设置文本偏移量
-                    };
-                    var label = new BMap.Label("西安鼓楼", opts);  // 创建文本标注对象
-                    label.setStyle({
-                        color : "#111",
-                        fontSize : "12px",
-                        border:"1px solid #c2c2c2",
-
-                        padding:"6px 16px",
-
-
-                        fontFamily:"微软雅黑",
-                        borderRadius:"15px"
-                    });
-                    bm.addOverlay(label);
-                    marker.addEventListener("click",attribute);
-                    label.addEventListener("click",attribute);
-
+                function attribute(e){
+                    var p = e.target;
+                    window.location.href="API2.html"
                 }
-            }
 
+                var opts = {
+                    position : point,    // 指定文本标注所在的地理位置
+                    offset   : new BMap.Size(-76, -88)    //设置文本偏移量
+                }
+                var label = new BMap.Label("西安鼓楼", opts);  // 创建文本标注对象
+                label.setStyle({
+                    color : "#111",
+                    fontSize : "12px",
+                    border:"1px solid #c2c2c2",
+
+                    padding:"6px 16px",
+
+
+                    fontFamily:"微软雅黑",
+                    borderRadius:"15px"
+                });
+                bm.addOverlay(label);
+                marker.addEventListener("click",attribute)
+                label.addEventListener("click",attribute)
+
+                function attribute(e){
+                    var p = e.target;
+                    window.location.href="API2.html"
+                }
+
+
+
+
+            }
 
         </script>
     </div>

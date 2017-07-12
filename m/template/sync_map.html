@@ -39,16 +39,11 @@
             {/loop}
 
 
-            var xPerson = 108.953260;
-            var yPerson = 34.26959;
-            var ggPoint = new BMap.Point(xPerson,yPerson);
-
             //地图初始化
             var bm = new BMap.Map("container");
-            bm.centerAndZoom(ggPoint, 15);
+            
             bm.addControl(new BMap.NavigationControl());
             bm.enableScrollWheelZoom(true);
-            bm.addControl(new BMap.MapTypeControl());
 
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){

@@ -50,6 +50,9 @@
             bm.enableScrollWheelZoom(true);
             bm.addControl(new BMap.MapTypeControl());
 
+            navigator.geolocation.getCurrentPosition(showBaiduPosition);
+
+
             for (var i = 0; i < gpsArray.length; i ++) {
 
                 var point = new BMap.Point(gpsArray[i][0], gpsArray[i][1]);
@@ -92,8 +95,13 @@
                     window.location.href="API2.html"
                 }
 
+                function showBaiduPosition(position) {
+                    var xPerson1 = position.coords.longitude;
+                    var yPerson1 = position.coords.latitude;
+                    var ggPoint = new BMap.Point(xPerson1,yPerson1);
+                    bm.centerAndZoom(ggPoint, 15);
 
-
+                }
 
             }
 

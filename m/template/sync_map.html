@@ -79,10 +79,13 @@
                     borderRadius:"15px"
                 });
                 bm.addOverlay(label);
-                label.addEventListener("click",function() {
+                (function(){
                     var index = i;
-                    window.location.href="index.php?mod=information&id="+ index;
-                });
+                    label.addEventListener("click",function() {
+                        window.location.href="index.php?mod=information&id="+ index;
+                    });
+                })();
+
 
 
             }

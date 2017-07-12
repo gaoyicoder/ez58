@@ -7,7 +7,6 @@
  */
 
 if ($s_uid) {
-    echo $s_uid;
     $row = $db->getRow("SELECT * FROM `{$db_mymps}member` WHERE userid = '{$s_uid}'");
 
     $lat = $_REQUEST['lat'] ? $_REQUEST['lat'] : '';

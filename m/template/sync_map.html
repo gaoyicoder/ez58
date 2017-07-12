@@ -59,16 +59,8 @@
 
                 var marker = new BMap.Marker(point,{icon:myIcon});
 
-                marker.info_id = gpsArray[i][2];
 
                 bm.addOverlay(marker);
-
-
-
-                function attribute(e){
-                    var p = e.target;
-                    window.location.href="index.php?mod=information&id="+ e.info_id;
-                }
 
                 var opts = {
                     position : point,    // 指定文本标注所在的地理位置
@@ -87,7 +79,9 @@
                     borderRadius:"15px"
                 });
                 bm.addOverlay(label);
-                label.addEventListener("click",attribute);
+                label.addEventListener("click",function() {
+                    window.location.href="index.php?mod=information&id="+ gpsArray[i][2];
+                });
 
 
             }

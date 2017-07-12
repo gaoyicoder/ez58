@@ -32,13 +32,6 @@
 
         <script type="text/javascript">
 
-            function showBaiduPosition(position) {
-                var xPerson1 = position.coords.longitude;
-                var yPerson1 = position.coords.latitude;
-                var ggPoint = new BMap.Point(xPerson1,yPerson1);
-                bm.centerAndZoom(ggPoint, 15);
-
-            }
 
             var gpsArray = new Array();
             {loop $row $k $v}
@@ -57,7 +50,11 @@
             bm.enableScrollWheelZoom(true);
             bm.addControl(new BMap.MapTypeControl());
 
-            navigator.geolocation.getCurrentPosition(showBaiduPosition);
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r){
+                var point = new BMap.Point(r.point.lng,r.point.lat);
+                map.centerAndZoom(point,12);
+            });
 
 
             for (var i = 0; i < gpsArray.length; i ++) {

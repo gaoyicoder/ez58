@@ -53,7 +53,7 @@
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
                 var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
-                bm.centerAndZoom(point,12);
+                bm.centerAndZoom(ggPoint,12);
             });
 
 
@@ -93,11 +93,6 @@
                 bm.addOverlay(label);
                 marker.addEventListener("click",attribute)
                 label.addEventListener("click",attribute)
-
-                function attribute(e){
-                    var p = e.target;
-                    window.location.href="API2.html"
-                }
 
 
 

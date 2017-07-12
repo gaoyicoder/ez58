@@ -7,6 +7,7 @@
  */
 
 if ($s_uid) {
+    echo $s_uid;
     $row = $db->getRow("SELECT * FROM `{$db_mymps}member` WHERE userid = '{$s_uid}'");
 
     $lat = $_REQUEST['lat'] ? $_REQUEST['lat'] : '';
@@ -16,11 +17,11 @@ if ($s_uid) {
         if($lat && $lng) {
             $row_sync = $db->getRow("SELECT * FROM `{$db_mymps}coords_sync` WHERE userid = '{$s_uid}'");
             if ($row_sync) {
-                $db->getRow("UPDATE `{$db_mymps}coords_sync` SET lat='{$lat}', lng='{$lng}', updatetime=".mktime()."
+                $db->query("UPDATE `{$db_mymps}coords_sync` SET lat='{$lat}', lng='{$lng}', updatetime=".mktime()."
                                 WHERE userid = '{$s_uid}'");
             } else {
-                $db->getRow("INSERT INTO `{$db_mymps}coords_sync` (userid, lat, lng, updatetime)
-                                  VALUES ('{$s_uid}', '{$lat}', '{$lng}', ".mktime().")");
+                $db->query("INSERT INTO `{$db_mymps}coords_sync` (userid, lat, lng, updatetime)
+                                  VALUES ('{$s_uid}', '{$lat}', '{$lng}', ".time().")");
             }
         }
     }

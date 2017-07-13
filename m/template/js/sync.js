@@ -4,6 +4,7 @@ function keepOnLine(){
     geolocation.getCurrentPosition(showPosition);
 }
 
+
 function showPosition(r) {
     
     var lat = r.point.lat;

@@ -1,12 +1,13 @@
 function keepOnLine(){
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
+
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(showPosition);
 }
 
-function showPosition(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
+function showPosition(r) {
+    
+    var lat = r.point.lat;
+    var lng = r.point.lng;
 
     $.ajax({
         url:'index.php?mod=sync',

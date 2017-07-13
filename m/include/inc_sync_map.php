@@ -9,7 +9,7 @@
 $catid = $_REQUEST['catid'] ? $_REQUEST['catid'] : 0;
 if($catid) {
 
-    $row = $db->getAll("SELECT cs.*, i.id as info_id FROM `{$db_mymps}coords_sync` AS cs
+    $row = $db->getAll("SELECT cs.*, i.id, i.title as info_id FROM `{$db_mymps}coords_sync` AS cs
                           INNER JOIN `{$db_mymps}information` AS i
                           ON cs.userid = i.userid
                           WHERE i.catid= $catid");

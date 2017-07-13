@@ -38,7 +38,7 @@
 
             var gpsArray = new Array();
             {loop $row $k $v}
-            gpsArray[{$k}] = [{$v[lng]}, {$v[lat]}, {$v[info_id]}];
+            gpsArray[{$k}] = [{$v[lng]}, {$v[lat]}, {$v[info_id]}, '{$v[title}'];
             {/loop}
 
 
@@ -70,7 +70,7 @@
                     position : point,    // 指定文本标注所在的地理位置
                     offset   : new BMap.Size(-40, -40)    //设置文本偏移量
                 };
-                var label = new BMap.Label("西安鼓楼", opts);  // 创建文本标注对象
+                var label = new BMap.Label(gpsArray[i][3], opts);  // 创建文本标注对象
                 label.setStyle({
                     color : "#111",
                     fontSize : "12px",

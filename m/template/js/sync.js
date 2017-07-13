@@ -5,8 +5,10 @@ function keepOnLine(){
 }
 
 
+
+
 function showPosition(r) {
-    
+
     var lat = r.point.lat;
     var lng = r.point.lng;
 

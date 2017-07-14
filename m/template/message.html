@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+    {template header}
+    <title>消息列表 - {$mymps_global[SiteName]}</title>
+    <link type="text/css" rel="stylesheet" href="template/css/global.css">
+    <link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/member.css">
+    <script>window['current'] = '消息列表';</script>
+    <style type="text/css">
+        /* *{height: 100%; width: 100%; overflow: hidden; margin: 0}
+        body{height:100%; width: 100%;margin:0px;padding:0px; overflow: hidden;}
+        #container{height:100%; width: 100%; overflow: hidden;margin: 0} */
+        html{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        body{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+
+        #container{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        #l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+        #r-result{height:100%;width:20%;float:left;}
+        /*#contactbar{display: none;}*/
+        .wrapper{
+            width: 100%;
+            height: 92%;
+        }
+    </style>
+
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="wrapper">
+
+    {template header_search}
+
+        <div id="container"></div>
+    </div>
+
+
+{template footer}
+</body>
+</html>

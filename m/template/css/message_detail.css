@@ -1,0 +1,85 @@
+.E_LIVE_lIST_1 {
+  padding: 0 10px;
+}
+.E_LIVE_lIST_1 .message_system {
+  margin: 10px auto;
+}
+.E_LIVE_lIST_1 .message_system .content {
+  text-align: center;
+  color: #b2b2b2;
+  font-size: 12px;
+}
+.E_LIVE_lIST_1 .msg_list {
+  display: -webkit-box;
+  padding-right: 20px;
+}
+.E_LIVE_lIST_1 .msg_list .avatar {
+  width: 40px;
+  height: 40px;
+}
+.E_LIVE_lIST_1 .msg_list .content {
+  margin-left: 10px;
+  -webkit-box-flex: 1.5;
+  box-flex: 1;
+  -o-box-flex: 1;
+  -ms-flex: 1;
+  -moz-box-flex: 1;
+  position: relative;
+  margin-bottom: 20px;
+}
+.E_LIVE_lIST_1 .msg_list .content:before {
+  position: absolute;
+  top: 14px;
+  content: " ";
+  border: 4px solid transparent;
+  border-right-color: #fff;
+  border-right-width: 4px;
+  right: 100%;
+}
+.E_LIVE_lIST_1 .msg_list .content span {
+  background: #fff;
+  display: inline-block;
+  padding: 10px;
+}
+.E_LIVE_lIST_1 .msg_list_right {
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 0;
+}
+.E_LIVE_lIST_1 .msg_list_right .content {
+  margin-right: 10px;
+}
+.E_LIVE_lIST_1 .msg_list_right .content:before {
+  right: 0;
+  border-right-color: #9CC0F6;
+}
+.E_LIVE_lIST_1 .msg_list_right .content:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  border: 4px solid transparent;
+  border-left-color: #9CC0F6;
+  left: 100%；
+			right:0;
+}
+.E_LIVE_lIST_1 .msg_list_right .content span {
+  background: #9CC0F6;
+  text-align: left;
+}
+.input {
+  padding: 10px;
+  background: #9CC0F6;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  bottom: 60px;
+}
+.input input {
+  width: 100%;
+  border: 0;
+  line-height: 36px;
+  border-radius: 4px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}

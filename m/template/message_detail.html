@@ -6,6 +6,7 @@
     <link type="text/css" rel="stylesheet" href="template/css/global.css">
     <link type="text/css" rel="stylesheet" href="template/css/style.css">
     <link type="text/css" rel="stylesheet" href="template/css/member.css">
+    <link rel="stylesheet" type="text/css" href="template/css/message_detail.css">
     <script>window['current'] = '消息详情';</script>
     <style type="text/css">
         /* *{height: 100%; width: 100%; overflow: hidden; margin: 0}
@@ -14,25 +15,92 @@
         html{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
         body{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
 
-        #container{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        #container{width: 100%;height: 100%;overflow: auto;margin:0;font-family:"微软雅黑";}
         #l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
         #r-result{height:100%;width:20%;float:left;}
         /*#contactbar{display: none;}*/
         .wrapper{
             width: 100%;
-            height: 92%;
+            height: 80%;
         }
     </style>
 
 </head>
+<script type="text/javascript">
+    window.onload=function(){
+            document.getElementById('container').scrollTop=document.body.scrollHeight;
+    }
+</script>
 
-<body class="{$mymps_global[cfg_tpl_dir]}">
+<body class="{$mymps_global[cfg_tpl_dir]}" style="overflow: hidden">
 <div class="wrapper">
 
     {template header_search}
 
-        <div id="container"></div>
+        <div id="container"  class="E_Content">
+            <div class="dialog_wrapper">
+                <div class="E_dialog">
+                    <div class="E_LIVE_lIST_1">
+                        <!-- time -->
+                        <div class="message_system">
+                                <div class="content">10:10</div>
+                        </div>
+                        <!-- 左边  -->
+                        <div class="msg_list" >
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>请问附近的打孔师傅在哪里,或者有装空调的地方,地方越近越好,我需要上门服务,待遇面议.请问附近的打孔师傅在哪里,或者有装空调的地方,地方越近越好,我需要上门服务,待遇面议</span></div>
+                        </div>
+                        <!-- 右边 -->
+                        <div class="msg_list msg_list_right">
+                        <img class="avatar avatar_right" src="template/images/center_icon.png">
+                        <div class="content"><span>好的，立马为您安排,请您稍等片即可好的，立马为您安排,请您稍等片即可好的，立马为您安排,请您稍等片即可好的，立马为您安排,请您稍等片即可好的，立马为您安排,请您稍等片即可</span></div>
+                        </div>
+                        <div class="msg_list msg_list_right">
+                        <img class="avatar avatar_right" src="template/images/center_icon.png">
+                        <div class="content"><span>好的</span></div>
+                        </div>
+                        <div class="message_system">
+                                <div class="content">10:20</div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+                         <div class="msg_list">
+                        <img class="avatar" src="template/images/center_icon.png">
+                        <div class="content"><span>安排好了没</span></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
+
+<div class="input">
+    <input type="text" placeholder="请输入" name="">
+</div>
+
 
 
 {template footer}

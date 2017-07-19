@@ -133,7 +133,7 @@ foreach($infolist as $k => $row){
 	$arr['contact_who']     = $row['contact_who'];
 	$arr['content']	        = $row['content'];
 	$arr['begintime']       = $row['begintime'];
-
+print_r($id_online);
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         if (in_array($arr['id'], $id_online)) {

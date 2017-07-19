@@ -108,9 +108,9 @@ if($distance){
                           ON cs.userid = a.userid
                           WHERE a.info_level > 0 {$cate_limit}{$city_limit}");
     foreach($row_online as $v) {
+        $id_online[] = $v['id'];
         if (!strpos($idin, ','.$v['id'].',') && !strpos($idin, $v['id'].',') === 0) {
             $idin = $idin? $v['id'].','.$idin : $v['id'];
-            $id_online[] = $v['id'];
         }
     }
 }

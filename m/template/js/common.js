@@ -339,7 +339,7 @@ function showFilter(option){
 }
 //nearby
 function nearby(distance,la,ln){
-
+    alert(222);
 	var lat = la;
 	var lng = ln;
 	document.getElementById('distanceInput').value = distance;

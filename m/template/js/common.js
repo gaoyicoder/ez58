@@ -344,8 +344,10 @@ function nearby(distance,la,ln){
 	var lng = ln;
 	document.getElementById('distanceInput').value = distance;
 	if(lat=='' && lng==''){
+        alert(333);
 		if (navigator.geolocation)
 		{
+            alert(444);
 			navigator.geolocation.getCurrentPosition(showPosition);
 		}
 	}else{

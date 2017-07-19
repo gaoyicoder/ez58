@@ -1,13 +1,13 @@
 function keepOnLine(){
 
     var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(showPosition);
+    geolocation.getCurrentPosition(showBaiduPosition);
 }
 
 
 
 
-function showPosition(r) {
+function showBaiduPosition(r) {
 
     var lat = r.point.lat;
     var lng = r.point.lng;

@@ -135,9 +135,12 @@ foreach($infolist as $k => $row){
 	$arr['begintime']       = $row['begintime'];
 
     if($distance) {
-        $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         if (in_array($arr['id'], $id_online)) {
             $arr['is_online'] = 1;
+            $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
+        } else {
+            $row_cs = $db->getOne("SELECT * FROM `{$db_mymps}coords_sync` AS cs WHERE userid ='".$row['userid']."'");
+            $arr['info_distance'] = round(calculate_distance($lat, $lng, $row_cs['lat'], $row_cs['lng']), 2);
         }
     }
 

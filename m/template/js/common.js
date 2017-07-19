@@ -358,7 +358,7 @@ function nearby(distance,la,ln){
 
 function showPosition(position)
 {
-
+    alert(111);
 	var url = location.search; //获取url中"?"符后的字串
 	var theRequest = '';
 	var ic = 0;

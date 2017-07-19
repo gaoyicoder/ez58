@@ -120,6 +120,7 @@ $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 $sql = "SELECT a.* FROM {$db_mymps}information AS a WHERE 1 {$idin} {$orderby}";
 $infolist = $idin ? $db -> getAll($sql) : array();
 foreach($infolist as $k => $row){
+    $arr = array();
 	$arr['id']              = $row['id'];
 	$arr['title']           = $row['title'];
 	$arr['hit']             = $row['hit'];
@@ -136,7 +137,6 @@ foreach($infolist as $k => $row){
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         if (in_array($arr['id'], $id_online)) {
-            echo 'wocao';
             $arr['is_online'] = 1;
         }
     }
@@ -147,7 +147,6 @@ foreach($infolist as $k => $row){
 	$info_list[$row['id']]	= $arr;
 	$ids .= $row['id'].',';
 }
-print_r($info_list);
 if($cat['modid'] > 1 && $idin) {
 	$des = get_info_option_array();
 	$extra = $db ->getAll("SELECT a.* FROM `{$db_mymps}information_{$cat[modid]}` AS a WHERE 1 {$idin}"); 

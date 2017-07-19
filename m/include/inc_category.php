@@ -97,7 +97,7 @@ $totalpage = ceil($rows_num/$perpage);
 $num = intval($page-1)*$perpage;
 
 $idin = get_page_idin("id","SELECT a.id FROM `{$db_mymps}information` AS a {$s} WHERE (a.info_level = 1 OR a.info_level = 2) {$sq}{$cate_limit}{$city_limit}{$orderby}",$perpage);
-echo $idin;
+echo $idin."|";
 if($distance){
     $id_online = array();
     $city_limit1 = "";
@@ -116,7 +116,7 @@ if($distance){
         }
     }
 }
-echo $idin;
+echo $idin."|";
 
 $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 

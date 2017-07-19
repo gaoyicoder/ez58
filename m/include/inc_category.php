@@ -118,7 +118,6 @@ $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 
 
 $sql = "SELECT a.* FROM {$db_mymps}information AS a WHERE 1 {$idin} {$orderby}";
-echo $sql;
 $infolist = $idin ? $db -> getAll($sql) : array();
 foreach($infolist as $k => $row){
 	$arr['id']              = $row['id'];
@@ -146,7 +145,8 @@ foreach($infolist as $k => $row){
 	if($row['upgrade_time_index'] > 0 && $row['upgrade_time_index'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type_index = '1',upgrade_time_index = '0' WHERE id ='$row[id]'");
 	$info_list[$row['id']]	= $arr;
 	$ids .= $row['id'].',';
-}	
+}
+print_r($infolist);
 if($cat['modid'] > 1 && $idin) {
 	$des = get_info_option_array();
 	$extra = $db ->getAll("SELECT a.* FROM `{$db_mymps}information_{$cat[modid]}` AS a WHERE 1 {$idin}"); 

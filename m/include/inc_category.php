@@ -116,7 +116,8 @@ if($distance){
         }
     }
 }
-print_r($id_online);
+
+
 $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 
 

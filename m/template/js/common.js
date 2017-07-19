@@ -339,15 +339,12 @@ function showFilter(option){
 }
 //nearby
 function nearby(distance,la,ln){
-    alert(222);
 	var lat = la;
 	var lng = ln;
 	document.getElementById('distanceInput').value = distance;
 	if(lat=='' && lng==''){
-        alert(333);
 		if (navigator.geolocation)
 		{
-            alert(444);
 			navigator.geolocation.getCurrentPosition(showPosition);
 		}
 	}else{
@@ -360,7 +357,6 @@ function nearby(distance,la,ln){
 
 function showPosition(position)
 {
-    alert(111);
 	var url = location.search; //获取url中"?"符后的字串
 	var theRequest = '';
 	var ic = 0;
@@ -380,7 +376,6 @@ function showPosition(position)
 	var distance = document.getElementById('distanceInput').value==''?0.5:document.getElementById('distanceInput').value;
 	if (url.indexOf("?") != -1) {
 		var str = url.substr(1);
-        alert(url);
 		strs = str.split("&");
 		for(var i = 0; i < strs.length; i ++) {
 			var k = strs[i].split("=")[0];

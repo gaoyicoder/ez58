@@ -137,7 +137,6 @@ foreach($infolist as $k => $row){
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         if (in_array($arr['id'], $id_online)) {
-            print_r($id_online);
             $arr['is_online'] = 1;
         }
     }

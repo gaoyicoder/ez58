@@ -97,7 +97,6 @@ $totalpage = ceil($rows_num/$perpage);
 $num = intval($page-1)*$perpage;
 
 $idin = get_page_idin("id","SELECT a.id FROM `{$db_mymps}information` AS a {$s} WHERE (a.info_level = 1 OR a.info_level = 2) {$sq}{$cate_limit}{$city_limit}{$orderby}",$perpage);
-echo $idin."|";
 if($distance){
     $id_online = array();
     $city_limit1 = "";
@@ -114,7 +113,6 @@ if($distance){
         }
     }
 }
-echo $idin."|";
 
 $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 
@@ -139,7 +137,6 @@ foreach($infolist as $k => $row){
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         if (in_array($arr['id'], $id_online)) {
-            echo $arr['id'];
             $arr['is_online'] = 1;
         }
     }

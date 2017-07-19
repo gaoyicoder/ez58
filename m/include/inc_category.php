@@ -98,7 +98,27 @@ $num = intval($page-1)*$perpage;
 
 $idin = get_page_idin("id","SELECT a.id FROM `{$db_mymps}information` AS a {$s} WHERE (a.info_level = 1 OR a.info_level = 2) {$sq}{$cate_limit}{$city_limit}{$orderby}",$perpage);
 
+if($distance){
+    $id_online = array();
+    $city_limit1 = "";
+    $city_limit1  .= empty($areaid) ? "": " AND a.areaid = '$areaid'";
+    $city_limit1 .= empty($streetid) ? "": " AND a.streetid = '$streetid'";
+    $row_online = $db->getAll("SELECT i.id as info_id, i.title  FROM `{$db_mymps}coords_sync` AS cs
+                          INNER JOIN `{$db_mymps}information` AS a
+                          ON cs.userid = i.userid
+                          WHERE a.info_level > 0 {$cate_limit}{$city_limit}");
+
+    foreach($row_online as $v) {
+        if (strpos($idin, ','.$v['id'].',') || strpos($idin, $v['id'].',') === 0) {
+            $idin = $idin? $v['id'].','.$idin : $v['id'];
+
+            $id_online[] = $v['id'];
+        }
+    }
+}
+
 $idin = $idin ? " AND a.id IN (".$idin.") " : "";
+
 
 $sql = "SELECT a.* FROM {$db_mymps}information AS a WHERE 1 {$idin} {$orderby}";
 
@@ -119,6 +139,9 @@ foreach($infolist as $k => $row){
 
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
+        if (in_array($arr['id'], $id_online)) {
+            $arr['is_online'] = 1;
+        }
     }
 
 	if($row['upgrade_time'] > 0 && $row['upgrade_time'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type = '1',upgrade_time = '0' WHERE id ='$row[id]'");

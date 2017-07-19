@@ -118,9 +118,9 @@ foreach($infolist as $k => $row){
 	$arr['begintime']       = $row['begintime'];
 
     if($distance) {
-        $arr['info_distance'] = calculate_distance($lat, $lng, $row['latitude'], $row['longitude']);
+        $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
     }
-    
+
 	if($row['upgrade_time'] > 0 && $row['upgrade_time'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type = '1',upgrade_time = '0' WHERE id ='$row[id]'");
 	if($row['upgrade_time_list'] > 0 && $row['upgrade_time_list'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type_list = '1',upgrade_time_list = '0' WHERE id ='$row[id]'");
 	if($row['upgrade_time_index'] > 0 && $row['upgrade_time_index'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type_index = '1',upgrade_time_index = '0' WHERE id ='$row[id]'");

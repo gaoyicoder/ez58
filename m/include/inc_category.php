@@ -116,6 +116,11 @@ foreach($infolist as $k => $row){
 	$arr['contact_who']     = $row['contact_who'];
 	$arr['content']	        = $row['content'];
 	$arr['begintime']       = $row['begintime'];
+
+    if($distance) {
+        $arr['info_distance'] = calculate_distance($lat, $lng, $row['latitude'], $row['longitude']);
+    }
+    
 	if($row['upgrade_time'] > 0 && $row['upgrade_time'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type = '1',upgrade_time = '0' WHERE id ='$row[id]'");
 	if($row['upgrade_time_list'] > 0 && $row['upgrade_time_list'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type_list = '1',upgrade_time_list = '0' WHERE id ='$row[id]'");
 	if($row['upgrade_time_index'] > 0 && $row['upgrade_time_index'] < $timestamp) $db->query("UPDATE `{$db_mymps}information` SET upgrade_type_index = '1',upgrade_time_index = '0' WHERE id ='$row[id]'");
@@ -144,4 +149,19 @@ if(!$city['cityid']){
 }
 
 include mymps_tpl('category_list');
+
+function calculate_distance($lat1, $lon1, $lat2, $lon2)
+{
+    $R = 6371;
+    $lat1 = doubleval($lat1);
+    $lon1 = doubleval($lon1);
+    $lat2 = doubleval($lat2);
+    $lon2 = doubleval($lon2);
+    $dLat = deg2rad($lat2-$lat1);  // deg2rad below
+    $dLon = deg2rad($lon2-$lon1);
+    $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon/2) * sin($dLon/2);
+    $c = 2 * atan2(sqrt($a), sqrt(1-$a));
+    $d = $R * $c * 1;
+    return $d;
+}
 ?>

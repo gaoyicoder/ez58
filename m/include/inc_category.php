@@ -139,6 +139,7 @@ foreach($infolist as $k => $row){
             $arr['is_online'] = 1;
             $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         } else {
+            $row_cs = $db->getOne("SELECT * FROM `{$db_mymps}coords_sync` AS cs WHERE userid ='".$row['userid']."'");
             $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);
         }
     }

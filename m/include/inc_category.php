@@ -103,9 +103,9 @@ if($distance){
     $city_limit1 = "";
     $city_limit1  .= empty($areaid) ? "": " AND a.areaid = '$areaid'";
     $city_limit1 .= empty($streetid) ? "": " AND a.streetid = '$streetid'";
-    $row_online = $db->getAll("SELECT i.id as info_id, i.title  FROM `{$db_mymps}coords_sync` AS cs
+    $row_online = $db->getAll("SELECT a.id FROM `{$db_mymps}coords_sync` AS cs
                           INNER JOIN `{$db_mymps}information` AS a
-                          ON cs.userid = i.userid
+                          ON cs.userid = a.userid
                           WHERE a.info_level > 0 {$cate_limit}{$city_limit}");
 
     foreach($row_online as $v) {

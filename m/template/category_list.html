@@ -163,7 +163,9 @@
                     {/loop}
                     <span class="lvzi">{echo get_format_time($mymps['begintime'])}</span>
                     <span>阅{$mymps[hit]}</span>
+                    {if $distance}
                     <span>距离: {$mymps[info_distance]}米</span>
+                    {/if}
                     {if $mymps[is_online]}
                     <span>当前在线</span>
                     {/if}

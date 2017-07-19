@@ -107,11 +107,9 @@ if($distance){
                           INNER JOIN `{$db_mymps}information` AS a
                           ON cs.userid = a.userid
                           WHERE a.info_level > 0 {$cate_limit}{$city_limit}");
-    print_r($row_online);
     foreach($row_online as $v) {
-        if (strpos($idin, ','.$v['id'].',') || strpos($idin, $v['id'].',') === 0) {
+        if (!strpos($idin, ','.$v['id'].',') && !strpos($idin, $v['id'].',') === 0) {
             $idin = $idin? $v['id'].','.$idin : $v['id'];
-
             $id_online[] = $v['id'];
         }
     }

@@ -146,7 +146,7 @@ foreach($infolist as $k => $row){
 	$info_list[$row['id']]	= $arr;
 	$ids .= $row['id'].',';
 }
-print_r($infolist);
+print_r($info_list);
 if($cat['modid'] > 1 && $idin) {
 	$des = get_info_option_array();
 	$extra = $db ->getAll("SELECT a.* FROM `{$db_mymps}information_{$cat[modid]}` AS a WHERE 1 {$idin}"); 

@@ -7,7 +7,7 @@
 	<a href="javascript:void(0);" onClick="return window.history.go(-1);" class="back left8">返回</a>
 	<div class="search left8" id="search_ico" onClick="showNewPage('搜索',searchHtml,newPageSearch);">搜索</div>
 	<a href="{$mymps_global[SiteUrl]}/m/index.php?mod=changecity" class="changecity left8" id="login_ico"><span class="change">{echo $city[cityname]?$city[cityname]:'切换'}</span><span class="changecityico"></span></a>
-	<div id="ipageTitle" style="display:none;"><!--{if $mod=='index'}--><!--{else}-->{$mymps_global[SiteName]}<!--{/if}--></div>
+	<div id="ipageTitle" style="display:none;"><!--{if $mod=='index'}--> <img src="<?=$mymps_global['SiteUrl']?>/m/template/images/logo.png" alt="" style="height:45px"> <!--{else}-->{$mymps_global[SiteName]}<!--{/if}--></div>
     <div class="login_inner" id="login_inner"></div>
 </div>
 <div id="contactbar">

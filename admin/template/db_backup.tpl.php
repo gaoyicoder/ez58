@@ -45,7 +45,7 @@ ifcheck = false;
     <tr bgcolor="#ffffff">
       <td width="100" class="bd_txt">数据库</td>
       <td>
-		<label for="mymps"><input id="mymps" name="type" type="radio" class="radio" value="mymps" checked="checked" onClick="hide_backup_type()"> Mymps全部数据</label>
+		<label for="mymps"><input id="mymps" name="type" type="radio" class="radio" value="mymps" checked="checked" onClick="hide_backup_type()">全部数据</label>
       </td>
       </tr>
     <tr bgcolor="#ffffff">

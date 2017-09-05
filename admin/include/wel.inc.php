@@ -19,7 +19,7 @@ if(!$latestbackup){
 	$message = '<font color=red>您尚未备份过Mymps系统全部数据</font>';
 } else {
 	if($parttime > 13){
-		$message = '<font color=red>您已经超过两周没有备份Mymps系统全部数据了</font>';
+		$message = '<font color=red>您已经超过两周没有备份系统全部数据了</font>';
 	} elseif($parttime == 0) {
 		$message = '<font color=green>您今天已经备份过Mymps全部数据</font>';
 	} else{
@@ -74,17 +74,12 @@ $welcome = array(
 		<div><span>expose_php:</span>'.$expose_php.' &nbsp;&nbsp;<font color=red>[荐off]</font></div>
 		<div><span>eAccelerator:</span>'.$eAccelerator.' &nbsp;&nbsp;</div>
 		<div><span>MYSQL版本:</span>'.$db->version().'</div>
-		<div><span>mymps目录: </span>'.MYMPS_ROOT.'</div>
+		<div><span>系统目录: </span>'.MYMPS_ROOT.'</div>
 		<div><span>使用域名: </span>'.$_SERVER["SERVER_NAME"].'</div>
 		<div><span>脚本超时时间：</span>'.ini_get('max_execution_time').'</div>
 		<div><span>附件上传上限</span>'.ini_get('upload_max_filesize').'</div>
 		<div><span>GD库版本</span>'.$gd_version.'</div>
 		<div><span>检测文件读写权限</span><a href=\'javascript:setbg("检测文件读写权限",305,380,"../box.php?part=sp_testdirs")\' class="icon_open" id="spanmymsg" >点此检测</a>		
 		',
-	'研发团队'=>'
-		<div><span>版权所有：</span> <a href="http://www.mymps.com.cn" target="_blank">http://www.mymps.com.cn</a><br />
-		<div><span>官方论坛：</span> <a href="http://bbs.mymps.com.cn" target="_blank">http://bbs.mymps.com.cn</a><br />
-		<div><span>mymps版本：</span> '.MPS_VERSION.' <br />
-			'
 		);
 ?>

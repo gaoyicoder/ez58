@@ -46,7 +46,7 @@ if (!submit_check(CURSCRIPT . '_submit')) {
 		write_msg('手机图标导航已成功应用默认设置！', 'mobile.php?type=nav_ico', 'Mym_psRecord');
 	} elseif ($type == 'gg') {
 		$here = '手机版广告设置';
-		$target = array('1' => '首页头部', '2' => '新闻首页头部');
+		$target = array('1' => '首页头部', '2' => '新闻首页头部', '3' => '首页中部');
 		$where = $typeid ? " WHERE typeid = '{$typeid}'" : "";
 		$rows_num = mymps_count('mobile_gg', $where);
 		$param = setParam(array('type', 'typeid'));

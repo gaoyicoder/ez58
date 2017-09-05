@@ -66,15 +66,84 @@ function showPosition(position)
                 
             </div>
     <script src="template/js/slider.js"></script>
-	<script>(function($){var list=$('#content').find('.cell');if(list.length>0){var txt='';$('#content').find('.cell').each(function(i){if(i===0){txt+='<li class="active">1</li>'}else{txt+='<li>'+(i+1)+'</li>'}});$('#indicator').html(txt);var w_w=$(window).width();setTimeout(function(){new C_Scroll({container:'slide',content:'content',ct:'indicator',size:w_w,intervalTime:5000,lazyIMG:!!0})},20);setTimeout(function(){$('#slide').show()},20)}})(jQuery);</script>
+	<script>
+        (function($) {
+            var list = $('#content').find('.cell');
+            if (list.length > 0) {
+                var txt = '';
+                $('#content').find('.cell').each(function(i) {
+                    if (i === 0) {
+                        txt += '<li class="active">1</li>'
+                    } else {
+                        txt += '<li>' + (i + 1) + '</li>'
+                    }
+                });
+                $('#indicator').html(txt);
+                var w_w = $(window).width();
+                setTimeout(function() {
+                            new C_Scroll({
+                                container: 'slide',
+                                content: 'content',
+                                ct: 'indicator',
+                                size: w_w,
+                                intervalTime: 5000,
+                                lazyIMG: !!0
+                            })
+                        },
+                        20);
+                setTimeout(function() {
+                            $('#slide').show()
+                        },
+                        20)
+            }
+        })(jQuery);
+    </script>
     <div class="index-category">
         <div class="index_slider">
             <div class="index_slider-wrap">
                 <div class="page">
                 <!--{php $navigation = get_mobile_nav(2);}-->
+                <!--{php $count = 0;}-->
     			<!--{loop $navigation $mymps}-->
+                    <!--{php $count ++;}-->
+                    <!--{if $count <= 8}-->
                 <a href="{$mymps[url]}" class="item food">{if $mymps[ico]}<div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[ico]}"></div>{/if}{echo cutstr($mymps[title],8)}</a>
+                    <!--{/if}-->
                 <!--{/loop}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!--{php $focus1 = get_mobile_gg(3);}-->
+    <!--{if $focus1}-->
+    <section>
+        <div id="slide1" style="display:none;">
+            <div id="content1">
+                <!--{loop $focus1 $mymps}-->
+                <div class="cell">
+                    <a href="{$mymps[url]}"><img src="{$mymps_global[SiteUrl]}{$mymps[image]}" alt="{$mymps[words]}"></a>
+                </div>
+                <!--{/loop}-->
+            </div>
+            <ul id="indicator1"></ul>
+        </div>
+        <span class="prev" id="slide1_prev" style="display:none">上一张</span><span class="next" id="slide1_next" style="display:none">下一张</span>
+    </section>
+    <div class="clear"></div>
+    <!--{/if}-->
+    <div class="index-category">
+        <div class="index_slider">
+            <div class="index_slider-wrap">
+                <div class="page">
+                    <!--{php $navigation = get_mobile_nav(2);}-->
+                    <!--{php $count = 0;}-->
+                    <!--{loop $navigation $mymps}-->
+                    <!--{php $count ++;}-->
+                    <!--{if $count > 8}-->
+                    <a href="{$mymps[url]}" class="item food">{if $mymps[ico]}<div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[ico]}"></div>{/if}{echo cutstr($mymps[title],8)}</a>
+                    <!--{/if}-->
+                    <!--{/loop}-->
                 </div>
             </div>
         </div>
@@ -140,6 +209,41 @@ function showPosition(position)
 </div>
 {template footer}
 <script src="template/js/index.js"></script>
-<script>(function($){var list=$('#content').find('.cell');if(list.length>0){var txt='';$('#content').find('.cell').each(function(i){if(i===0){txt+='<li class="active">1</li>'}else{txt+='<li>'+(i+1)+'</li>'}});$('#indicator').html(txt);var w_w=$(window).width();setTimeout(function(){new C_Scroll({container:'slide',content:'content',ct:'indicator',size:w_w,intervalTime:5000,lazyIMG:!!0})},20);setTimeout(function(){$('#slide').show()},20)}IDC.tabADS($('#tab_01'))})(jQuery);</script>
+<script>
+    (function($){
+
+        var list = $('#content1').find('.cell');
+        if (list.length > 0) {
+            var txt = '';
+            $('#content1').find('.cell').each(function(i) {
+                if (i === 0) {
+                    txt += '<li class="active">1</li>'
+                } else {
+                    txt += '<li>' + (i + 1) + '</li>'
+                }
+            });
+            $('#indicator1').html(txt);
+            var w_w = $(window).width();
+            setTimeout(function() {
+                        new C_Scroll({
+                            container: 'slide1',
+                            content: 'content1',
+                            ct: 'indicator1',
+                            size: w_w,
+                            intervalTime: 5000,
+                            lazyIMG: !!0,
+                            next:'slide1_next',
+                            prev:'slide1_prev',
+                        })
+                    },
+                    20);
+            setTimeout(function() {
+                        $('#slide1').show()
+                    },
+                    20)
+        }
+        IDC.tabADS($('#tab_01'))
+    })(jQuery);
+</script>
 </body>
 </html>

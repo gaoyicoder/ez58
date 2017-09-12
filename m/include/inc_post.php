@@ -20,6 +20,7 @@ if($action == 'post'){
 	$mixcode     = isset($mixcode) ? trim($mixcode) : '';
 	$manage_pwd  = isset($manage_pwd) ? trim($manage_pwd) : '';
 	$begintime 	= $timestamp;
+    $mappoint = $mappoint ? $mappoint : '';
 	$lat = isset($lat) ? (float)$lat : '';
 	$lng = isset($lng) ? (float)$lng : '';
 	$activetime	= $endtime 	= intval($endtime);
@@ -198,7 +199,7 @@ if($action == 'post'){
 					unset($row);
 				}
 			
-				$sql = "INSERT INTO `{$db_mymps}information` (title,content,begintime,activetime,endtime,catid,gid,catname,dir_typename,cityid,areaid,streetid,userid,ismember,info_level,qq,email,tel,contact_who,img_count,certify,ip,ip2area,latitude,longitude) VALUES ('$title','$content','$begintime','$activetime','$endtime','$catid','$d[gid]','$catname','$dir_typename','$cityid','$areaid','$streetid','$userid','1','$info_level','$qq','$email','$tel','$contact_who','$img_count','$certify','$ip','wap','$lat','$lng')";	
+				$sql = "INSERT INTO `{$db_mymps}information` (title,content,begintime,activetime,endtime,catid,gid,catname,dir_typename,cityid,areaid,streetid,userid,ismember,info_level,qq,email,tel,contact_who,img_count,certify,ip,ip2area,mappoint,latitude,longitude) VALUES ('$title','$content','$begintime','$activetime','$endtime','$catid','$d[gid]','$catname','$dir_typename','$cityid','$areaid','$streetid','$userid','1','$info_level','$qq','$email','$tel','$contact_who','$img_count','$certify','$ip','wap','$mappoint','$lat','$lng')";
 				/*积分变化*/
 				$score_change = get_credit_score();
 				$score_changer = $score_change['score']['rank']['information'];
@@ -221,7 +222,7 @@ if($action == 'post'){
 					$count >= $mymps_global[cfg_nonmember_perday_post] && redirectmsg("很抱歉！游客每天只能发布 <b style='color:red'>".$mymps_global[cfg_nonmember_perday_post]."</b> 条信息<br />如果您要继续操作，请联系客服。","index.php?mod=post&catid=".$catid."&cityid=".$cityid);
 				}
 				
-				$sql = "INSERT INTO `{$db_mymps}information` (title,content,begintime,activetime,endtime,catid,gid,catname,dir_typename,cityid,areaid,streetid,ismember,info_level,qq,email,tel,contact_who,img_count,certify,ip,ip2area,manage_pwd,latitude,longitude) VALUES ('$title','$content','$begintime','$activetime','$endtime','$catid','$d[gid]','$catname','$dir_typename','$cityid','$areaid','$streetid','0','$info_level','$qq','$email','$tel','$contact_who','$img_count','$certify','$ip','wap','$manage_pwd','$lat','$lng')";	
+				$sql = "INSERT INTO `{$db_mymps}information` (title,content,begintime,activetime,endtime,catid,gid,catname,dir_typename,cityid,areaid,streetid,ismember,info_level,qq,email,tel,contact_who,img_count,certify,ip,ip2area,manage_pwd,mappoint,latitude,longitude) VALUES ('$title','$content','$begintime','$activetime','$endtime','$catid','$d[gid]','$catname','$dir_typename','$cityid','$areaid','$streetid','0','$info_level','$qq','$email','$tel','$contact_who','$img_count','$certify','$ip','wap','$manage_pwd','$mappoint','$lat','$lng')";
 			}
 			
 			$db -> query($sql);
@@ -290,7 +291,7 @@ if($action == 'post'){
 		exit;
 	}elseif($catid){
 		//信息填写页
-		$cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid FROM `{$db_mymps}category` WHERE catid = '$catid'");
+		$cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint FROM `{$db_mymps}category` WHERE catid = '$catid'");
 		$cat['parentname'] = $db -> getOne("SELECT catname FROM `{$db_mymps}category` WHERE catid = '$cat[parentid]'");
 		if($cat['parentid'] == 0){
 			//如果为根分类

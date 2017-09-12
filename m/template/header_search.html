@@ -1,7 +1,6 @@
 <div id='wx_logo' style='margin:0 auto;display:none;'></div>
 {if $mod=='post'}<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js"></script>{elseif $mod=='information'}<script src="{$mymps_global[SiteUrl]}/m/template/js/jq_min.js"></script>{else}<script src="{$mymps_global[SiteUrl]}/m/template/js/jq_min.211.js"></script>{/if}
 <script src="{$mymps_global[SiteUrl]}/m/template/js/common.js"></script>
-<!--<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2"></script>-->
 <script src="{$mymps_global[SiteUrl]}/m/template/js/sync.js"></script>
 <div class="header">
 	<a href="javascript:void(0);" onClick="return window.history.go(-1);" class="back left8">返回</a>
@@ -17,9 +16,6 @@
 	<a href="{$mymps_global[SiteUrl]}/m/index.php?mod=post" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>
 </div>
 <script>
-    $.getScript('[js containing the initialize function]',function(){
-        $.getScript('https://api.map.baidu.com/api?v=2.0&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2');
-    });
 window['siteUrl']='{$mymps_global[SiteUrl]}/m/';
 <!--{if $mod=='index'}-->
 $('.header .back').hide();

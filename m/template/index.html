@@ -27,7 +27,7 @@ function showPosition(position)
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
-    {template header_search}
+    {template header_search1}
     {template navigation}
     <div class="clear"></div>
     <!--{php $focus = get_mobile_gg(1);}-->
@@ -47,7 +47,7 @@ function showPosition(position)
     </section>
     <div class="clear"></div>
     <!--{/if}-->
-        
+
     <div class="mod_02" id="myPicsrc">
                 <div class="bd tab-cont">
                     <ul class="list_normal list_news">
@@ -63,7 +63,7 @@ function showPosition(position)
                         <!--{/loop}-->
                     </ul>
                 </div>
-                
+
             </div>
     <script src="template/js/slider.js"></script>
 	<script>
@@ -156,7 +156,7 @@ function showPosition(position)
                 {php $ifnews = ifplugin('news');}
                 {if $ifnews}<li class="item current2"><a href="javascript:void(0);">热点资讯</a></li>{else}<li class="item current2"><a href="javascript:void(0);">最新发布</a></li>{/if}
                 {if $mymps_global[cfg_if_corp] == 1}<li class="item current3"><a href="javascript:void(0);">推荐商家</a></li>{/if}
-                
+
             </ul>
         </div>
         <div>
@@ -164,7 +164,7 @@ function showPosition(position)
             <!--{php $index_topinfo = mymps_get_infos(10,NULL,3,NULL,NULL,NULL,NULL,NULL,$cityid);}-->
             <!--{loop $index_topinfo $k $mymps}-->
             <li style="{if $mymps[ifbold] == 1}font-weight:bold;{/if}{if $mymps[ifred] == 1}color:red;{/if}">
-            <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a> 
+            <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a>
             <a href="index.php?mod=information&id={$mymps[id]}"><!--{echo cutstr($mymps[title],30)}--></a>
             <span class="jian"></span>
             </li>
@@ -176,7 +176,7 @@ function showPosition(position)
             <!--{php $news = mymps_get_news(7,NULL,NULL,NULL,NULL,NULL,$cityid);}-->
             <!--{loop $news $k $mymps}-->
             <li style="{if $mymps[is_commend] == 1}color:red;{/if}">
-            <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font> 
+            <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font>
             <a href="index.php?mod=news&id={$mymps[id]}">{$mymps[title]}</a><span class="jian"></span>
             </li>
             <!--{/loop}-->
@@ -187,7 +187,7 @@ function showPosition(position)
             <!--{php $newinfo = mymps_get_infos(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,$city[cityid]);}-->
             <!--{loop $newinfo $k $mymps}-->
             <li style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}">
-            <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font> 
+            <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font>
             <a href="index.php?mod=information&id={$mymps[id]}">{$mymps[title]}</a><span class="jian"></span>
             </li>
             <!--{/loop}-->
@@ -204,7 +204,7 @@ function showPosition(position)
             </ul>
             <!--{/if}-->
         </div>
-        
+
     </div>
 </div>
 {template footer}

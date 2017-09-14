@@ -11,6 +11,42 @@
 	<div class="header">
     	<a href="javascript:;" class="back left8 close">返回</a><span id="windowIframeTitle"></span>
     </div>
-	<div class="body" id="windowIframeBody"></div>
+	<div class="body" id="windowIframeBody">
+
+	</div>
 </div>
-<script>var searchHtml='<div class="searchbar2">'+'<form id="myform" action="{$mymps_global[SiteUrl]}/m/index.php?" method="get">'+'<input name="mod" type="hidden" value="search">'+'<input type="text" name="keywords" id="keyword" class="s_ipt" value="" placeholder="输入关键字" />'+'<input type="submit" class="s_btn po_ab" value="搜索">'+'</form></div>';function newPageSearch(){$('#windowIframe .back').show();$('#myform').submit(function(){if($('#keyword').val()===''){MSGwindowShow('index','0','请输入搜索关键字','','')}})}</script>
+
+<script>var searchHtml='<div class="searchbar2">'+'<form id="myform" action="{$mymps_global[SiteUrl]}/m/index.php?" method="get">'+'<input name="mod" type="hidden" value="search">'+'<input type="text" name="keywords" id="keyword" class="s_ipt" value="" placeholder="输入关键字" />'+'<input type="submit" class="s_btn po_ab" value="搜索">'+'</form></div>'+'<div class="nosearch">'+'<div class="searchtab">热门搜索'+'</div>'+'<div class="hotword">'+'<span>'+'<a href="#">打孔'+'</a>'+'</span>'+'<span>'+'<a href="#">拎包'+'</a>'+'</span>'+'<span>'+'<a href="#">疏通'+'</a>'+'</span>'+'<span>'+'<a href="#">刷墙'+'</a>'+'</span>'+'<span>'+'<a href="#">打孔'+'</a>'+'</span>'+'</div>'+'</div>';function newPageSearch(){$('#windowIframe .back').show();$('#myform').submit(function(){if($('#keyword').val()===''){MSGwindowShow('index','0','请输入搜索关键字','','')}})}</script>
+
+<style type="text/css">
+	.nosearch{
+		width: 100%;
+
+		background: #fff;
+	}
+	.nosearch .searchtab{
+		margin:0 10px;
+		text-align: center;
+		height: 28px;
+		border: 2px solid #626262;
+		border-radius:3px;
+		line-height: 28px;
+		background: #626262;
+		color:#fff;
+	}
+	.nosearch .hotword{
+		margin: 0 10px;
+		margin-top: 10px;
+	}
+	.nosearch .hotword a{
+		background: #f3f3f3;
+		padding:0 17px;
+		line-height: 29px;
+		display: inline-block;
+		border:1px solid #e1e1e3;
+		border-radius:13px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		color: #666;
+	}
+</style>

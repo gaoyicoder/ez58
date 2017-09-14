@@ -137,7 +137,7 @@ foreach($parameter AS $key => $val){
 
 $param=substr($param,0,-1);
 $sign=md5(substr($sign,0,-1).$paykey);
-$gotopayurl='https://openapi.alipaydev.com/gateway.do?'.$param.'&sign='.$sign.'&sign_type='.$sign_type;
+$gotopayurl='https://www.alipay.com/cooperate/gateway.do?'.$param.'&sign='.$sign.'&sign_type='.$sign_type;
 ToPayMoney($money,$out_trade_no,$uid,$s_uid,'alipay');//写入等待支付记录
 ?>
 <html>

@@ -6,5 +6,5 @@
  * Time: 11:15 PM
  */
 
-include mymps_tpl('category_index');
+include mymps_tpl('cate_index');
 ?>

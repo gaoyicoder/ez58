@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>{$cat[catname]} - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/list.css">
+    <link type="text/css" rel="stylesheet" href="template/css/filter.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_quv1sz23kg25ipb9.css">
+    <script>window['current'] = '{$city[cityname]}{$cat[catname]}';</script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="wrapper">
+
+    {template header_search}
+
+	<div class="infolst_w">
+        
+	</div>
+</div>
+{template footer}
+<script src="template/js/iscroll.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	window['myScroll_parent'] = null;
+	window['myScroll_inner'] = null;
+	showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
+},false);
+</script>
+</body>
+</html>

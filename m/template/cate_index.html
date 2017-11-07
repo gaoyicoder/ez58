@@ -17,8 +17,8 @@
     {template header_search}
 
 	<div class="infolst_w">
-        <div class="item"><a href="index.php?mod=share_parking&catid={$cat[id]}">我要分享车位</a></div>
-        <div class="item"><a href="index.php?mod=find_parking&catid={$cat[id]}">我要寻找车位</a></div>
+        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=share_parking&catid={$cat[catid]}">我要分享车位</a></div>
+        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}">我要寻找车位</a></div>
 	</div>
 </div>
 {template footer}

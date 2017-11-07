@@ -17,8 +17,8 @@
     {template header_search}
 
 	<div class="infolst_w">
-        <div><a href="index.php?mod=share_parking&catid={$cat[id]}">我要分享车位</a></div>
-        <div><a href="index.php?mod=find_parking&catid={$cat[id]}">我要寻找车位</a></div>
+        <div class="item"><a href="index.php?mod=share_parking&catid={$cat[id]}">我要分享车位</a></div>
+        <div class="item"><a href="index.php?mod=find_parking&catid={$cat[id]}">我要寻找车位</a></div>
 	</div>
 </div>
 {template footer}
@@ -30,5 +30,29 @@ document.addEventListener('DOMContentLoaded',function(){
 	showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
 },false);
 </script>
+<style type="text/css">
+	.infolst_w{
+		text-align: center;
+		margin-top: 120px;
+		margin-bottom: 200px;
+	}
+	.infolst_w .item{
+		margin: 30px 0;
+	}
+	.infolst_w a{
+
+		width: 120px;
+		line-height: 50px;
+
+		padding: 10px;
+		border-radius: 8px;
+		margin:10px 0;
+		background: #0DC961;
+		color: #fff;
+		font-size: 24px;
+
+	}
+
+</style>
 </body>
 </html>

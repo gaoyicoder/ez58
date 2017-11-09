@@ -134,7 +134,7 @@
 		<ul class="list-info">
         {loop $info_list $mymps}
     		<li class="{echo $mymps[upgrade_type] > 1 ? 'dingbg' : '';}">
-                <a href="index.php?mod=information&id={$mymps[id]}">
+                <a href="index.php?mod=parking_info&id={$mymps[id]}">
                 {if $mymps[img_path]}
 					<img class="thumbnail" src="{$mymps_global[SiteUrl]}{$mymps[img_path]}" alt="{$mymps[title]}</strong>">
 				{else}

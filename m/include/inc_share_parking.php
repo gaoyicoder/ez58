@@ -267,7 +267,7 @@ if($action == 'post'){
             }
 
             $msg = $info_level > 0 ? '成功发布一条信息!' : '您的信息审核通过后将显示在网站上!';
-            redirectmsg($msg,'index.php?mod=category&catid='.$catid);
+            redirectmsg($msg,'index.php?mod=parking_info&id='.$id);
             break;
     }
 

@@ -21,6 +21,11 @@ if($action == 'post'){
 	$manage_pwd  = isset($manage_pwd) ? trim($manage_pwd) : '';
 	$begintime 	= $timestamp;
     $mappoint = $mappoint ? $mappoint : '';
+    if ($mappoint) {
+        $point = explode(",", $mappoint);
+        $lng = $point[0];
+        $lat = $point[1];
+    }
 	$lat = isset($lat) ? (float)$lat : '';
 	$lng = isset($lng) ? (float)$lng : '';
 	$activetime	= $endtime 	= intval($endtime);

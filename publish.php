@@ -49,8 +49,6 @@ if($act == 'dopost') {
 	empty($contact_who) && write_msg("联系人不能为空！");
 	
 	mymps_check_upimage("mymps_img_");
-	$lat = isset($lat) ? (float)$lat : '';
-	$lng = isset($lng) ? (float)$lng : '';
 	$id = $action == 'edit' ? intval($id) : '';
 	$userid 	= isset($userid) ? mhtmlspecialchars($userid) : '';
 	$manage_pwd	= isset($manage_pwd) ? trim($manage_pwd) : '';
@@ -65,6 +63,13 @@ if($act == 'dopost') {
 	$endtime 	= ($endtime == 0)?0:(($endtime*3600*24)+$begintime);
 	$ismember 	= intval($ismember);
 	$mappoint   = isset($mappoint) ? trim(mhtmlspecialchars($mappoint)) : '';
+    if ($mappoint) {
+        $point = explode(",", $mappoint);
+        $lng = $point[0];
+        $lat = $point[1];
+    }
+    $lat = isset($lat) ? (float)$lat : '';
+    $lng = isset($lng) ? (float)$lng : '';
 	$tel		= isset($tel) ? trim(mhtmlspecialchars($tel)) : '';
 	$qq			= isset($qq) ? trim(mhtmlspecialchars($qq)) : '';
 	$web_address= trim(mhtmlspecialchars($web_address));

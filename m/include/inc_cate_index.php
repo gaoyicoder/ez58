@@ -8,6 +8,5 @@
 if(!$cat = get_cat_info($catid)){
     errormsg('您所指定的栏目不存在或者已被删除！');
 }
-
 include mymps_tpl('cate_index');
 ?>

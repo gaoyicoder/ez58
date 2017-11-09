@@ -14,7 +14,7 @@ $city=get_city_caches($cityid);
 $db->query("UPDATE `{$db_mymps}information` SET hit = hit + 1 WHERE id = '$id'");
 
 $row['endtime']	 = get_info_life_time($row['endtime']);
-$row['contactview'] = ($row['endtime'] == '<font color=red>已过期</font>' && $mymps_global['cfg_info_if_gq'] != 1) ? 0 : 1; 
+$row['contactview'] = ($row['endtime'] == '<font color=red>已过期</font>' && $mymps_global['cfg_info_if_gq'] != 1) ? 0 : 1;
 
 
 $rowr = $db -> getRow("SELECT catid,parentid,catname,template_info,modid,usecoin FROM `{$db_mymps}category` WHERE catid = '$row[catid]'");
@@ -73,5 +73,5 @@ if($rowr['modid'] > 1){
 		$des = NULL;
 	}
 }
-include mymps_tpl('info');
+include mymps_tpl('parking_info');
 ?>

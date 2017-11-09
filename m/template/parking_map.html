@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+    {template header}
+    <title>附近的人 - {$mymps_global[SiteName]}</title>
+    <link type="text/css" rel="stylesheet" href="template/css/global.css">
+    <link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/member.css">
+    <script>window['current'] = '附近的车位';</script>
+    <style type="text/css">
+        /* *{height: 100%; width: 100%; overflow: hidden; margin: 0}
+        body{height:100%; width: 100%;margin:0px;padding:0px; overflow: hidden;}
+        #container{height:100%; width: 100%; overflow: hidden;margin: 0} */
+        html{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        body{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+
+        #container{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        #l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+        #r-result{height:100%;width:20%;float:left;}
+        /*#contactbar{display: none;}*/
+        .wrapper{
+            width: 100%;
+            height: 92%;
+        }
+    </style>
+
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="wrapper">
+
+    {template header_search}
+
+        <div id="container"></div>
+
+        <script type="text/javascript">
+
+
+            var gpsArray = new Array();
+            {loop $row $k $v}
+            gpsArray[{$k}] = [{$v[longitude]}, {$v[latitude]}, {$v[id]}, '{$v[title]}'];
+            {/loop}
+
+
+            //地图初始化
+            var bm = new BMap.Map("container");
+
+            bm.addControl(new BMap.NavigationControl());
+            bm.enableScrollWheelZoom(true);
+             bm.addControl(new BMap.MapTypeControl());
+
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r){
+                var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
+                bm.centerAndZoom(ggPoint,15);
+            });
+
+
+            for (var i = 0; i < gpsArray.length; i ++) {
+
+                var point = new BMap.Point(gpsArray[i][0], gpsArray[i][1]);
+                var myIcon=new BMap.Icon("ico.png", new BMap.Size(40,26))
+
+                var marker = new BMap.Marker(point,{icon:myIcon});
+
+
+                bm.addOverlay(marker);
+
+                var opts = {
+                    position : point,    // 指定文本标注所在的地理位置
+                    offset   : new BMap.Size(-40, -40)    //设置文本偏移量
+                };
+                var label = new BMap.Label(gpsArray[i][3], opts);  // 创建文本标注对象
+                label.setStyle({
+                    color : "#111",
+                    fontSize : "12px",
+                    border:"1px solid #c2c2c2",
+
+                    padding:"6px 16px",
+
+
+                    fontFamily:"微软雅黑",
+                    borderRadius:"15px"
+                });
+                bm.addOverlay(label);
+                (function(){
+                    var index = i;
+                    label.addEventListener("click",function() {
+                        window.location.href="index.php?mod=information&id="+ gpsArray[index][2];
+                    });
+                })();
+
+
+
+            }
+
+        </script>
+    </div>
+
+
+{template footer}
+</body>
+</html>

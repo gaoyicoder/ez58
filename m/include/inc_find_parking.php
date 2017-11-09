@@ -87,10 +87,9 @@ $lat =(float)$lat;
 $lng = (float)$lng;
 $distance = (float)$distance;
 $distance = !in_array($distance,array('0.5','1','3','5')) ? '0' : $distance;
-$distance = $distance * 0.01;
 
 if($distance){
-    $city_limit .= " AND latitude < '".($lat+$distance)."' AND latitude > '".($lat-$distance)."' AND longitude < '".($lng+$distance)."' AND longitude > '".($lng-$distance)."'";
+    $city_limit .= " AND latitude < '".($lat+$distance * 0.01)."' AND latitude > '".($lat-$distance * 0.01)."' AND longitude < '".($lng+$distance * 0.01)."' AND longitude > '".($lng-$distance * 0.01)."'";
 }else{
     $city_limit  .= empty($areaid) ? "": " AND a.areaid = '$areaid'";
     $city_limit  .= empty($streetid) ? "": " AND a.streetid = '$streetid'";

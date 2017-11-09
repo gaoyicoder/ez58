@@ -87,6 +87,7 @@ $lat =(float)$lat;
 $lng = (float)$lng;
 $distance = (float)$distance;
 $distance = !in_array($distance,array('0.5','1','3','5')) ? '0' : $distance;
+$distance = $distance * 0.01;
 
 if($distance){
     $city_limit .= " AND latitude < '".($lat+$distance)."' AND latitude > '".($lat-$distance)."' AND longitude < '".($lng+$distance)."' AND longitude > '".($lng-$distance)."'";

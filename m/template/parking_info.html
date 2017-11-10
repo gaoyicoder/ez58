@@ -5,6 +5,9 @@
 	<title>{$row[title]} - {$row[catname]} - {$mymps_global[SiteName]}</title>
     <meta name="keywords" content="{$row[title]}"/>
     <meta name="description" content="{$row[title]}-{$mymps_global[SiteName]}手机版"/>
+    {if $row[userid]==$s_uid&&$row[book_uid]==""}
+    <meta http-equiv="refresh" content="10">
+    {/if}
 	<link type="text/css" rel="stylesheet" href="template/css/global.css">
 	<link type="text/css" rel="stylesheet" href="template/css/style.css">
 	<link type="text/css" rel="stylesheet" href="template/css/info.css">
@@ -18,11 +21,37 @@
 	<div class="detail">
 		<div class="tit_area">
 			<h1 class="tit">{$row[title]}</h1>
+            {if $row[userid]==$s_uid}
+            <div class="status_bar">
+                <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
+                <span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
+                <div style="text-align: center">
+                    <div style="border:1px solid #555; text-align: center;line-height: 30px;border-radius: 3px;margin-bottom: 16px">
+                    {if $row[book_uid]==""}
+                    车位正在等待被预订中,请不要关闭该页面。
+                    {else}
+                    车位已被用户<span>{$row[book_uid]}</span>预订,请在交接完成后点击交接按钮
+                    </div>
+
+                    <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
+                        交接
+                    </a>
+                </div>
+                {/if}
+            </div>
+            {else}
 			<div class="status_bar">
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
 				<span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
-				<a rel="nofollow" href="{$mymps_global[SiteUrl]}/box.php?part=wap_shoucang&infoid={$row[id]}" class="btn_Favorite"><i class="ico"></i>收藏</a>
+				<a href="javascript:;" onclick="book_parking({$row[id]}, this)" >
+                    {if $row[book_uid]==""}
+                        <span style="color:#fff;background: red;padding: 6px; border-radius: 4px">预订该车位</span>
+                    {else}
+                        <span style="color:#333;background: #999;padding: 6px; border-radius: 4px">车位已预订</span>
+                    {/if}
+                </a>
 			</div>
+            {/if}
 		</div>
 		{if $row[image]}
 		<div class="image_area_w">
@@ -119,7 +148,7 @@
 					<p class="mt10" style="display: flex; justify-content: space-around;">
 						<a {if $iflogin == 0}onclick="alert('您在登录后可以免费查看并拨打电话给商家')"{/if} href="{if $iflogin == 0}javascript:;{else}tel:{$row[tel]}{/if}" class="fangico dianhua"><i></i>拨打电话</a>
                         <a href="sms:{$row[tel]}" class="fangico duanxin"><i></i>短信咨询</a>
-                        <a href="#" class="znxx"><i class="icon-xinxi"></i>站内信息</a>
+                        <a href="#" class="znxx" style="display: none;"><i class="icon-xinxi"></i>站内信息</a>
 					</p>
 
 				</li>
@@ -129,30 +158,12 @@
         <script>MympsWindowMsg('',0,'该信息已过期，联系方式已被隐藏!');</script>
         {/if}
         {/if}
-		<div class="detail-tit">详细描述</div>
-		<div class="detail_txt_che">
-			{$row[content]}
-			<br />联系我时，请说是在{$mymps_global[SiteName]}看到的。
-		</div>
         {if $row[mappoint]}
         <div class="detail-tit">地理位置</div>
 		<div class="detail_txt_che">
 			<iframe src="{$mymps_global[SiteUrl]}/map.php?title={$row[title]}&isshow=1&p={$row[mappoint]}&width=360&height=190" height="205" width="100%" frameborder="0" scrolling="no"></iframe>
 		</div>
         {/if}
-		<div class="detail-tit">相关信息</div>
-		<div class="follow">
-			<ul>
-            	{php $relevant = mymps_get_infos(6,NULL,NULL,NULL,$row['catid'],NULL,NULL,NULL,$cityid);}
-            	{loop $relevant $mymps}
-					<li><a href="index.php?mod=information&id={$mymps[id]}">{echo cutstr($mymps['title'],26)}</a><span>{echo get_format_time($mymps['begintime'])}</span></li>
-				{/loop}
-			</ul>
-
-			<div class="more" style="margin-top:20px;">
-				<a style="text-align: center;position: relative" href="index.php?mod=category&catid={$row[catid]}&cityid=$cityid">查看更多{$row[catname]}信息&gt;&gt;</a>
-			</div>
-		</div>
 	</div>
 </div>
 {template footer}
@@ -165,7 +176,45 @@
     <div class="bigimg_box"><ul></ul></div>
 </div>
 <script src="template/js/slide.js"></script>
+<script>
+    function book_parking(id, obj){
+        $.ajax({
+            url: 'index.php?mod=parking_book&id='+id,
+            type:"POST",
+            dataType:"json",
+            data: {},
+            success:function(data){
+                if(data.result == true) {
+                    alert("车位预定成功");
+                    $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
+                } else {
+                    alert("车位已被预订");
+                }
+            }
+        });
+    }
+    function exchange_parking(id){
+        $.ajax({
+            url: 'index.php?mod=parking_exchange&id='+id,
+            type:"POST",
+            dataType:"json",
+            data: {},
+            success:function(data){
+                alert("车位交接成功");
+                window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
+//                if(data.result == true) {
+//                    alert("车位交接成功");
+//                    window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
+//                } else {
+//                    alert("车位交接失败");
+//                }
+            }
+        });
+    }
+
+
+
+</script>
 </div>
 </body>
 </html>
-<div style="display:none"><script src="template/js/history.js"></script>

@@ -103,7 +103,7 @@ $rows_num 	= $cat['totalnum'] =  $db -> getOne("SELECT COUNT(a.id) FROM `{$db_my
 $totalpage = ceil($rows_num/$perpage);
 $num = intval($page-1)*$perpage;
 
-$idin = get_page_idin("id","SELECT a.id FROM `{$db_mymps}information` AS a {$s} WHERE (a.info_level = 1 OR a.info_level = 2) {$sq}{$cate_limit}{$city_limit}{$orderby}",$perpage);
+$idin = get_page_idin("id","SELECT a.id FROM `{$db_mymps}information` AS a {$s} WHERE (a.info_level = 1 OR a.info_level = 2) AND a.book_uid='' {$sq}{$cate_limit}{$city_limit}{$orderby}",$perpage);
 
 $idin = $idin ? " AND a.id IN (".$idin.") " : "";
 

@@ -13,7 +13,7 @@ $city=get_city_caches($cityid);
 
 $db->query("UPDATE `{$db_mymps}information` SET hit = hit + 1 WHERE id = '$id'");
 
-$row['endtime']	 = get_info_life_time($row['endtime']);
+$row['endtime']	 = get_info_life_time1($row['endtime']);
 $row['contactview'] = ($row['endtime'] == '<font color=red>已过期</font>' && $mymps_global['cfg_info_if_gq'] != 1) ? 0 : 1;
 
 
@@ -74,4 +74,20 @@ if($rowr['modid'] > 1){
 	}
 }
 include mymps_tpl('parking_info');
+
+function get_info_life_time1($time)
+{
+    global $timestamp;
+    $last_time = round(($time > 0 ? ($time - $timestamp) : 0)/(60));
+    if($last_time >= 5){
+        $last_time = "还有<font color=green>$last_time</font>分钟过期";
+    }elseif($last_time > 0 && $last_time < 5){
+        $last_time = "还有<font color=red>$last_time</font>分钟过期";
+    }elseif($last_time == 0){
+        $last_time = '<font color=green>长期有效</font>';
+    }else{
+        $last_time = '<font color=red>已过期</font>';
+    }
+    return $last_time;
+}
 ?>

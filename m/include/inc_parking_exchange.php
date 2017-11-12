@@ -14,8 +14,8 @@ if ($s_uid) {
         if($row) {
             if($row['book_uid'] != '' ) {
                 $result = true;
-                $db->query("UPDATE `{$db_mymps}member` SET money_own = money_own+5 WHERE userid = '{$s_uid}'");
-                $db->query("UPDATE `{$db_mymps}member` SET money_own = money_own-5 WHERE userid = '{$row['book_uid']}'");
+                $db->query("UPDATE `{$db_mymps}member` SET money_own = money_own+".$row['content']." WHERE userid = '{$s_uid}'");
+                $db->query("UPDATE `{$db_mymps}member` SET money_own = money_own-".$row['content']." WHERE userid = '{$row['book_uid']}'");
             }
         }
     }

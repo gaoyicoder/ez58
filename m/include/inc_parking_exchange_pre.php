@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: gaoyi
- * Date: 11/10/17
- * Time: 1:16 PM
+ * Date: 11/12/17
+ * Time: 5:36 PM
  */
 
 $result = false;
@@ -12,9 +12,9 @@ if ($s_uid) {
     if($info_id) {
         $row = $db->getRow("SELECT * FROM `{$db_mymps}information` WHERE id = '{$info_id}'");
         if($row) {
-            if($row['book_uid'] == '' ) {
+            if($row['book_uid'] == $s_uid ) {
                 $result = true;
-                $db->query("UPDATE `{$db_mymps}information` SET book_uid='{$s_uid}',book_status=0 WHERE id = '{$info_id}'");
+                $db->query("UPDATE `{$db_mymps}information` SET book_status = 1 WHERE id = '{$info_id}'");
             }
         }
     }

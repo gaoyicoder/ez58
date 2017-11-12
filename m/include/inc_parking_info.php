@@ -12,8 +12,8 @@ $cityid = $row['cityid'];
 $city=get_city_caches($cityid);
 
 $db->query("UPDATE `{$db_mymps}information` SET hit = hit + 1 WHERE id = '$id'");
-
 $row['endtime']	 = get_info_life_time1($row['endtime']);
+
 $row['contactview'] = ($row['endtime'] == '<font color=red>已过期</font>' && $mymps_global['cfg_info_if_gq'] != 1) ? 0 : 1;
 
 

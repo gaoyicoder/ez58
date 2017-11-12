@@ -36,7 +36,7 @@ if($action == 'post'){
     $lat = isset($lat) ? (float)$lat : '';
     $lng = isset($lng) ? (float)$lng : '';
     $activetime	= $endtime 	= intval($endtime);
-    $endtime 	= ($endtime == 0)?0:($endtime*3600*24)+$begintime;
+    $endtime 	= ($endtime == 0)?0:($endtime*60)+$begintime;
     $d = $db->getRow("SELECT catname,dir_typename,modid,gid FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $catname = $d['catname'];
     $dir_typename = $d['dir_typename'];
@@ -177,8 +177,6 @@ if($action == 'post'){
         case false:
             //发布信息
             if($iflogin == 1){
-
-                $db->getOne("SELECT id FROM `{$db_mymps}information` WHERE title = '$title' AND userid = '$s_uid'") && redirectmsg("本信息标题已经存在，本站禁止发布重复信息！请更换标题。或者您已经发过同样信息想重复发布，可到帐号管理后台进行刷新操作即可。",$backurl);
 
                 //会员发布信息数量限制
                 $row = $db->getRow("SELECT a.per_certify,a.com_certify,a.status,b.perday_maxpost FROM `{$db_mymps}member` AS a LEFT JOIN `{$db_mymps}member_level` AS b ON a.levelid = b.id WHERE a.userid = '$s_uid'");

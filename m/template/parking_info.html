@@ -201,6 +201,7 @@
             success:function(data){
                 if(data.result == true) {
                     alert("车位预定成功");
+                    window.location.reload();
                     $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
                 } else {
                     alert("车位已被预订");

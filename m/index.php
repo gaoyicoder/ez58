@@ -127,6 +127,46 @@ function get_mobile_nav($typeid=1){
 	return $res[$typeid];
 }
 
+function get_mobile_info_nav($typeid=1){
+    static $res;
+    $data = read_static_cache('mobile_nav');
+    if($data === false){
+        $query = $GLOBALS['db'] -> query("SELECT * FROM `{$GLOBALS['db_mymps']}mobile_nav` WHERE isview = 2 AND url LIKE 'index.php?mod=category%' ORDER BY displayorder ASC");
+        while($row = $GLOBALS['db'] -> fetchRow($query)){
+            $res[$row['typeid']][$row['id']]['title'] = $row['title'];
+            $res[$row['typeid']][$row['id']]['url'] = $row['url'];
+            $res[$row['typeid']][$row['id']]['color'] = $row['color'];
+            $res[$row['typeid']][$row['id']]['flag'] = $row['flag'];
+            $res[$row['typeid']][$row['id']]['ico'] = $row['ico'];
+            $res[$row['typeid']][$row['id']]['target'] = in_array($row['target'],array('_selef','_blank'))?$row['target']:'_self';
+        }
+        write_static_cache('mobile_nav',$res);
+    } else {
+        $res = $data;
+    }
+    return $res[$typeid];
+}
+
+function get_mobile_share_nav($typeid=1){
+    static $res;
+    $data = read_static_cache('mobile_nav');
+    if($data === false){
+        $query = $GLOBALS['db'] -> query("SELECT * FROM `{$GLOBALS['db_mymps']}mobile_nav` WHERE isview = 2 AND url LIKE 'index.php?mod=cate_index%' ORDER BY displayorder ASC");
+        while($row = $GLOBALS['db'] -> fetchRow($query)){
+            $res[$row['typeid']][$row['id']]['title'] = $row['title'];
+            $res[$row['typeid']][$row['id']]['url'] = $row['url'];
+            $res[$row['typeid']][$row['id']]['color'] = $row['color'];
+            $res[$row['typeid']][$row['id']]['flag'] = $row['flag'];
+            $res[$row['typeid']][$row['id']]['ico'] = $row['ico'];
+            $res[$row['typeid']][$row['id']]['target'] = in_array($row['target'],array('_selef','_blank'))?$row['target']:'_self';
+        }
+        write_static_cache('mobile_nav',$res);
+    } else {
+        $res = $data;
+    }
+    return $res[$typeid];
+}
+
 function get_mobile_gg($typeid=1){
 	static $res;
 	$data = read_static_cache('mobile_gg');

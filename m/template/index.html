@@ -98,17 +98,14 @@ function showPosition(position)
             }
         })(jQuery);
     </script>
+    <div>即时分享</div>
     <div class="index-category">
         <div class="index_slider">
             <div class="index_slider-wrap">
                 <div class="page">
-                <!--{php $navigation = get_mobile_nav(2);}-->
-                <!--{php $count = 0;}-->
+                <!--{php $navigation = get_mobile_share_nav(2);}-->
     			<!--{loop $navigation $mymps}-->
-                    <!--{php $count ++;}-->
-                    <!--{if $count <= 8}-->
                 <a href="{$mymps[url]}" class="item food">{if $mymps[ico]}<div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[ico]}"></div>{/if}{echo cutstr($mymps[title],8)}</a>
-                    <!--{/if}-->
                 <!--{/loop}-->
                 </div>
             </div>
@@ -132,17 +129,14 @@ function showPosition(position)
     </section>
     <div class="clear"></div>
     <!--{/if}-->
+    <div>分类信息</div>
     <div class="index-category">
         <div class="index_slider">
             <div class="index_slider-wrap">
                 <div class="page">
-                    <!--{php $navigation = get_mobile_nav(2);}-->
-                    <!--{php $count = 0;}-->
+                    <!--{php $navigation = get_mobile_info_nav(2);}-->
                     <!--{loop $navigation $mymps}-->
-                    <!--{php $count ++;}-->
-                    <!--{if $count > 8}-->
                     <a href="{$mymps[url]}" class="item food">{if $mymps[ico]}<div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[ico]}"></div>{/if}{echo cutstr($mymps[title],8)}</a>
-                    <!--{/if}-->
                     <!--{/loop}-->
                 </div>
             </div>

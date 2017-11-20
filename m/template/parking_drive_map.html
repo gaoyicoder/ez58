@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+    {template header}
+    <title>附近的人 - {$mymps_global[SiteName]}</title>
+    <link type="text/css" rel="stylesheet" href="template/css/global.css">
+    <link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/member.css">
+    <script>window['current'] = '导航';</script>
+    <style type="text/css">
+        /* *{height: 100%; width: 100%; overflow: hidden; margin: 0}
+        body{height:100%; width: 100%;margin:0px;padding:0px; overflow: hidden;}
+        #container{height:50%; width: 100%; overflow: hidden;margin: 0} */
+        html{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        body{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+
+        #l-map{height:50%;width:100%;float:left;border-right:2px solid #bcbcbc;}
+        #r-result{height:50%;width:100%;float:left;overflow: scroll;}
+        /*#contactbar{display: none;}*/
+        .wrapper{
+            width: 100%;
+            height: 92%;
+        }
+    </style>
+
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="wrapper">
+
+    {template header_search}
+
+    <div id="l-map"></div>
+    <div id="r-result"></div>
+
+    <script type="text/javascript">
+        var map = new BMap.Map("l-map");
+
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            var p1 = new BMap.Point(r.point.lng,r.point.lat);
+            var p2 = new BMap.Point({$row[mappoint]});
+
+            map.centerAndZoom(p1, 12);
+            var transit = new BMap.DrivingRoute(map, {
+                renderOptions: {
+                    map: map,
+                    panel: "r-result",
+                    enableDragging : true //起终点可进行拖拽
+                }
+            });
+            transit.search(p1,p2);
+        });
+
+    </script>
+</div>
+
+
+{template footer}
+</body>
+</html>

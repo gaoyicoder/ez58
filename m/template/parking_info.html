@@ -174,7 +174,7 @@
         {/if}
         {/if}
         {if $row[mappoint]}
-        <div class="detail-tit">地理位置</div>
+        <div class="detail-tit">地理位置 <span><a href="index.php?mod=parking_drive_map&infoid={$row[id]}">导航</a></span></div>
 		<div class="detail_txt_che">
 			<iframe src="{$mymps_global[SiteUrl]}/map.php?title={$row[title]}&isshow=1&p={$row[mappoint]}&width=360&height=190" height="205" width="100%" frameborder="0" scrolling="no"></iframe>
 		</div>

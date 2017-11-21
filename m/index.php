@@ -27,8 +27,7 @@ if($cityid) {
 	$lng = isset($lng) ? (float)$lng : '';
 	if($lat && $lng && !$cityid) $cityid = get_latlng2cityid($lat,$lng);
 }
-
-if(!$cityid && $mod!='news' && $mod!='changecity' && $mod!='member') write_msg('','index.php?mod=changecity');
+//if(!$cityid && $mod!='news' && $mod!='changecity' && $mod!='member') write_msg('','index.php?mod=changecity');
 
 !in_array($mod,array('category','index','items','information','login','register','post','search','member','history','news','goods','corp','store','changecity','sync', 'sync_map', 'message', 'message_detail', 'cate_index', 'share_parking', 'find_parking', 'parking_map', 'parking_info', 'parking_book', 'parking_exchange', 'parking_exchange_pre','parking_drive_map')) && $mod = 'index';
 

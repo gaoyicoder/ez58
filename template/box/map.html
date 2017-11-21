@@ -20,6 +20,7 @@ function besuremark() {
 	}
 	parent.closeopendiv();
 }
+
 </script>
 </head>
 <body style="margin:10px 0 0 0; ">
@@ -45,7 +46,21 @@ var height = <?php echo $height; ?>;
 var view_level = <?php echo $level; ?>;
 var cityname = '<?php echo $cityname ; ?>';
 </script>
-<script type="text/javascript" language="javascript" src="<?php echo $mymps_global[mapapi]; ?>" <?php if($mymps_global[mapapi_charset]) $charset = $mymps_global[mapapi_charset]; ?>></script>
+<script type="text/javascript" language="javascript" src="https://api.map.baidu.com/api?v=2.0&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2" <?php if($mymps_global[mapapi_charset]) $charset = $mymps_global[mapapi_charset]; ?>></script>
 <script type="text/javascript" language="javascript" src="<?php echo $mymps_global[SiteUrl]?>/include/map/<?php echo $mymps_global[mapflag]?>.js?v=<?php echo $version; ?>"></script>
+<script type="text/javascript">
+
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+        document.getElementById('point1').value = r.point.lng;
+        document.getElementById('point2').value = r.point.lat;
+        var point = new BMap.Point(r.point.lng, r.point.lat);
+        map.centerAndZoom(point, 12);
+        //map.centerAndZoom(point, 15);
+        var marker = new BMap.Marker(point);
+        marker.enableDragging();
+        map.addOverlay(marker);
+    });
+</script>
 </body>
 </html>

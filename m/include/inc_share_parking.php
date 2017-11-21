@@ -46,10 +46,10 @@ if($action == 'post'){
 
     $backurl = "javascript:history.back();";
     if(empty($catid)) redirectmsg('您选择发布的分类不存在!','index.php?mod=category');
-    if(!$areaid = $db -> getOne("SELECT areaid FROM `{$db_mymps}area` WHERE areaid = '$areaid'")){
-        redirectmsg("您选择发布的地区不存在!","index.php?mod=post&cityid=".$cityid."&catid=".$catid);
-    }
-    empty($areaid) && redirectmsg("请选择您要发布的地区!","index.php?mod=post&cityid=".$cityid."&catid=".$catid);
+//    if(!$areaid = $db -> getOne("SELECT areaid FROM `{$db_mymps}area` WHERE areaid = '$areaid'")){
+//        redirectmsg("您选择发布的地区不存在!","index.php?mod=post&cityid=".$cityid."&catid=".$catid);
+//    }
+//    empty($areaid) && redirectmsg("请选择您要发布的地区!","index.php?mod=post&cityid=".$cityid."&catid=".$catid);
     empty($title) && redirectmsg("请输入信息标题!",$backurl);
 //    empty($content) && redirectmsg("您还没有输入信息描述!",$backurl);
     empty($contact_who) && redirectmsg("联系人不能为空!",$backurl);

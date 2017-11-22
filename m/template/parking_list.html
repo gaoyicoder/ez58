@@ -155,6 +155,9 @@
                     <span class="lvzi">{echo get_format_time($mymps['begintime'])}</span>
                     <span>阅{$mymps[hit]}</span>
                     </div>
+                        {if $timestamp>$mymps['endtime']}
+                        <div style="color: darkred;">已过期</div>
+                        {/if}
                     {if $distance}
                     <div>
                     <span style=" color: #3592E2; font-weight: bold; font-size: 14px;">距离: <ins style="text-decoration: none">{$mymps[info_distance]}KM</ins></span>

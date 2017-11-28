@@ -7,7 +7,8 @@
 	<link type="text/css" rel="stylesheet" href="template/css/style.css">
     <link type="text/css" rel="stylesheet" href="template/css/list.css">
     <link type="text/css" rel="stylesheet" href="template/css/filter.css">
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_quv1sz23kg25ipb9.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_222020_puyhkyqzxtievcxr.css">
+    <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
     <script>window['current'] = '{$city[cityname]}{$cat[catname]}';</script>
 </head>
 
@@ -17,27 +18,48 @@
     {template header_search}
 
 	<div class="infolst_w">
-        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=share_parking&catid={$cat[catid]}">我要分享车位</a></div>
-        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}">我要寻找车位</a></div>
+        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=share_parking&catid={$cat[catid]}" role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以将您目前的车位分享给其他人。" >
+        	<i class="icon-fenxiang iconfont"></i>我要分享车位</a></div>
+        <div class="item"><a {if $iflogin == 0} onclick="alert('请先登录');return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}"
+        	role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以寻找您附近的车位，并请在指定时间内到达车位完成交接。">
+        	<i class="icon-find iconfont"></i>我要寻找车位</a></div>
 	</div>
 </div>
+
+
+
 {template footer}
 <script src="template/js/iscroll.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded',function(){
 	window['myScroll_parent'] = null;
 	window['myScroll_inner'] = null;
 	showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
 },false);
+
+
+		$(function () {
+  $('[data-toggle="popover"]').popover('show')
+})
+</script>
+<script type="text/javascript" src="template/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="template/js/bootstrap.min.js">
+
 </script>
 <style type="text/css">
+	.infolst_w .item i{
+		vertical-align: top;
+		font-size: 26px;
+		margin-right: 10px;
+	}
 	.infolst_w{
 		text-align: center;
 		margin-top: 120px;
 		margin-bottom: 200px;
 	}
 	.infolst_w .item{
-		margin: 30px 0;
+		margin: 90px 0;
 	}
 	.infolst_w a{
 
@@ -51,6 +73,13 @@ document.addEventListener('DOMContentLoaded',function(){
 		color: #fff;
 		font-size: 24px;
 
+	}
+
+	body{
+		background-color: none;
+	}
+	a{
+		color: #fff;
 	}
 
 </style>

@@ -10,6 +10,18 @@
     <script type="text/javascript">function qiandao(){var url='index.php?mod=member&action=qiandao';$.get(url,function(data){MympsWindowMsg('',0,data)})}</script>
 </head>
 
+<style type="text/css">
+        .exit{
+          display: initial;
+        }
+
+        /*.member_head a.exit{
+          margin-left: 30px;
+        }*/
+
+
+</style>
+
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
 
@@ -20,15 +32,15 @@
   <div class="clearfix"></div>
   <div class="userName">{$row[tname]}{if $row[userid] != $row[tname]}<br>【{$row[userid]}】{/if}</div>
    <div class="clearfix"></div>
-  <a href="javascript:void(0);" onClick="qiandao();">签到</a> <a href="index.php?mod=member&action=editbase">完善资料</a> <a href="index.php?mod=member&action=editpwd">修改密码</a>
+  <a href="javascript:void(0);" onClick="qiandao();">签到</a> <a href="index.php?mod=member&action=editbase">完善资料</a> <a href="index.php?mod=member&action=editpwd">修改密码</a><a href="index.php?mod=login&action=logout" class="exit">退出</a>
   {if $row[if_corp]==1 && $mymps_global[cfg_if_corp] == 1}<a href="index.php?mod=store&id={$row[id]}">我的微店</a>{/if}
-  
+
  </div>
  <div class="amount_info">
   <ul>
    <li>
      <p>{$row[money_own]}</p>
-      金币                                   
+      金币
    </li>
    <li>
      <p>{$row[score]}</p>
@@ -47,9 +59,9 @@
    {/if}
   </ul>
  </div>
- <div class="member_exit"><a href="index.php?mod=login&action=logout" class="exit">安全退出</a></div>
+ <div class="member_exit"></div>
 
-</div>	
+</div>
 {template footer}
 
 </body>

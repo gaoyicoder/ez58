@@ -46,21 +46,24 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
   </dl>
   {if !$child}
      <dl class="cfix">
-         <dt>地址</dt>
+         <dt>车位描述</dt>
          <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位地址描述" /></dd>
      </dl>
      <dl class="cfix">
          <dt>车位价格</dt>
-         <dd><input readonly="readonly" name="content" id="content" style="width: 80%;" type="text" size="15" value="3" placeholder="对于该车位您期望以多少金币转让" />金币</dd>
+         <dd>
+             <input id="content1" type="radio" name="content" value="1" /><label for="content1">1金币</label>
+             <input id="content3" type="radio" name="content" value="3" /><label for="content3">3金币</label>
+             <input id="content5" type="radio" name="content" value="5" /><label for="content5">5金币</label>
+         </dd>
      </dl>
   <dl class="cfix">
    <dt>有效期</dt>
-   <dd>{echo GetInfoLastTimeParking($info[activetime],'endtime','wap')}</dd>
-   <div class="menu">
-    <i></i>
-    <i></i>
-    <i></i>
-   </div>
+   <dd>
+       <input id="endtime1" type="radio" name="endtime" value="1" /><label for="endtime1">1分钟</label>
+       <input id="endtime3" type="radio" name="endtime" value="3" /><label for="endtime3">3分钟</label>
+       <input id="endtime5" type="radio" name="endtime" value="5" /><label for="endtime5">5分钟</label>
+   </dd>
   </dl>
      {if $cat[if_mappoint] == 1}
      <dl class="cfix">
@@ -91,7 +94,7 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
   {/loop}
  </div>
 
- <div class="inp_Itembox">
+ <div style="display: none;" class="inp_Itembox">
    <dl class="cfix">
    <dt>联系人</dt>
    <dd><input type="text" id="contact_who" placeholder="输入联系人" name="contact_who" value="{$info[contact_who]}" /></dd>

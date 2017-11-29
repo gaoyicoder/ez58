@@ -288,7 +288,7 @@ if($action == 'post'){
             }
         }elseif($user = $db -> getRow("SELECT qq,email,mobile,cname FROM `{$db_mymps}member` WHERE userid = '$s_uid'")){
             $info['tel'] = $user['mobile'];
-            $info['contact_who'] = $user['cname'];
+            $info['contact_who'] = $s_uid;
             $info['qq'] = $user['qq'];
         }
 

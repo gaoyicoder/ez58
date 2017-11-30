@@ -2,7 +2,7 @@
 <html lang="zh-CN" class="index_page">
 <head>
     {template header}
-    <title>附近的人 - {$mymps_global[SiteName]}</title>
+    <title>导航 - {$mymps_global[SiteName]}</title>
     <link type="text/css" rel="stylesheet" href="template/css/global.css">
     <link type="text/css" rel="stylesheet" href="template/css/style.css">
     <link type="text/css" rel="stylesheet" href="template/css/member.css">
@@ -16,6 +16,7 @@
 
         #l-map{height:50%;width:100%;float:left;border-right:2px solid #bcbcbc;}
         #r-result{height:50%;width:100%;float:left;overflow: scroll;}
+        #r-result a{display: none;}
         /*#contactbar{display: none;}*/
         .wrapper{
             width: 100%;
@@ -51,7 +52,6 @@
             });
             transit.search(p1,p2);
         });
-
     </script>
 </div>
 

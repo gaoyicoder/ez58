@@ -380,3 +380,27 @@ function get_upload_image_view_wap($if_upimg = 1)
     }
     return $mymps;
 }
+
+function get_upload_image_view_parking($if_upimg = 1 , $infoid = '',$number='')
+{
+    global $mymps_global,$db,$db_mymps;
+    if($if_upimg == 1){
+        $cfg_upimg_number = $number ? $number : ($mymps_global['cfg_upimg_number']?$mymps_global['cfg_upimg_number']:4);
+        $mymps='<script type="text/javascript">$(function () {';
+        for($i=0;$i<$cfg_upimg_number;$i++){
+            $mymps.='$("#mymps_img_'.$i.'").uploadPreview({ Img: "ImgPr'.$i.'", Width: 108, Height: 108, MaxSize:'.$mymps_global['cfg_upimg_size'].' });';
+        }
+        $mymps .= '});</script>';
+        for($i=0;$i<$cfg_upimg_number;$i++){
+            $mymps.='<div class="onea_dd" style="margin: 5px 30%">
+                    <div style="display: none;" class="viewarea"><img id="ImgPr'.$i.'" src="'.$mymps_global['SiteUrl'].'/template/default/images/post/defaultimg.gif"/></div>
+					<div class="clearfix"></div>
+					<div class="a_ddarea">
+                    <input type="file" name="mymps_img_'.$i.'" id="mymps_img_'.$i.'" class="comment-pic-upd" />
+                    <img src="'.$mymps_global['SiteUrl'].'/template/default/images/post/addimg.gif" alt="上传照片" title="上传图片">
+                    </div>
+                </div>';
+        }
+    }
+    return $mymps;
+}

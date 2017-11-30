@@ -15,6 +15,9 @@ window['current'] = '{echo $id ? "修改" : "发布"}信息';
 <script language="javascript">
 function submitForm(){if(document.form1.title.value==""){alert('请填车位描述!');document.form1.title.focus();return false}if($("#title").val()){if(!isNaN($("#title").val())){alert('请填写正确的车位描述!');$("#title").focus();return false}}var length=lenthString($("#title").val());if(length<6||length>80){alert('车位描述请填写至少3个汉字，至多40个汉字!');$("#title").focus();return false}if(document.form1.endtime.value==""){alert('请选择有效期!');document.form1.endtime.focus();return false}<!--{loop $show_mod_option $mymps}--><!--{if $mymps[required]==1}-->if($("[name='extra[{$mymps[identifier]}]']").val()==''){alert('{$mymps[title]}不能为空!');$("[name='extra[{$mymps[identifier]}]']").focus();return false}<!--{/if}--><!--{/loop}-->if(document.form1.contact_who.value==""){alert('请填写联系人!');document.form1.contact_who.focus();return false}if($("#contact_who").val()){if(!isNaN($("#contact_who").val())){alert('请填写正确的联系人!');document.form1.contact_who.focus();return false}}if(document.form1.tel.value==""){alert('请填写联系电话!');document.form1.tel.focus();return false}if($("#qq").val()){if(isNaN($("#qq").val())){alert('请填写正确的QQ号码!');document.form1.qq.focus();return false}}if(document.form1.content.value==""){alert('请填写信息内容!');document.form1.content.focus();return false}var lenth=lenthString($("#content").val());if(lenth>1000){alert('您的描述字数太多了，请精简内容描述!');$("#content").focus();return false}<!--{if $iflogin==0}-->if(document.form1.manage_pwd.value==""){alert('请填写管理密码!');document.form1.manage_pwd.focus();return false}<!--{/if}--><!--{if $info[imgcode]==1}-->if(document.form1.checkcode.value==""){alert('请填写验证码!');document.form1.checkcode.focus();return false;}<!--{/if}-->$("#loadingPostdiv").show();return true}function chk_authcode(){if($("#checkcode").val()){$.get('../javascript.php?part=chk_authcode&value='+$("#checkcode").val(),function(data){if(data!='success'){alert(data);$("#checkcode").focus();return false}})}}function loadingPost(){var _PageWidth=document.documentElement.clientWidth;var _LoadingLeft=_PageWidth>215?(_PageWidth-215)/2:0;var _LoadingHtml='<div id="loadingPostdiv" style="display:none;position:fixed;left:0;width:100%;height:100%;top:0;background:#e1e1e1;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: '+_LoadingLeft+"px; top:40%; width: auto; height: 57px; line-height: 57px; padding-left: 40px; padding-right: 20px; background:#ffffff url(../images/loading.gif) no-repeat scroll 15px 20px; border: 5px solid #CCCCCC; border-radius:5px; color: #000;font-size:14px;\">数据提交中，请等待...</div></div>";document.write(_LoadingHtml)}loadingPost();
 </script>
+    <style type="text/css">
+        #container{width: 100%;height: 300px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
 </head>
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
@@ -69,8 +72,8 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
      <dl class="cfix">
          <dt>地理位置</dt>
          <dd>
-             <input name="mappoint" id="mappoint" type="text" size="26" value="{$info[mappoint]}" placeholder="经纬坐标" />
-             <input name="markmap" type="button" value="点击标注" class="mappoint" onclick="setbg('地图标注',300,500,'../map.php?action=markpoint&width=300&height=400')">
+             <input readonly="readonly" name="mappoint" id="mappoint" type="text" size="26" value="{$info[mappoint]}" placeholder="经纬坐标" />
+             <input style="display: none;" name="markmap" type="button" value="点击标注" class="mappoint" onclick="setbg('地图标注',300,500,'../map.php?action=markpoint&width=300&height=400')">
          </dd>
      </dl>
      {/if}
@@ -94,6 +97,7 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
   {/loop}
  </div>
 
+
  <div style="display: none;" class="inp_Itembox">
    <dl class="cfix">
    <dt>联系人</dt>
@@ -104,11 +108,17 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
    <dd><input type="text" id="tel" placeholder="请输入手机号码" name="tel" value="{$info[tel]}" /></dd>
   </dl>
  </div>
+        <div id="container" style="" class="inp_Itembox">
+
+        </div>
+        <div style="padding: 5px; font-size: 14px; " class="inp_Itembox">
+            如果定位不准确,您可以拖动地图上的点,来标注您当前的正确位置。
+        </div>
  
 {if $cat[if_upimg]==1}
 <script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/a_ddimgview.js"></script>
 <div class="inp_Itembox" style="overflow:auto; padding:10px 0 10px 10px">
-{echo $id ? get_upload_image_edit($cat['if_upimg'],$id) : get_upload_image_view(1,'',2);}
+{echo $id ? get_upload_image_edit($cat['if_upimg'],$id) : get_upload_image_view_parking(1,'',1);}
 </div>
 {/if}
 
@@ -129,6 +139,26 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
 {template footer}  
 <script>
 if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)}else{}function showPosition(position){document.getElementById("lat").value=position.coords.latitude;document.getElementById("lng").value=position.coords.longitude}
+</script>
+<script>
+    //地图初始化
+    var bm = new BMap.Map("container");
+
+    bm.addControl(new BMap.NavigationControl());
+    bm.enableScrollWheelZoom(true);
+
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+        var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
+        bm.centerAndZoom(ggPoint,12);
+        var marker = new BMap.Marker(ggPoint);
+        marker.enableDragging();
+        marker.addEventListener('dragend', function(e){
+            document.getElementById('mappoint').value = e.point.lng + "," + e.point.lat;
+        });
+        bm.addOverlay(marker);
+
+    });
 </script>
 </body>
 </html>

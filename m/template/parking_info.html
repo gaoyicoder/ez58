@@ -162,7 +162,7 @@
 				<li>
 					<p class="mt10" style="display: flex; justify-content: space-around;">
 						<a {if $iflogin == 0}onclick="alert('您在登录后可以免费查看并拨打电话给商家')"{/if} href="{if $iflogin == 0}javascript:;{else}tel:{$row[tel]}{/if}" class="fangico dianhua"><i></i>拨打电话</a>
-                        <a href="sms:{$row[tel]}" class="fangico duanxin"><i></i>短信咨询</a>
+
                         <a href="#" class="znxx" style="display: none;"><i class="icon-xinxi"></i>站内信息</a>
 					</p>
 

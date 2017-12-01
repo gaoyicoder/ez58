@@ -23,8 +23,8 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
 <div class="wrapper">
 	{template header_search}
     <div style="display:none;">
-        <iframe width=0 height=0 src='' id="iframe_area" name="iframe_area"></iframe> 
-        <iframe width=0 height=0 src='' id="iframe_street" name="iframe_street"></iframe> 
+        <iframe width=0 height=0 src='' id="iframe_area" name="iframe_area"></iframe>
+        <iframe width=0 height=0 src='' id="iframe_street" name="iframe_street"></iframe>
         <form method="post" target="iframe_area" id="form_area"></form>
     </div>
     <form id="form1" method="post" enctype="multipart/form-data" action="index.php?mod=share_parking" name="form1"  onSubmit="return submitForm();">
@@ -71,12 +71,12 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
              <input id="type2" type="radio" name="qq" value="地下车位" /><label for="type2">地下车位</label>
          </dd>
      </dl>
-     <dl class="cfix">
+     <dl class="cfix" id="cfnone" style="display:none">
          <dt>车位描述</dt>
          <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位地址描述" /></dd>
      </dl>
      {if $cat[if_mappoint] == 1}
-     <dl class="cfix">
+     <dl class="cfix" style="display:none">
          <dt>地理位置</dt>
          <dd>
              <input readonly="readonly" name="mappoint" id="mappoint" type="text" size="26" value="{$info[mappoint]}" placeholder="经纬坐标" />
@@ -85,7 +85,7 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
      </dl>
      {/if}
  </div>
- 
+
  <div class="inp_Itembox">
  {loop $show_mod_option $mymps}
   <dl class="cfix">
@@ -118,10 +118,11 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
         <div id="container" style="" class="inp_Itembox">
 
         </div>
-        <div style="padding: 5px; font-size: 14px; " class="inp_Itembox">
+        <div id="Closedcontent" style="padding: 10px; font-size: 14px; position:relative; " class="inp_Itembox">
+          <i style="position: absolute; font-size: 20px; top:0; right: 4px; color: red" id="closed">&times;</i>
             如果定位不准确,您可以拖动地图上的点,来标注您当前的正确位置。
         </div>
- 
+
 {if $cat[if_upimg]==1 && 0}
 <script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/a_ddimgview.js"></script>
 <div class="inp_Itembox" style="overflow:auto; padding:10px 0 10px 10px">
@@ -129,7 +130,7 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
 </div>
 {/if}
 
- 
+
 {if $info[imgcode] == 1}
 <div class="inp_Itembox">
 <dl class="cfix">
@@ -143,7 +144,7 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
 </form>
 </div>
 {/if}
-{template footer}  
+{template footer}
 <script>
 if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)}else{}function showPosition(position){document.getElementById("lat").value=position.coords.latitude;document.getElementById("lng").value=position.coords.longitude}
 </script>
@@ -167,6 +168,24 @@ if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)
         bm.addOverlay(marker);
 
     });
+
+$(document).ready(function(){
+ $('input[name="qq"]').each(function(){
+  $(this).click(function(){
+      if($(this).attr("checked")){
+    $('#cfnone').css('display','none')
+  }else{
+     $('#cfnone').css('display','block')
+  }
+  })
+
+ })
+
+  $("#closed").click(function(){
+    $("#Closedcontent").css('display','none')
+  })
+
+  })
 </script>
 </body>
 </html>

@@ -144,9 +144,7 @@ function msetcookie($var,$val,$life=0){
 	$cookie_path = $cookiepath ? $cookiepath : '/';
 	$life = $life ? $life : 3600;
 	$life = $timestamp+$life;
-    echo $cookiedomain;
 	setcookie($cookie_pre.$var,$val,$life,$cookie_path,$cookiedomain);
-    exit;
 }
 
 function mgetcookie($var){

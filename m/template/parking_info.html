@@ -28,7 +28,7 @@
                 <div style="text-align: center">
                     <div style="border:1px solid #555; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    车位正在等待被预订中,请不要关闭当前页面,车位将在发布的{$row[content]}分钟后过期。
+                    车位正在等待被预订中,请不要关闭当前页面,车位将在{echo date('H:i:s', $row['endtime1'])}后过期。
                     {else}
                     车位已被用户<span>{$row[book_uid]}</span>预订,请不要关闭当前页面。<br/>请在交接完成后点击交接按钮
                     </div>
@@ -54,7 +54,7 @@
                 {if $row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:1px solid #555; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
-                        请暂时不要关闭当前页面,请在{$row[content]}分钟内抵达车位并且完成车位交接完后点击交接按钮
+                        请暂时不要关闭当前页面,请在{echo date('H:i:s', $row['endtime1'])}前抵达车位并且完成车位交接完后点击交接按钮
                     </div>
                     <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
                         交接

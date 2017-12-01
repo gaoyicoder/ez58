@@ -19,10 +19,10 @@
 
 	<div class="infolst_w">
         <div class="item"><a {if $iflogin == 0} onclick="login_confirm();return false;" {/if} href="index.php?mod=share_parking&catid={$cat[catid]}" role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以将您目前的车位分享给其他人。" >
-        	<i class="icon-fenxiang iconfont"></i>我要分享车位</a></div>
+        	<i class="icon-fenxiang iconfont"></i>我发实时车位</a></div>
         <div class="item"><a {if $iflogin == 0} onclick="login_confirm();return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}"
         	role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以寻找您附近的车位，并请在指定时间内到达车位完成交接。">
-        	<i class="icon-find iconfont"></i>我要寻找车位</a></div>
+        	<i class="icon-find iconfont"></i>我要实时车位</a></div>
 	</div>
 </div>
 

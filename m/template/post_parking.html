@@ -49,10 +49,6 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
   </dl>
   {if !$child}
      <dl class="cfix">
-         <dt>车位描述</dt>
-         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位地址描述" /></dd>
-     </dl>
-     <dl class="cfix">
          <dt>车位价格</dt>
          <dd>
              <input id="content1" type="radio" name="content" value="1" /><label for="content1">1金币</label>
@@ -68,6 +64,17 @@ function submitForm(){if(document.form1.title.value==""){alert('请填车位描�
        <input id="endtime5" type="radio" name="endtime" value="5" /><label for="endtime5">5分钟</label>
    </dd>
   </dl>
+     <dl class="cfix">
+         <dt>车位类型</dt>
+         <dd>
+             <input id="type1" type="radio" checked name="qq" value="地上车位" /><label for="type1">地上车位</label>
+             <input id="type2" type="radio" name="qq" value="地下车位" /><label for="type2">地下车位</label>
+         </dd>
+     </dl>
+     <dl class="cfix">
+         <dt>车位描述</dt>
+         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位地址描述" /></dd>
+     </dl>
      {if $cat[if_mappoint] == 1}
      <dl class="cfix">
          <dt>地理位置</dt>

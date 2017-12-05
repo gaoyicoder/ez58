@@ -99,7 +99,7 @@ $orderby	= $cat['parentid'] == 0 ? " ORDER BY a.upgrade_type DESC,a.begintime DE
 
 $param		= setparams($allow_identifiers);
 
-$rows_num 	= $cat['totalnum'] =  $db -> getOne("SELECT COUNT(a.id) FROM `{$db_mymps}information` AS a {$s} WHERE a.info_level > 0 {$sq}{$cate_limit}{$city_limit}");
+$rows_num 	= $cat['totalnum'] =  $db -> getOne("SELECT COUNT(a.id) FROM `{$db_mymps}information` AS a {$s} WHERE a.info_level > 0 AND a.book_uid='' AND a.endtime > $timestamp {$sq}{$cate_limit}{$city_limit}");
 $totalpage = ceil($rows_num/$perpage);
 $num = intval($page-1)*$perpage;
 

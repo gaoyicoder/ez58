@@ -20,7 +20,7 @@ if($action == 'post'){
 
     $content    = isset($content) ? textarea_post_change($content) : '';
     $result 	= verify_badwords_filter($mymps_global['cfg_if_info_verify'],$title,$content);
-    $title 		= $result['title'];
+    $title 		= $qq." ".$result['title'];
     $content 	= $result['content'];
     $content	= preg_replace("/<a[^>]+>(.+?)<\/a>/i","",$content);
     $info_level = $result['level'];

@@ -135,7 +135,7 @@
 				{/if}
 				<dl>
 					<dt class="tit" style="{echo $mymps[ifred] == 1 ? 'color:red;' : ''}{echo $mymps[ifbold] == 1 ? 'font-weight:bold;' : ''}">{$mymps[title]}&nbsp;{if $mymps[img_path]}<span style="background:#339966; color:#FFFFFF; font-size:14px; padding:0 2px;text-align:center;">{$mymps[img_count]}图</span>{/if}{echo $mymps[upgrade_type] > 1 ? '<span class="ico ding"></span>' : '';}</dt>
-					<dd class="attr"><span>{echo cutstr(clear_html($mymps[content]),50)}</span></dd>
+					<dd class="attr"><span></span></dd>
 					<dd class="attr pr5" style="display: -webkit-box; display: flex;-webkit-box-pack:justify;justify-content:space-between;">
                     {loop $mymps[extra] $w}
                     {if strexists($w,'元')}
@@ -146,7 +146,7 @@
                     {/loop}
                     <div>
                     <span class="lvzi">{echo get_format_time($mymps['begintime'])}</span>
-                    <span>阅{$mymps[hit]}</span>
+                    <span style="display: none;">阅{$mymps[hit]}</span>
                     </div>
                         {if $timestamp>$mymps['endtime']}
                         <div style="color: darkred;">已过期</div>

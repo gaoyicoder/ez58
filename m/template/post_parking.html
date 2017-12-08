@@ -115,9 +115,13 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
    <dd><input type="text" id="tel" placeholder="请输入手机号码" name="tel" value="{$info[tel]}" /></dd>
   </dl>
  </div>
-        <div id="container" style="" class="inp_Itembox">
+ <section style="width: 100%; position: relative;">
+        <div id="container" style="width: 90%" class="inp_Itembox">
 
         </div>
+        <div class="tips" style="position: absolute; width: 10%;background: #ffffff;top:-10px;right: 0; font-size: 12px; text-align: center;">
+          <span style="display: block;-webkit-transform: rotate(90deg); font-size: 16px">&lt;</span><p style="padding-left: 3px; letter-spacing: 5px; width: 20px; display: inline-block;">请点击此处上下拖动页面</p> <span style="display: block; -webkit-transform: rotate(90deg); font-size: 16px">&gt;</span></div>
+</section>
         <div id="Closedcontent" style="padding: 10px; font-size: 14px; position:relative; " class="inp_Itembox">
           <i style="position: absolute; font-size: 20px; top:0; right: 4px; color: red" id="closed">&times;</i>
             如果定位不准确,您可以拖动地图上的点,来标注您当前的正确位置。

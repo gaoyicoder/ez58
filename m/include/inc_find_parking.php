@@ -125,6 +125,8 @@ foreach($infolist as $k => $row){
     $arr['content']	        = $row['content'];
     $arr['begintime']       = $row['begintime'];
     $arr['endtime']       = $row['endtime'];
+    $arr['latitude'] = $row['latitude'];
+    $arr['longitude'] = $row['longitude'];
 
     if($distance) {
         $arr['info_distance'] = round(calculate_distance($lat, $lng, $row['latitude'], $row['longitude']), 2);

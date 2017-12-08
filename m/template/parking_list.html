@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded',function(){
         var b = getRad(lng1) - getRad(lng2);
 
         var s = 2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) + Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
-        s = s*EARTH_RADIUS/1000;
+        s = s*EARTH_RADIUS;
         s = Math.round(s*100)/100.0;
 
         s = parseFloat(s);

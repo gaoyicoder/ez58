@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded',function(){
             $(this).html(distince);
         });
     });
-   var EARTH_RADIUS = 6378137.0;
+   var EARTH_RADIUS = 6378.1370;
     var PI = Math.PI;
 
     function getRad(d){
@@ -211,8 +211,8 @@ document.addEventListener('DOMContentLoaded',function(){
         var b = getRad(lng1) - getRad(lng2);
 
         var s = 2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) + Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
-        s = s*EARTH_RADIUS;
-        s = Math.round(s*10000)/10000.0;
+        s = s*EARTH_RADIUS/1000;
+        s = Math.round(s*100)/100.0;
 
         s = parseFloat(s);
         return s;

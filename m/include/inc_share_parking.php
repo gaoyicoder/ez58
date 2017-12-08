@@ -98,10 +98,10 @@ if($action == 'post'){
     }
 
     $post_time = 1;
-    if(!empty($post_time)){
-        $count = mymps_count("information","WHERE ip = '$ip' AND begintime > (".$timestamp." - 60)");
-        $count >= $post_time && redirectmsg("您的发布时间太快了，休息一会儿。","index.php?mod=member&action=mypost");
-    }
+//    if(!empty($post_time)){
+//        $count = mymps_count("information","WHERE ip = '$ip' AND begintime > (".$timestamp." - 60)");
+//        $count >= $post_time && redirectmsg("您的发布时间太快了，休息一会儿。","index.php?mod=member&action=mypost");
+//    }
 
     $img_count	= upload_img_num('mymps_img_');
 
@@ -184,10 +184,10 @@ if($action == 'post'){
                 if(empty($row['status'])){
                     redirectmsg('您账号当前为待审状态，暂不能发布信息！','javascipt:history.back();');
                 }
-                if(!empty($perday_maxpost)){
-                    $count = mymps_count("information","WHERE userid LIKE '$s_uid' AND begintime > '".mktime(0,0,0)."'");
-                    $count >= $perday_maxpost && redirectmsg("很抱歉！您当前的会员级别每天只能发布 <b style='color:red'>".$perday_maxpost."</b> 条信息<br />如果您要继续操作，请联系客服。","javascipt:history.back();");
-                }
+//                if(!empty($perday_maxpost)){
+//                    $count = mymps_count("information","WHERE userid LIKE '$s_uid' AND begintime > '".mktime(0,0,0)."'");
+//                    $count >= $perday_maxpost && redirectmsg("很抱歉！您当前的会员级别每天只能发布 <b style='color:red'>".$perday_maxpost."</b> 条信息<br />如果您要继续操作，请联系客服。","javascipt:history.back();");
+//                }
 
                 if(!empty($perpost_money_cost)){
                     if($row['money_own'] < $perpost_money_cost){

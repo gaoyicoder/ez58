@@ -12,7 +12,11 @@
 	<div class="search-wrapper" id="search_ico" onClick="showNewPage('搜索',searchHtml,newPageSearch);">
 	<div class="search left8"  style="right: auto; left: auto" >搜索</div> 搜索
 	</div>
+    {if $iflogin==1}
 	<a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" class="member"></a>
+    {else}
+    <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" style="font-size: 14px; display: block; float: right; width: 60px;height: 100%">未登录</a>
+    {/if}
     <div class="login_inner" id="login_inner"></div>
 </div>
 <div id="contactbar">

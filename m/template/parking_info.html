@@ -48,9 +48,9 @@
             {if $row[userid]==$s_uid}
             <div class="status_bar">
                 <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
-                <span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
+                <span style="display: none" class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
                 <div id="book_status_div" style="text-align: center">
-                    <div style="border:1px solid #555; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
+                    <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
                     车位正在等待被预订中,请不要关闭当前页面,车位将在{echo date('H:i:s', $row['endtime1'])}后过期。
                     {else}
@@ -67,7 +67,7 @@
             {else}
 			<div class="status_bar">
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
-				<span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
+				<span style="display: none;" class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
 				<a href="javascript:;" onclick="book_parking({$row[id]}, this)" >
                     {if $row[book_uid]==""}
                         <span style="color:#fff;background: red;padding: 6px; border-radius: 4px">预订该车位</span>
@@ -77,7 +77,7 @@
                 </a>
                 {if $row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
-                    <div style="border:1px solid #555; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
+                    <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
                         请暂时不要关闭当前页面,请在{echo date('H:i:s', $row['endtime1'])}前抵达车位并且完成车位交接完后点击交接按钮
                     </div>
                     <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
@@ -128,6 +128,7 @@
 		</ul>
         {elseif $row[usecoin]<=0 || $viewid == $id}
         {if $row[contactview] == 1}
+        {if $row[userid]!=$s_uid}
 		<ul class="attr_info bottom">
 			<span class="attrVal mfico">
             	{if $row[qq]}
@@ -193,15 +194,39 @@
 				</li>
 			</span>
 		</ul>
+        {/if}
         {else}
         <script>MympsWindowMsg('',0,'该信息已过期，联系方式已被隐藏!');</script>
         {/if}
         {/if}
         {if $row[mappoint]}
-        <div class="detail-tit">地理位置 <span style="float: right; margin-right: 10px;"><a href="index.php?mod=parking_drive_map&infoid={$row[id]}" style="background: #f63; border-radius: 4px; color: #fff; padding: 4px 8px; font-weight: normal; font-size: 15px;">导航</a></span></div>
-		<div class="detail_txt_che">
-			<iframe src="{$mymps_global[SiteUrl]}/map.php?title={$row[title]}&isshow=1&p={$row[mappoint]}&width=360&height=190" height="205" width="100%" frameborder="0" scrolling="no"></iframe>
-		</div>
+        <div class="detail-tit">地理位置 <span style="float: right; margin-right: 10px; display: none;"><a href="index.php?mod=parking_drive_map&infoid={$row[id]}" style="background: #f63; border-radius: 4px; color: #fff; padding: 4px 8px; font-weight: normal; font-size: 15px;">导航</a></span></div>
+        <style type="text/css">
+            #l-map {height:200px;width:100%;float:left;border-right:2px solid #bcbcbc;}
+            #r-result {height:300%;width:100%;float:left;overflow: scroll;}
+            #r-result a{display: none;}
+        </style>
+        <div id="l-map"></div>
+        <div id="r-result"></div>
+        <script type="text/javascript">
+            var map = new BMap.Map("l-map");
+
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r){
+                var p1 = new BMap.Point(r.point.lng,r.point.lat);
+                var p2 = new BMap.Point({$row[mappoint]});
+
+                map.centerAndZoom(p1, 12);
+                var transit = new BMap.DrivingRoute(map, {
+                    renderOptions: {
+                        map: map,
+                        panel: "r-result",
+                        enableDragging : true //起终点可进行拖拽
+                    }
+                });
+                transit.search(p1,p2);
+            });
+        </script>
         {/if}
 	</div>
 </div>

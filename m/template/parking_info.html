@@ -210,7 +210,7 @@
         <div id="r-result"></div>
         <script type="text/javascript">
             var map = new BMap.Map("l-map");
-
+            map.disableDragging();
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
                 var p1 = new BMap.Point(r.point.lng,r.point.lat);

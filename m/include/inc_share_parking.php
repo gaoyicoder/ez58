@@ -270,13 +270,13 @@ if($action == 'post'){
     }
 
 } else if($catid){
-    echo $catid;
     $new_lat = (float)$_GET['new_lat'];
     $new_lng = (float)$_GET['new_lng'];
     if ($new_lat && $new_lng) {
         $cityid = mgetcookie('cityid');
+        echo 1111;
         $new_cityid = get_latlng2cityid($new_lat,$new_lng);
-        echo $new_cityid;
+        echo $cityid;
         if ($new_cityid != $cityid) {
             msetcookie('cityid',$new_cityid);
             header("Location: index.php?mod=share_parking&catid=$catid");

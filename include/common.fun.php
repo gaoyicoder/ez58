@@ -2698,7 +2698,7 @@ function get_ip2city($ip){
 function get_latlng2cityid($lat='',$lng=''){
 	global $db,$db_mymps,$charset;
 	if($lat && $lng){
-		$array = json_decode(file_get_contents("http://api.map.baidu.com/geocoder?output=json&location=$lat,$lng&key=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2"),true);
+		$array = json_decode(file_get_contents("http://api.map.baidu.com/geocoder/v2/?output=json&location=$lat,$lng&ak=EAh1asEuoc6KqGuUN1d9dtaW5rEWSxj2"),true);
         print_r($array);
 		$city = $charset == 'gbk' ? iconv('UTF-8','GBK',$array['result']['addressComponent']['city']) : $array['result']['addressComponent']['city'];
 		$city = str_replace(array('市','区'),array('',''),$city);

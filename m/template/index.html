@@ -10,18 +10,15 @@
 <link type="text/css" rel="stylesheet" href="template/css/index.css">
 <!--{if !$cityid && !$lat}-->
 <script>
-if (navigator.geolocation)
-{
-	navigator.geolocation.getCurrentPosition(showPosition);
-}
 
-function showPosition(position)
-{
-	var lat = position.coords.latitude;
-	var lng = position.coords.longitude;
-	var replaceuri = '{$mymps_global[SiteUrl]}/m/index.php?lat='+lat+'&lng='+lng;
+var geolocation = new BMap.Geolocation();
+geolocation.getCurrentPosition(function(r){
+
+    var lat = r.point.lat;
+    var lng = r.point.lng;
+    var replaceuri = '{$mymps_global[SiteUrl]}/m/index.php?lat='+lat+'&lng='+lng;
     window.location.replace(replaceuri);
-}
+});
 </script>
 <!--{/if}-->
 </head>

@@ -6,8 +6,49 @@
 	<link type="text/css" rel="stylesheet" href="template/css/global.css">
 	<link type="text/css" rel="stylesheet" href="template/css/style.css">
 	<link type="text/css" rel="stylesheet" href="template/css/login.css">
+    <script src="template/js/jquery-3.2.1.min.js"></script>
     <script>window['current'] = '会员注册';</script>
-	<script>function checksubmit(o) {
+	<script>
+        function send_sms(){
+            if ($("#mobile").val()=="") {
+                alert("请输入手机号码");
+                $("#mobile").focus();
+                return false;
+            }
+            $.ajax( {
+                url:'../sendSms.php',
+                data:{  mobile : $("#mobile").val()  },
+                type:'post',
+                cache:false,
+                dataType:'json',
+                success:function(data) {
+                    if($.trim(data) =="success" ){
+                        alert("验证码发送成功");
+                        $("#sendmsg").attr("disabled", "disabled");
+                        var i = 60;
+                        var intervalKey = setInterval(function(){
+                            if (i>0){
+                                $("#sendmsg").val("重新发送("+i+")");
+                            } else {
+                                $("#sendmsg").removeAttr("disabled");
+                                $("#sendmsg").val("发送手机验证码");
+                                clearInterval(intervalKey);
+                            }
+                            i--;
+
+                        }, 1000);
+                    }else{
+                        alert("验证码发送失败,请稍后再试");
+                    }
+                },
+                error : function() {
+
+                }
+            });
+
+        }
+
+        function checksubmit(o) {
 	<!--{if $mymps_global[cfg_member_verify]==4}-->
         var mobile = $("#mobile");
         if (mobile.val() === "") {
@@ -186,7 +227,7 @@
 <div class="wrapper">
 	{template header_search}
     {if $mymps_global[cfg_if_corp] == 1}
-    <div class="select_02 select_02_{$mymps_global[cfg_tpl_dir]}">
+    <div style="display: none;" class="select_02 select_02_{$mymps_global[cfg_tpl_dir]}">
         <ul>
             <li class="item current current1" id="regPerson"><a href="javascript:void(0);" onClick="regType(0);">个人注册</a></li>
             <li class="item" id="regCorp"><a href="javascript:void(0);" onClick="regType(1);">机构注册</a></li>
@@ -204,10 +245,10 @@
 							<span class="passport-login-input-span">手机</span>
 							<input type="text" onblur="chk_remobile()" name="mobile" id="mobile" size="20" maxlength="15" class="passport-login-input passport-login-input-username" placeholder="请输入手机号">
 						</li>
-						<li id="loginUserNameLi" class="passport-login-input-li">
-							<span class="passport-login-input-span">用户名</span>
-							<input type="text" onBlur="chk_remember()" name="userid" id="userid" size="20" maxlength="15" class="passport-login-input passport-login-input-username" placeholder="请输入用户名（3-15字节以内）">
-						</li>
+						<!--<li id="loginUserNameLi" class="passport-login-input-li">-->
+							<!--<span class="passport-login-input-span">用户名</span>-->
+							<!--<input type="text" onBlur="chk_remember()" name="userid" id="userid" size="20" maxlength="15" class="passport-login-input passport-login-input-username" placeholder="请输入用户名（3-15字节以内）">-->
+						<!--</li>-->
 						<li id="loginPasswordLi" class="passport-login-input-li">
 							<span class="passport-login-input-span">密码</span>
 							<input type="password" name="userpwd" id="userpwd" size="20" maxlength="16" class="passport-login-input passport-login-input-password" placeholder="请输入密码（6-16位）">
@@ -238,7 +279,7 @@
 						<li id="loginSmsCheckcodeLi" class="passport-login-input-li">
 							<span class="passport-login-input-span">手机验证码</span>
 							<input style="float:left; width:60px;" type="text" onBlur="chk_smsauthcode()" name="smscheckcode" id="smscheckcode" size="6" class="passport-login-input-mob" placeholder="验证码" maxlength="6">
-                            <input style="display:block;" value="发送手机验证码" type="button" name="sendmsg" onclick="sendmsgbutton()" id="sendmsg" class="disabled">
+                            <input style="display:block;" value="发送手机验证码" type="button" name="sendmsg" onclick="send_sms()" id="sendmsg" class="disabled">
 						</li>
 						<!--{/if}-->
 						<li id="loginButtonLi" class="passport-login-input-li">
@@ -252,6 +293,5 @@
 	</div>
 	<p>&nbsp;</p>
 </div>
-{template footer}
 </body>
 </html>

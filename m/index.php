@@ -26,6 +26,7 @@ if($cityid) {
 	$lat = isset($lat) ? (float)$lat : '';
 	$lng = isset($lng) ? (float)$lng : '';
 	if($lat && $lng && !$cityid) $cityid = get_latlng2cityid($lat,$lng);
+    msetcookie('cityid',$cityid);
 }
 //if(!$cityid && $mod!='news' && $mod!='changecity' && $mod!='member') write_msg('','index.php?mod=changecity');
 

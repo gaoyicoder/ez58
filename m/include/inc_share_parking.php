@@ -270,6 +270,17 @@ if($action == 'post'){
     }
 
 } else if($catid){
+    $new_lat = (float)$_REQUEST['new_lat'];
+    $new_lng = (float)$_REQUEST['new_lng'];
+    if ($new_lat && $new_lng) {
+        $cityid = mgetcookie('cityid');
+        $new_cityid = get_latlng2cityid($new_lat,$new_lng);
+        if ($new_cityid != $cityid) {
+            msetcookie('cityid',$new_cityid);
+            header("Location: index.php?mod=share_parking&catid=$catid");
+        }
+    }
+
     //信息填写页
     $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $cat['parentname'] = $db -> getOne("SELECT catname FROM `{$db_mymps}category` WHERE catid = '$cat[parentid]'");

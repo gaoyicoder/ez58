@@ -271,8 +271,8 @@ if($action == 'post'){
 
 } else if($catid){
     echo $catid;
-    $new_lat = (float)$_REQUEST['new_lat'];
-    $new_lng = (float)$_REQUEST['new_lng'];
+    $new_lat = (float)$_GET['new_lat'];
+    $new_lng = (float)$_GET['new_lng'];
     if ($new_lat && $new_lng) {
         $cityid = mgetcookie('cityid');
         $new_cityid = get_latlng2cityid($new_lat,$new_lng);

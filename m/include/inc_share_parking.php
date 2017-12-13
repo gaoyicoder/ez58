@@ -270,6 +270,7 @@ if($action == 'post'){
     }
 
 } else if($catid){
+    echo $catid;
     $new_lat = (float)$_REQUEST['new_lat'];
     $new_lng = (float)$_REQUEST['new_lng'];
     if ($new_lat && $new_lng) {

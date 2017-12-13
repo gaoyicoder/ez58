@@ -2699,6 +2699,7 @@ function get_latlng2cityid($lat='',$lng=''){
 	global $db,$db_mymps,$charset;
 	if($lat && $lng){
 		$array = json_decode(file_get_contents("http://api.map.baidu.com/geocoder?output=json&location=$lat,$lng"),true);
+        print_r($array);
 		$city = $charset == 'gbk' ? iconv('UTF-8','GBK',$array['result']['addressComponent']['city']) : $array['result']['addressComponent']['city'];
 		$city = str_replace(array('市','区'),array('',''),$city);
 		if(is_array($all_cities = get_allcities())){

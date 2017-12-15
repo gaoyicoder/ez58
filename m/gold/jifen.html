@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="hd" >
+<head>
+	<title>jifen</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scale=0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jifen.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header" style="">
+					<a class="navbar-brand" href="#">
+       					 <img alt="<返回" src="...">
+      				</a>
+      				<p class="navbar-text">金币兑换</p>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid" >
+
+<div class="row" ng-controller="ctrl">
+	<div ng-repeat="v in data" class="col-xs-6 ">
+		<div class="thumbnail">
+			<img src="images/image1.jpg" alt="image1">
+			<div class="caption">
+				<h4>{{v.item}}</h4>
+				<p>
+					<span>{{v.name}}</span>
+					<a href="#" class="btn btn-primary" ng-click="goods.add()"  role="button"
+			>兑换</a>
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</div>
+</div>
+
+<script type="text/javascript">
+	var m=angular.module('hd',[]);
+	m.controller('ctrl',['$scope',function($scope){
+		$scope.data=
+			[
+			{name:'1000金币',item: '嗨帮礼品部1'},
+			{name:'2000金币', item: '嗨帮礼品部2'},
+			{name:'3000金币', item: '嗨帮礼品部3'},
+			{name:'4000金币', item: '嗨帮礼品部4'}
+			];
+		$scope.goods={
+			add:function(){
+				alert(666)
+			}
+		};
+
+
+			 // add:function(){
+			 // 	alert(666);
+			 // }
+
+
+			// 		angular.forEach($scope.data,function(v,k){
+			// 	console.log(v)
+			// })
+	}])
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</html>

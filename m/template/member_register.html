@@ -10,41 +10,60 @@
     <script>window['current'] = '会员注册';</script>
 	<script>
         function send_sms(){
+
             if ($("#mobile").val()=="") {
                 alert("请输入手机号码");
-                $("#mobile").focus();
                 return false;
-            }
-            $.ajax( {
-                url:'../sendSms.php',
-                data:{  mobile : $("#mobile").val()  },
-                type:'post',
-                cache:false,
-                dataType:'json',
-                success:function(data) {
-                    if($.trim(data) =="success" ){
-                        alert("验证码发送成功");
-                        $("#sendmsg").attr("disabled", "disabled");
-                        var i = 60;
-                        var intervalKey = setInterval(function(){
-                            if (i>0){
-                                $("#sendmsg").val("重新发送("+i+")");
-                            } else {
-                                $("#sendmsg").removeAttr("disabled");
-                                $("#sendmsg").val("发送手机验证码");
-                                clearInterval(intervalKey);
-                            }
-                            i--;
+            } else {
+                var url = '../javascript.php?part=chk_remobile&value=' + $("#mobile").val();
+                if ($("#mobile").val()) {
+                    if (chkMobile($("#mobile").val())) {
+                        $.get(url,
+                                function(data) {
+                                    if (data === 'success') {
+                                        $.ajax( {
+                                            url:'../sendSms.php',
+                                            data:{  mobile : $("#mobile").val()  },
+                                            type:'post',
+                                            cache:false,
+                                            dataType:'json',
+                                            success:function(data) {
+                                                if($.trim(data) =="success" ){
+                                                    alert("验证码发送成功");
+                                                    $("#sendmsg").attr("disabled", "disabled");
+                                                    var i = 60;
+                                                    var intervalKey = setInterval(function(){
+                                                        if (i>0){
+                                                            $("#sendmsg").val("重新发送("+i+")");
+                                                        } else {
+                                                            $("#sendmsg").removeAttr("disabled");
+                                                            $("#sendmsg").val("发送手机验证码");
+                                                            clearInterval(intervalKey);
+                                                        }
+                                                        i--;
 
-                        }, 1000);
-                    }else{
-                        alert("验证码发送失败,请稍后再试");
+                                                    }, 1000);
+                                                }else{
+                                                    alert("验证码发送失败,请稍后再试");
+                                                }
+                                            },
+                                            error : function() {
+
+                                            }
+                                        });
+                                        return true
+                                    } else {
+                                        alert(data);
+                                        removewarn();
+                                        $("#loginMobileLi").css('border-color', '#FF0000');
+                                        return false
+                                    }
+                                }
+                        );
                     }
-                },
-                error : function() {
 
                 }
-            });
+            }
 
         }
 
@@ -58,6 +77,7 @@
             $("#loginMobileLi").css('border-color', '#FF0000');
             return false
         }
+
     <!--{else}-->
         var userid = $("#userid");
         if (userid.val() === "") {
@@ -153,24 +173,6 @@
         }
     }
     function chk_remobile() {
-        var url = '../javascript.php?part=chk_remobile&value=' + $("#mobile").val();
-        if ($("#mobile").val()) {
-            if (chkMobile($("#mobile").val())) {
-                $.get(url,
-                        function(data) {
-                            if (data === 'success') {
-                                return true
-                            } else {
-                                alert(data);
-                                removewarn();
-                                $("#loginMobileLi").css('border-color', '#FF0000');
-                                return false
-                            }
-                        }
-                );
-            }
-
-        }
     }
     function chk_authcode() {
         var checkcode = $("#checkcode").val();

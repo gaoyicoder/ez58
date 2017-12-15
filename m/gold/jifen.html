@@ -15,7 +15,8 @@
 		<div class="container-fluid">
 			<div class="navbar-header" style="">
 					<a class="navbar-brand" href="#">
-       					 <img alt="<返回" src="...">
+						<返回
+       					 <!-- <img alt="<返回" src="..."> -->
       				</a>
       				<p class="navbar-text">金币兑换</p>
 			</div>
@@ -28,7 +29,7 @@
 <div class="row" ng-controller="ctrl">
 	<div ng-repeat="v in data" class="col-xs-6 ">
 		<div class="thumbnail">
-			<img src="images/image1.jpg" alt="image1">
+			<img src="{{v.image}}" alt="image1">
 			<div class="caption">
 				<h4>{{v.item}}</h4>
 				<p>
@@ -51,14 +52,16 @@
 	m.controller('ctrl',['$scope',function($scope){
 		$scope.data=
 			[
-			{name:'1000金币',item: '嗨帮礼品部1'},
-			{name:'2000金币', item: '嗨帮礼品部2'},
-			{name:'3000金币', item: '嗨帮礼品部3'},
-			{name:'4000金币', item: '嗨帮礼品部4'}
+			{name:'1000金币',item: '嗨帮礼品部',image:'images/image1.jpg'},
+			{name:'2000金币', item: '嗨帮礼品部',image:'images/image2.jpg'},
+			{name:'3000金币', item: '嗨帮礼品部',image:'images/image3.jpg'},
+			{name:'3000金币', item: '嗨帮礼品部',image:'images/image4.jpg'},
+			{name:'3000金币', item: '嗨帮礼品部',image:'images/image5.jpg'},
+			{name:'4000金币', item: '嗨帮礼品部',image:'images/image3.png'}
 			];
 		$scope.goods={
 			add:function(){
-				alert(666)
+				alert("即将上线，敬请期待")
 			}
 		};
 

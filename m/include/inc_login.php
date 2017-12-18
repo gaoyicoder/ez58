@@ -1,6 +1,6 @@
 <?php
 CURSCRIPT != 'wap' && exit('FORBIDDEN');
-
+session_start();
 $returnurl = isset($_REQUEST['returnurl']) ? urldecode($_REQUEST['returnurl']) : '';
 $authcodesettings = read_static_cache('authcodesettings');
 
@@ -21,7 +21,7 @@ if($action == 'logout'){
 	$userpwd = isset($userpwd) ? trim($userpwd) : '';
 	$checkcode = isset($checkcode) ? trim($checkcode) : '';
 
-	if($authcodesettings['login'] == 1 && !$randcode = mymps_chk_randcode($checkcode)){
+	if( $_SESSION['wrong_password'] >= 4  &&$authcodesettings['login'] == 1 && !$randcode = mymps_chk_randcode($checkcode)){
 		redirectmsg('验证码输入错误，请重新输入','index.php?mod=login');
 	}
 	
@@ -63,6 +63,7 @@ if($action == 'logout'){
 	}
 
 	if($s_uid){
+        $_SESSION['wrong_password'] = 0;
 		
 		if(empty($row['status'])){
 			redirectmsg('您的账号 [<b>'.$s_uid.'</b>] 正在审核中，审核通过后可正常登录！',$returnurl ? $returnurl : urlencode('index.php?mod=login&cityid='.$cityid));
@@ -79,6 +80,12 @@ if($action == 'logout'){
 		}
 		redirectmsg($s_uid.'， 欢迎回来!',$returnurl ? $returnurl : urlencode('index.php?mod=member&cityid='.$cityid));
 	}else{
+        if (isset($_SESSION['wrong_password'])) {
+            $_SESSION['wrong_password'] = $_SESSION['wrong_password'] +1;
+        } else {
+            $_SESSION['wrong_password'] = 1;
+        }
+
 		redirectmsg('登录失败，您输入了错误的帐号或密码!',$returnurl ? $returnurl : urlencode('index.php?mod=login&cityid='.$cityid));
 	}
 
@@ -87,6 +94,10 @@ if($action == 'logout'){
 	if($iflogin == 1){
 		redirectmsg('您已登录',$returnurl ? $returnurl : 'index.php?mod=member');
 	}else{
+        if ($_SESSION['wrong_password'] >= 4 && $authcodesettings['login'] == 1) {
+        } else {
+            $authcodesettings['login'] = 0;
+        }
 		$qqlogin = read_static_cache('qqlogin');
 		$wxlogin = read_static_cache('wxlogin');
 		include mymps_tpl('member_login');

@@ -13,20 +13,50 @@
 	.ng-cloak{
 		display: none;
 	}
+	h4{
+		font-size: 16px;
+		font-weight: bold;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 </style>
 <body ng-app="hd" ng-cloak class="ng-cloak" >
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<div class="navbar-header" style="">
+			<div class="navbar-header " style="">
 					<a class="navbar-brand" href="/m/index.php">
 						<返回
        					 <!-- <img alt="<返回" src="..."> -->
       				</a>
       				<p class="navbar-text">金币兑换</p>
+      				<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary navbar-btn  pull-right " style="margin-right: 10px">兑换规则</button>
 			</div>
 		</div>
 	</nav>
+	<!-- 弹窗 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" style="margin-top: 50%" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size:26px" aria-hidden="true">&times;</span></button>
+					<h4>兑换规则</h4>
+				</div>
+				<div class="modal-body">
+					1.金币专属嗨帮，仅限嗨帮内使用；再嗨帮可用于兑换指定商品;<br>
+					2.金币可以累积，预期自动作废(如若交易再使用的金币有效期外，该部分金币不予退还);<br>
+					3.用户完成兑换交易后(嗨帮网软件系统显示该交易状态为"兑换成功")，才能得到该交易的相对应商品，并在金币数额中扣除商品对应的金币数。<br>
+					4.金币不可兑现，不可转让。<br>
+					了解更多详情见官网帮助中心内容。
+
+
+				</div>
+			</div>
+
+		</div>
+
+		</div>
 
 
 	<div class="container-fluid" >
@@ -58,11 +88,11 @@
 		$scope.data=
 			[
 			{name:'6000金币',item: 'HUAWEI Mate 10',image:'images/mate10-image.png'},
-			{name:'2000金币', item: '嗨帮礼品部',image:'images/image2.jpg'},
-			{name:'3000金币', item: '嗨帮礼品部',image:'images/image3.jpg'},
-			{name:'3000金币', item: '嗨帮礼品部',image:'images/image4.jpg'},
-			{name:'3000金币', item: '嗨帮礼品部',image:'images/image5.jpg'},
-			{name:'4000金币', item: '嗨帮礼品部',image:'images/image3.png'}
+			{name:'6000金币', item: 'iPhone X',image:'images/image_iphone.jpg'},
+			{name:'4000金币', item: '荣耀畅玩平板2',image:'images/image_rongyao.jpg'},
+			{name:'4000金币', item: 'Apple iPad mini 4',image:'images/image_ipad.jpg'},
+			{name:'500金币', item: '罗技 G102 鼠标',image:'images/image_mouse.jpg'},
+			{name:'500金币', item: '金士顿 32GB U盘',image:'images/image_disk.jpg'}
 			];
 		$scope.goods={
 			add:function(){

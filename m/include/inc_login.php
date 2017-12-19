@@ -78,7 +78,9 @@ if($action == 'logout'){
 		} elseif(PASSPORT_TYPE == 'ucenter'){
 			echo uc_user_synlogin($uid);
 		}
-		redirectmsg($s_uid.'， 欢迎回来!',$returnurl ? $returnurl : urlencode('index.php?mod=member&cityid='.$cityid));
+        $jumpUrl = $returnurl ? $returnurl : 'index.php?mod=member&cityid='.$cityid;
+        header("Location: ".$jumpUrl);
+//		redirectmsg($s_uid.'， 欢迎回来!',$returnurl ? $returnurl : urlencode('index.php?mod=member&cityid='.$cityid));
 	}else{
         if (isset($_SESSION['wrong_password'])) {
             $_SESSION['wrong_password'] = $_SESSION['wrong_password'] +1;

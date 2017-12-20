@@ -7,14 +7,14 @@
 
 
 	<div id="ipageTitle" style="display:none;" class="logo"><!--{if $mod=='index'}--> <img src="<?=$mymps_global['SiteUrl']?>/m/template/images/logo.png" alt="" style="height:30px"> <!--{else}-->{$mymps_global[SiteName]}<!--{/if}--></div>
-	<a href="{$mymps_global[SiteUrl]}/m/index.php?mod=changecity" class="changecity left8" id="login_ico" style="float: left;margin-left: -18px; position: initial;"><span class="change">{echo $city[cityname]?$city[cityname]:'切换'}</span><span class="changecityico"></span></a>
 	<div class="search-wrapper" id="search_ico" onClick="showNewPage('搜索',searchHtml,newPageSearch);">
 	<div class="search left8"  style="right: auto; left: auto" >搜索</div> 搜索
 	</div>
+    <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=changecity" class="changecity right8" id="login_ico" style=""><span class="change">{echo $city[cityname]?$city[cityname]:'切换'}</span><span class="changecityico"></span></a>
     {if $iflogin==1}
-	<a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" class="member"></a>
+	<a style="display: none;" href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" class="member"></a>
     {else}
-    <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" style="font-size: 14px; display: block; float: right; width: 60px;height: 100%">未登录</a>
+    <a style="display: none;" href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" style="font-size: 14px; display: block; float: right; width: 60px;height: 100%">未登录</a>
     {/if}
     <div class="login_inner" id="login_inner"></div>
 </div>
@@ -68,7 +68,7 @@ if(window['current']){$('#ipageTitle').html(window['current']).show()}else{$('#i
 	}
 	.search-wrapper{
 			position:absolute;
-			left:126px;
+			left:96px;
 			right:88px;
 			background-color:rgba(255,190,99,.1);
 			height:40px;

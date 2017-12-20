@@ -37,6 +37,7 @@ include MYMPS_INC.'/member.class.php';
 $returnurl = urlencode(GetUrl());
 if($member_log->chk_in()){
 	$iflogin = 1;
+    $user_mobile = $db -> getOne("SELECT mobile FROM `{$db_mymps}member` WHERE userid = '$s_uid'");
 } else {
 	$iflogin = 0;
 }

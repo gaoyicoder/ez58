@@ -160,6 +160,41 @@ function MympsWindowMsg(action,showid,str,url,formcode){
 		sys_tips.css({'top':top_val+'px'});
 	}
 }
+
+function MympsWindowMsg1(action,showid,str,url,formcode){
+    var sys_tips = '<div class="sys_tips" id="sys_tips" style="display:none;"><div class="hd" id="sys_tips_title"></div><div class="bd"><p id="sys_tips_info"></p><div class="btn"><a href="javascript:void(0);" class="btn2" id="sys_tips_submit">关闭</a></div></div></div>';
+    if(!$('#sys_tips')[0]){
+        $('body').prepend(sys_tips);
+    }
+    var sys_tips = $('#sys_tips'),sys_tips_title = $('#sys_tips_title'),sys_tips_info = $('#sys_tips_info'),sys_tips_submit = $('#sys_tips_submit');
+
+    if(showid=="0"){ //只提示不跳转
+        showConsole('提示',false);
+    }else if(showid=="1"){ //提示加跳转
+        showConsole('提示',true,formcode);
+    }else if(showid=="2"){ //直接跳转
+        windowlocationhref(url,formcode);
+    }else if(showid=="3"){ //错误信息加跳转
+        showConsole('出错了',true,formcode);
+    }else if(showid=="4"){ //错误信息加只提示不跳转
+        showConsole('出错了',false);
+    }else{
+        return false;
+    }
+
+    function showConsole(tit,isredirect,formcode){
+        sys_tips_info.html(str);
+        sys_tips_title.html(tit);
+        sys_tips_submit.bind('click',function(e){
+            e.preventDefault();
+            sys_tips.hide();
+            isredirect&&windowlocationhref(url,formcode);
+        });
+        sys_tips.show();
+        var w_h = $(window).height(),d_h = sys_tips.height(),s_h = $(document).scrollTop(),top_val = (w_h-d_h)/2;
+        sys_tips.css({'top':top_val+'px'});
+    }
+}
 //地图测距
 function reloadLocation(){//切换地址 恢复当前位置
 	if(navigator.geolocation){

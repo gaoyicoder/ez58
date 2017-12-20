@@ -1,12 +1,12 @@
 <div id="contactbar">
     <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=index" class="bottom_index{echo $mod == 'index' ? '_on' : '';}">首页</a>
     <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=history" class="bottom_history{echo $mod == 'history' ? '_on' : '';}">历史</a>
-    <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">
-        我的
+    <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" style="position: relative;" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">
+
         {if $iflogin==1}
-        <div style="position: absolute; top: -20px; color: orangered; font-weight: bolder">
-            {echo substr($user_mobile, -3)}
-        </div>
+            <span style="color:#F49017; font-weight: bold; letter-spacing: 1px;font-size: 13px;">{echo substr($user_mobile, -3)}</span>
+        {else}
+            我的
         {/if}
     </a>
     <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=post" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>

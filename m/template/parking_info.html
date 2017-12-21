@@ -91,6 +91,12 @@
                 {/if}
 			</div>
             {/if}
+            <div>车位有效期剩余时间: <span id="last_time">{echo ($row['endtime1']-time())}</span>秒</div>
+            <script>
+                $(function(){
+                    var end_time = {$row['endtime1']};
+                });
+            </script>
 		</div>
 		{if $row[image]}
 		<div class="image_area_w">

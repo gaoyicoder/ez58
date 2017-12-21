@@ -35,9 +35,21 @@
 	<link type="text/css" rel="stylesheet" href="template/css/global.css">
 	<link type="text/css" rel="stylesheet" href="template/css/style.css">
 	<link type="text/css" rel="stylesheet" href="template/css/info.css">
+    <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_l7izsre2gkb21emi.css">
     <script>window['current'] = '{$row[catname]}';</script>
     <script>function seeContact(id){if(confirm("查看该信息联系方式需支付{$row[usecoin]}个金币，确定查看吗？")){var url='index.php?mod=information&action=seecontact&&id='+id;$.get(url,function(data){if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else if(data==='请先登录'){MympsWindowMsg('',1,'您尚未登录，请先登录','index.php?mod=login&returnurl=');return false}else{$("#showContact").html(data);$("#djcklxfs").hide();$("#showContact").show();return true}})}}</script>
+    <script type="text/javascript" src="template/js/jquery.min.js"></script>
+
+    <style type="text/css">
+        *{
+            box-sizing: initial;
+        }
+        h1{
+            margin: initial;
+        }
+        a{color: inherit;}
+    </style>
 </head>
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
@@ -91,11 +103,65 @@
                 {/if}
 			</div>
             {/if}
-            <div>车位有效期剩余时间: <span id="last_time">{echo ($row['endtime1']-time())}</span>秒</div>
+            <div><!-- {echo ($row['endtime1']-time())} -->车位有效期剩余时间: <span id="last_time"></span>秒</div>
+
+    <!-- 弹窗 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" style="margin-top: 50%" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size:26px" aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+                    该车位已经过期，本页面将在<span id="close_count_span">5</span>秒后自动关闭
+                </div>
+            </div>
+
+        </div>
+
+        </div>
             <script>
                 $(function(){
                     var end_time = {$row['endtime1']};
+                    var timestamp=Math.round(new Date().getTime()/1000);
+                    var timeover=end_time-timestamp;
+                    var intervalKey = setInterval(function(){
+                            if (timeover>0){
+                                 $("#last_time").html(timeover);
+                            } else {
+                                clearInterval(intervalKey);
+
+                                closeWindowAfter5();
+                            }
+                            timeover--;
+
+                        }, 1000);
+
+
+
                 });
+                function closeWindowAfter5(){
+                    $('#myModal').modal('show');
+                    var timerlater=$("#close_count_span").html();
+
+                    var intervaltimeover=setInterval(function(){
+                        if(timerlater>0){
+                            $("#close_count_span").html(timerlater)
+                        }else{
+                            clearInterval(intervaltimeover)
+                            window.location.href="index.html"
+
+                        }
+                        timerlater--;
+
+                    },1000)
+                }
+                $('#myModal').on('hidden.bs.modal', function (e) {
+                    window.location.href="index.html"
+
+})
+
             </script>
 		</div>
 		{if $row[image]}
@@ -206,7 +272,13 @@
 		</ul>
         {/if}
         {else}
-        <script>MympsWindowMsg1('',1,'该信息已过期，联系方式已被隐藏!', "index.php");</script>
+        <script type="text/javascript">
+            $(function(){
+                closeWindowAfter5();
+            });
+
+        </script>
+        <!-- <script>MympsWindowMsg1('',1,'该信息已过期，联系方式已被隐藏!', "index.php");</script> -->
         {/if}
         {/if}
         {if $row[mappoint]}
@@ -304,5 +376,6 @@
 
 </script>
 </div>
+<script type="text/javascript" src="template/js/bootstrap.min.js"></script>
 </body>
 </html>

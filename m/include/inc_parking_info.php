@@ -8,6 +8,9 @@ if(!$row = $db -> getRow("SELECT * FROM `{$db_mymps}information` WHERE id = '$id
 	errormsg('该信息主题未通过审核或不存在！');
 }
 
+if ($row['book_uid'] != "") {
+    $row['book_mobile'] = $db -> getOne("SELECT mobile FROM `{$db_mymps}member` WHERE userid = '".$row['book_uid']."'");
+}
 $cityid = $row['cityid'];
 $city=get_city_caches($cityid);
 

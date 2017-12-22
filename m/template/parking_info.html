@@ -115,11 +115,11 @@
                 </div>
                 <div class="modal-body">
                     {if $row[userid]==$s_uid}
-                    该车位信息已经过期，如果您仍想继续分享当前车位,请重新在发实时车位界面再次分享车位信息。
+                    该车位信息已经过期, 如果您仍想继续分享当前车位, 请重新在发实时车位界面再次分享车位信息。
                     {else}
-                    该车位信息已经过期，请重新在找实时车位界面寻找新的车位。
+                    该车位信息已经过期, 请重新在找实时车位界面寻找新的车位。
                     {/if}
-                    本页面将在<span id="close_count_span">5</span>秒后自动关闭
+                    <br/>本页面将在<span id="close_count_span">5</span>秒后自动关闭
                 </div>
             </div>
 
@@ -154,8 +154,8 @@
                         if(timerlater>0){
                             $("#close_count_span").html(timerlater)
                         }else{
-                            clearInterval(intervaltimeover)
-                            window.location.href="index.html"
+                            clearInterval(intervaltimeover);
+                            window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
 
                         }
                         timerlater--;
@@ -163,7 +163,7 @@
                     },1000)
                 }
                 $('#myModal').on('hidden.bs.modal', function (e) {
-                    window.location.href="index.html"
+                    window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
 
 })
 

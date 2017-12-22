@@ -49,6 +49,14 @@
             margin: initial;
         }
         a{color: inherit;}
+        .modal-header{
+            padding:8px 12px;
+        }
+        p{
+            margin: 10px 0 0;
+            text-align: center;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body class="{$mymps_global[cfg_tpl_dir]}">
@@ -111,15 +119,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size:26px" aria-hidden="true">&times;</span></button>
+                    <h4>提示</h4>
 
                 </div>
                 <div class="modal-body">
                     {if $row[userid]==$s_uid}
-                    该车位信息已经过期, 如果您仍想继续分享当前车位, 请重新在发实时车位界面再次分享车位信息。
+                     该车位信息已经过期, 如果您仍想继续分享当前车位, 请重新在发实时车位界面再次分享车位信息。
+
                     {else}
                     该车位信息已经过期, 请重新在找实时车位界面寻找新的车位。
+
                     {/if}
-                    <br/>本页面将在<span id="close_count_span">5</span>秒后自动关闭
+                    <br/><p class="text-primary" style="line-height: 1.5">本页面将在<span id="close_count_span">5</span>秒后自动关闭</p>
                 </div>
             </div>
 
@@ -155,7 +166,7 @@
                             $("#close_count_span").html(timerlater)
                         }else{
                             clearInterval(intervaltimeover);
-                            window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
+                            // window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
 
                         }
                         timerlater--;

@@ -127,7 +127,7 @@ function windowlocationhref(url,nodecode){
 	if(url.length > 5){window.location.href=url;}
 }
 function MympsWindowMsg(action,showid,str,url,formcode){
-	var sys_tips = '<div class="sys_tips" id="sys_tips" style="display:none;"><div class="hd" id="sys_tips_title"></div><div class="bd"><p id="sys_tips_info"></p><div class="btn"><a href="javascript:void(0);" class="btn2" id="sys_tips_submit">确定</a></div></div></div>';
+	var sys_tips = '<div class="sys_tips" id="sys_tips" style="display:none;"><div class="hd" id="sys_tips_title"></div><div class="bd"><p id="sys_tips_info"></p><div class="btn"><a href="javascript:void(0);" class="btn2" id="sys_tips_submit">好的</a></div></div></div>';
 	if(!$('#sys_tips')[0]){
 		$('body').prepend(sys_tips);
 	}

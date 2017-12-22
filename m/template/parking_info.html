@@ -114,7 +114,12 @@
 
                 </div>
                 <div class="modal-body">
-                    该车位已经过期，本页面将在<span id="close_count_span">5</span>秒后自动关闭
+                    {if $row[userid]==$s_uid}
+                    该车位信息已经过期，如果您仍想继续分享当前车位,请重新在发实时车位界面再次分享车位信息。
+                    {else}
+                    该车位信息已经过期，请重新在找实时车位界面寻找新的车位。
+                    {/if}
+                    本页面将在<span id="close_count_span">5</span>秒后自动关闭
                 </div>
             </div>
 

@@ -4,7 +4,7 @@
 !defined('WAP') && die('FORBIDDEN');
 require_once MYMPS_DATA . '/moneytype.inc.php';
 require_once MYMPS_ROOT . '/member/include/common.func.php';
-if (!in_array($action, array('upface', 'editbase', 'editpwd', 'pay', 'mypost', 'shoucang', 'docu', 'goods', 'qiandao', 'upgradecorp'))) {
+if (!in_array($action, array('upface', 'editbase', 'editpwd', 'pay', 'mypost', 'myshare', 'shoucang', 'docu', 'goods', 'qiandao', 'upgradecorp'))) {
 	$action = 'index';
 }
 if ($iflogin != 1) {
@@ -13,8 +13,15 @@ if ($iflogin != 1) {
 		echo mymps_goto('index.php?mod=login');
 	}
 } elseif ($action == 'index') {
+    $share_ids = get_share_cat_id_sql_in();
+    if($share_ids) {
+        $total['share'] = mymps_count('information', "WHERE userid = '{$s_uid}' AND catid IN ($share_ids)");
+        $total['info'] = mymps_count('information', "WHERE userid = '{$s_uid}' AND catid NOT IN ($share_ids)");
+    } else {
+        $total['share'] = 0;
+        $total['info'] = mymps_count('information', "WHERE userid = '{$s_uid}'");
+    }
 	$row = $db->getRow("SELECT * FROM `{$db_mymps}member` WHERE userid = '{$s_uid}'");
-	$total['info'] = mymps_count('information', "WHERE userid = '{$s_uid}'");
 	$total['shoucang'] = mymps_count('shoucang', "WHERE userid = '{$s_uid}'");
 	if ($row['if_corp'] == 1) {
 		$total['docu'] = mymps_count('member_docu', "WHERE userid = '{$s_uid}'");
@@ -279,7 +286,13 @@ if ($dopost == 1) {
 				$info[gname] = $db->getOne("SELECT catname FROM `{$db_mymps}category` WHERE catid = '{$info['gid']}'");
 				include mymps_tpl('member_mypost_upgrade');
 			} else {
-				$where = " WHERE userid = '{$s_uid}' AND (info_level = 1 OR info_level = 2)";
+                $share_ids = get_share_cat_id_sql_in();
+                $share_where = "";
+                if($share_ids) {
+                    $share_where = " AND catid NOT IN ($share_ids)";
+                }
+				$where = " WHERE userid = '{$s_uid}' AND (info_level = 1 OR info_level = 2)".$share_where;
+
 				$perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
 				$param = setparams(array('mod', 'userid', 'action'));
 				$rows_num = $db->getOne("SELECT COUNT(id) FROM `{$db_mymps}information` {$where}");
@@ -290,6 +303,26 @@ if ($dopost == 1) {
 				include mymps_tpl('member_mypost');
 			}
 			break;
+        case 'myshare':
+            require_once MYMPS_DATA . '/info.level.inc.php';
+            unset($information_level, $news_level);
+
+            $share_ids = get_share_cat_id_sql_in();
+            $share_where = "";
+            if($share_ids) {
+                $share_where = " AND catid IN ($share_ids)";
+            }
+
+            $where = " WHERE userid = '{$s_uid}' AND (info_level = 1 OR info_level = 2)".$share_where;
+            $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
+            $param = setparams(array('mod', 'userid', 'action'));
+            $rows_num = $db->getOne("SELECT COUNT(id) FROM `{$db_mymps}information` {$where}");
+            $totalpage = ceil($rows_num / $perpage);
+            $num = intval($page - 1) * $perpage;
+            $info_list = page1("SELECT * FROM `{$db_mymps}information` {$where} ORDER BY begintime DESC", $perpage);
+            $pageview = pager();
+            include mymps_tpl('member_myshare');
+            break;
 		case 'shoucang':
 			$sql = "SELECT a.*,b.id,b.catname FROM {$db_mymps}shoucang AS a LEFT JOIN {$db_mymps}information AS b ON a.infoid = b.id WHERE a.userid = '{$s_uid}' ORDER BY a.id DESC";
 			$list = array();

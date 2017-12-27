@@ -8,6 +8,11 @@ if(!$row = $db -> getRow("SELECT * FROM `{$db_mymps}information` WHERE id = '$id
 	errormsg('该信息主题未通过审核或不存在！');
 }
 
+if ($_GET['is_renew'] == 'true') {
+    $db->query("UPDATE `{$db_mymps}information` SET endtime = ".$timestamp." + (endtime-begintime), begintime = ".$timestamp."   WHERE id = '$id'");
+    header("Location: index.php?mod=parking_info&id=$id");
+}
+
 if ($row['book_uid'] != "") {
     $row['book_mobile'] = $db -> getOne("SELECT mobile FROM `{$db_mymps}member` WHERE userid = '".$row['book_uid']."'");
 }

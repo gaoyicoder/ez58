@@ -59,9 +59,9 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
   <dl class="cfix">
    <dt>有效期</dt>
    <dd>
-       <input id="endtime1" type="radio" name="endtime" value="1" /><label for="endtime1">1分钟</label>
-       <input id="endtime3" type="radio" checked name="endtime" value="3" /><label for="endtime3">3分钟</label>
-       <input id="endtime5" type="radio" name="endtime" value="5" /><label for="endtime5">5分钟</label>
+       <input id="endtime3" type="radio" name="endtime" value="3" /><label for="endtime3">3分钟</label>
+       <input id="endtime5" type="radio" checked name="endtime" value="5" /><label for="endtime5">5分钟</label>
+       <input id="endtime1" type="radio" name="endtime" value="10" /><label for="endtime1">10分钟</label>
    </dd>
   </dl>
      <dl class="cfix">
@@ -71,9 +71,9 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
              <input id="type2" type="radio" name="qq" value="地下车位" /><label for="type2">地下车位</label>
          </dd>
      </dl>
-     <dl class="cfix" id="cfnone" style="display:none">
-         <dt>车位描述</dt>
-         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位地址描述" /></dd>
+     <dl class="cfix" id="cfnone" style="">
+         <dt>车位说明</dt>
+         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="车位号等信息(非必填)" /></dd>
      </dl>
      {if $cat[if_mappoint] == 1}
      <dl class="cfix" style="display:none">
@@ -126,7 +126,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
 </section>
         <div id="Closedcontent" style="padding: 10px; font-size: 14px; position:relative; " class="inp_Itembox">
           <i style="position: absolute; font-size: 20px; top:0; right: 4px; color: red" id="closed">&times;</i>
-            如果定位不准确,您可以拖动地图上的点,来标注您当前的正确位置。
+            如果定位不准确, 您可以拖动地图上的点, 来标注您当前的正确位置。为了更准确的描述车位位置, 您可以在车位说明栏填写车位编号等信息。
         </div>
 
 {if $cat[if_upimg]==1}
@@ -176,16 +176,16 @@ if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)
     });
 
 $(document).ready(function(){
- $('input[name="qq"]').each(function(){
-  $(this).click(function(){
-      if($(this).attr("checked")){
-    $('#cfnone').css('display','none')
-  }else{
-     $('#cfnone').css('display','block')
-  }
-  })
-
- })
+// $('input[name="qq"]').each(function(){
+//  $(this).click(function(){
+//      if($(this).attr("checked")){
+//    $('#cfnone').css('display','none')
+//  }else{
+//     $('#cfnone').css('display','block')
+//  }
+//  })
+//
+// });
 
   $("#closed").click(function(){
     $("#Closedcontent").css('display','none')

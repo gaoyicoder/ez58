@@ -58,10 +58,10 @@
     {template header_search}
 
 	<div class="infolst_w">
-        <div class="item"><a onclick="login_confirm();return false;" href="" role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以将您目前的车位分享给其他人。" >
+        <div class="item"><a onclick="login_confirm();return false;" href="" role="button" data-toggle="popover" data-placement="bottom"  data-content="当您要开车离开您当前的车位, 并且发现周边停车困难时, 您可以将您现有的车位分享给其他人。" >
         	<i class="icon-fenxiang iconfont"></i>发实时车位</a></div>
         <div class="item"><a {if $iflogin == 0} onclick="login_confirm();return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}"
-        	role="button" data-toggle="popover" data-placement="bottom"  data-content="您可以寻找您附近的车位，并请在指定时间内到达车位完成交接。">
+        	role="button" data-toggle="popover" data-placement="bottom"  data-content="当您停车困难时, 您可以寻找您附近的车位, 并请在指定时间内到达车位完成交接。">
         	<i class="icon-find iconfont"></i>找实时车位</a></div>
 	</div>
 </div>

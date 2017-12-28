@@ -39,7 +39,7 @@ function test(){
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true) ; //请求执行时，不将响应数据直接输出，而是以返回值的形式输出响应数据
 	//curl_setopt($curl, CURLOPT_REFERER, $refer);  //来路模拟
 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($curl, CURLOPT_REFERER, $refer);
+//	curl_setopt($curl, CURLOPT_REFERER, $refer);
 	$res=curl_exec($curl); 
 	echo $res;
 	curl_close($curl);  

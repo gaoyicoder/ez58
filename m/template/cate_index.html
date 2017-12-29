@@ -49,6 +49,31 @@
 	a{
 		color: #fff;
 	}
+	.truck{
+		text-align: center;
+	}
+	.jumbotron{
+		background-color: inherit;
+		border: 1px solid #b2b2b2;
+		padding:20px 0;
+	}
+	.truck .truck-content p{
+		color: #b2b2b2;
+		font-size: 13px;
+		line-height: 1.8;
+	}
+
+	.truck .truck-content .truck-img i{
+		font-size: 36px;
+		color: green;
+	}
+	h4{
+		font-weight: bold;
+		color: #111;
+	}
+	.container{
+		margin-top: 30px;
+	}
 
 </style>
 
@@ -57,13 +82,63 @@
 
     {template header_search}
 
-	<div class="infolst_w">
+<!-- 	<div class="infolst_w">
         <div class="item"><a onclick="login_confirm();return false;" href="" role="button" data-toggle="popover" data-placement="bottom"  data-content="当您要开车离开您当前的车位, 并且发现周边停车困难时, 您可以将您现有的车位分享给其他人。" >
         	<i class="icon-fenxiang iconfont"></i>发实时车位</a></div>
         <div class="item"><a {if $iflogin == 0} onclick="login_confirm();return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}"
         	role="button" data-toggle="popover" data-placement="bottom"  data-content="当您停车困难时, 您可以寻找您附近的车位, 并请在指定时间内到达车位完成交接。">
         	<i class="icon-find iconfont"></i>找实时车位</a></div>
+</div> -->
+
+
+	<div class="container">
+
+		<a onclick="login_confirm();return false;" href="">
+	<div class="jumbotron truck">
+
+			<div class="truck-content">
+
+				<div class="truck-img">
+					<i class="icon-fenxiang iconfont"></i>
+				</div>
+				<div class="truck-title">
+					<h4>发实时车位</h4></div>
+				<div class="truck-content">
+					<p>
+						当您要开车离开您当前的车位, 并且发现周边停车困难时, 您可以将现有车位分享给其他人。
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+	</a>
+
+		<a {if $iflogin == 0} onclick="login_confirm();return false;" {/if} href="index.php?mod=find_parking&catid={$cat[catid]}">
+
+	<div class="jumbotron truck">
+
+			<div class="truck-content">
+
+				<div class="truck-img">
+					<i class="icon-find iconfont"></i>
+				</div>
+				<div class="truck-title">
+					<h4>找实时车位</h4></div>
+				<div class="truck-content">
+					<p>
+						当您停车困难时, 您可以寻找您附近的车位, 并请在指定时间内到达车位完成交接。
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</a>
 	</div>
+
+
+
+
 </div>
 
 

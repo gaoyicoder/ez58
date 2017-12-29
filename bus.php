@@ -40,7 +40,8 @@ function test(){
 	//curl_setopt($curl, CURLOPT_REFERER, $refer);  //来路模拟
 	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($curl, CURLOPT_REFERER, $refer);
-	$res=curl_exec($curl); 
+	$res=curl_exec($curl);
+    echo curl_error($curl);
 	echo $res;
 	curl_close($curl);  
 }

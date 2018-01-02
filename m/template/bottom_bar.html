@@ -4,7 +4,7 @@
     <a href="{$mymps_global[SiteUrl]}/m/index.php?mod=member" style="position: relative;" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">
 
         {if $iflogin==1}
-            <span style="color:#F49017; font-weight: bold; letter-spacing: 1px;font-size: 13px;">{echo substr($user_mobile, -3)}</span>
+            <span style="color:#F49017; font-weight: bold; letter-spacing: 1px;font-size: 13px;">*{echo substr($user_mobile, -3)}</span>
         {else}
             我的
         {/if}

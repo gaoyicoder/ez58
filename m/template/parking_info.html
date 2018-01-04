@@ -15,7 +15,7 @@
 	<link type="text/css" rel="stylesheet" href="template/css/info.css">
     <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_l7izsre2gkb21emi.css">
-    <script>window['current'] = '{$row[catname]}';</script>
+    <script>window['current'] = '共享{$row[catname]}';</script>
     <script>function seeContact(id){if(confirm("查看该信息联系方式需支付{$row[usecoin]}个金币，确定查看吗？")){var url='index.php?mod=information&action=seecontact&&id='+id;$.get(url,function(data){if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else if(data==='请先登录'){MympsWindowMsg('',1,'您尚未登录，请先登录','index.php?mod=login&returnurl=');return false}else{$("#showContact").html(data);$("#djcklxfs").hide();$("#showContact").show();return true}})}}</script>
     <script type="text/javascript" src="template/js/jquery.min.js"></script>
 
@@ -54,9 +54,9 @@
                 <div id="book_status_div" style="text-align: center">
                     <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    车位正在等待被预订中, 请保持屏幕常亮, 并且不要离开当前页面, 车位信息将在有效期剩余时间归零后自动过期。
+                    该{$cat[catename]}共享正在等待被预订中。若无人预订,该共享将在有效期剩余时间归零后自动过期。
                     {else}
-                    车位已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订,请不要关闭当前页面。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a>
+                    该共享已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a>
                     {/if}
                     </div>
                     {if $row[book_status]==1}
@@ -76,15 +76,15 @@
 				<span style="display: none;" class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
 				<a href="javascript:;" onclick="book_parking({$row[id]}, this)" >
                     {if $row[book_uid]==""}
-                        <span style="color:#fff;background: red;padding: 6px; border-radius: 4px">预订该车位</span>
+                        <span style="color:#fff;background: red;padding: 6px; border-radius: 4px">预订</span>
                     {else}
-                        <span style="color:#333;background: #999;padding: 6px; border-radius: 4px">车位已预订</span>
+                        <span style="color:#333;background: #999;padding: 6px; border-radius: 4px">已预订</span>
                     {/if}
                 </a>
                 {if $row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
-                        请暂时不要关闭当前页面,请在前抵达车位并且完成车位交接完后点击交接按钮。
+                        交接中。请在完成交接完后点击交接按钮。
                     </div>
                     <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
                         交接
@@ -93,7 +93,7 @@
                 {/if}
 			</div>
             {/if}
-            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->车位有效期剩余时间: <span id="last_time"></span>秒</div>
+            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->共享有效期剩余时间: <span id="last_time"></span>秒</div>
 
     <!-- 弹窗 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -106,10 +106,10 @@
                 </div>
                 <div class="modal-body">
                     {if $row[userid]==$s_uid}
-                     该车位信息已经过期, 如果您仍想继续分享当前车位, 请点击延期按钮。<a class="booked_tel" href="index.php?mod=parking_info&id={$row[id]}&is_renew=true">延期</a>
+                     该共享信息已经过期, 如果您仍想继续分享, 请点击延期按钮。<a class="booked_tel" href="index.php?mod=parking_info&id={$row[id]}&is_renew=true">延期</a>
 
                     {else}
-                    该车位信息已经过期, 请重新在找实时车位界面寻找新的车位。
+                    该共享信息已经过期, 请重新在找实时{$cat[catname]}面寻找新的{$cat[catname]}共享。
 
                     {/if}
                     <br/><p class="text-primary" style="line-height: 1.5">本页面将在<span id="close_count_span">5</span>秒后自动关闭</p>
@@ -161,7 +161,7 @@
 
                                     var book_status_content;
                                     var book_status_button
-                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">车位已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订,请不要关闭当前页面。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a></div>';
+                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">该共享已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a></div>';
                                     if(data.rowContent.book_status == 1) {
                                         clearInterval(interval);
                                         book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">交接</a>';
@@ -255,7 +255,7 @@
                     </a>&nbsp;&nbsp;{$row[contact_who]}</span>
 				</li>
                 <li>
-                    <span class="attrName">车位金额：</span>
+                    <span style="display: none;" class="attrName">车位金额：</span>
                     <span class="attrVal"> {$row[content]}金币</span>
                 </li>
                 <li style="display: none;">
@@ -369,7 +369,7 @@
             data: {},
             success:function(data){
                 if(data.result == true) {
-                    alert("车位预定成功");
+                    alert("{$cat['catname']}预定成功");
                     window.location.reload();
 
                     clearInterval(intervalKey);
@@ -377,7 +377,7 @@
 
                     $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
                 } else {
-                    alert("车位已被预订");
+                    alert("{$cat['catname']}已被预订");
                 }
             }
         });
@@ -389,7 +389,7 @@
             dataType:"json",
             data: {},
             success:function(data){
-                alert("车位交接成功");
+                alert("{$cat['catname']}交接成功");
                 window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
             }
         });
@@ -402,7 +402,7 @@
             dataType:"json",
             data: {},
             success:function(data){
-                alert("车位交接成功");
+                alert("{$cat['catname']}交接成功");
                 window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
             }
         });

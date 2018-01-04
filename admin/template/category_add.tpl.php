@@ -90,8 +90,71 @@ function insertunit2(text) {
 <tr bgcolor="white">
   <td width="15%" bgcolor="#F1F5F8">是否开启地图标注： </td>
   <td>
-  <label for="1"><input class="radio" type="radio" value="1" name="if_mappoint">开启</label> 
+  <label for="1"><input class="radio" type="radio" value="1" name="if_mappoint">开启</label>
   <label for="0"><input class="radio" type="radio" value="0" name="if_mappoint" checked="checked">关闭</label></td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">是否为实时共享： </td>
+    <td>
+        <label for="1"><input class="radio" type="radio" value="1" name="if_share">是</label>
+        <label for="0"><input class="radio" type="radio" value="0" name="if_share" checked="checked">否</label>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">发布栏描述： </td>
+    <td>
+        <textarea name="share_desc"></textarea>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">查找栏描述： </td>
+    <td>
+        <textarea name="find_desc"></textarea>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">价格选项： </td>
+    <td>
+        <textarea rows="3" name="price_select" style="float:left"><?=$cat[price_select]?></textarea>
+        <div style="margin-top:3px; float:left; margin-left:10px;">多个价格选项换行隔开。范例： <br />
+            <font color="red">3<br />5<br />10</font></div>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">有效期类型： </td>
+    <td>
+        <label for="1"><input class="radio" onclick="show_single(1)" type="radio" value="1" name="time_type">单选</label>
+        <label for="0"><input class="radio" onclick="show_single(0)" type="radio" value="0" name="time_type" checked="checked">手动输入</label>
+    </td>
+</tr>
+<tr id="single_select" style="display: none;" bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">有效期选项： </td>
+    <td>
+        <textarea rows="3" name="single_select" style="float:left"><?=$cat[single_select]?></textarea>
+        <div style="margin-top:3px; float:left; margin-left:10px;">多个价格选项换行隔开。范例： <br />
+            <font color="red">3<br />5<br />10</font></div>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">是否有附加类型： </td>
+    <td>
+        <label for="1"><input class="radio" onclick="show_type_type(1)" type="radio" value="1" name="type_type">有</label>
+        <label for="0"><input class="radio" onclick="show_type_type(0)" type="radio" value="0" name="type_type" checked="checked">无</label>
+    </td>
+</tr>
+<tr id="type_type_select" style="display: none;" bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">附加类型选项： </td>
+    <td>
+        <textarea rows="3" name="type_type_select" style="float:left"><?=$cat[type_type_select]?></textarea>
+        <div style="margin-top:3px; float:left; margin-left:10px;">多个附加类型选项换行隔开。范例： <br />
+            <font color="red">地上车位<br />地下车位</font></div>
+    </td>
+</tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">说明描述： </td>
+    <td>
+        <input name="instruct_desc" type="text" class="text" id="instruct_desc" value="<?=$cat[instruct_desc]?>" size="30">
+    </td>
 </tr>
 <tr bgcolor="white">
   <td bgcolor="#F1F5F8">目录存放形式：<br /><i style="color:#666">生成静态目录时生效</i> </td>
@@ -155,4 +218,25 @@ function insertunit2(text) {
 <input type="button" onClick=history.back() value="返 回" class="gray large">
 </center>
 </form>
+    <script>
+        function show_single(i) {
+            if(i == 1) {
+                var e = document.getElementById("single_select");
+                e.style.cssText = "display: table-row;";
+            } else {
+                var e = document.getElementById("single_select");
+                e.style.cssText = "display: none;";
+            }
+        }
+
+        function show_type_type(i) {
+            if(i == 1) {
+                var e = document.getElementById("type_type_select");
+                e.style.cssText = "display: table-row;";
+            } else {
+                var e = document.getElementById("type_type_select");
+                e.style.cssText = "display: none;";
+            }
+        }
+    </script>
 <?php mymps_admin_tpl_global_foot();?>

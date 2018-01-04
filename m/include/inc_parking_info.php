@@ -8,6 +8,8 @@ if(!$row = $db -> getRow("SELECT * FROM `{$db_mymps}information` WHERE id = '$id
 	errormsg('该信息主题未通过审核或不存在！');
 }
 
+$cat = $db -> getRow("SELECT * FROM `{$db_mymps}category` WHERE catid = '".$row['catid']."'");
+
 if ($_GET['is_renew'] == 'true') {
     $db->query("UPDATE `{$db_mymps}information` SET endtime = ".$timestamp." + (endtime-begintime), begintime = ".$timestamp."   WHERE id = '$id'");
     header("Location: index.php?mod=parking_info&id=$id");

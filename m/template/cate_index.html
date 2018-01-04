@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="template/css/filter.css">
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_222020_puyhkyqzxtievcxr.css">
     <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
-    <script>window['current'] = '{$cat[catname]}';</script>
+    <script>window['current'] = '共享{$cat[catname]}';</script>
 </head>
 
 <style type="text/css">
@@ -102,10 +102,10 @@
 					<i class="icon-fenxiang iconfont"></i>
 				</div>
 				<div class="truck-title">
-					<h4>发实时车位</h4></div>
+					<h4>发实时{$cat[catname]}</h4></div>
 				<div class="truck-content">
 					<p>
-						目前周边停车难时，您要离开，可以将现有车位分享给其他人。
+                        {$cat[share_desc]}
 					</p>
 				</div>
 
@@ -124,10 +124,10 @@
 					<i class="icon-find iconfont"></i>
 				</div>
 				<div class="truck-title">
-					<h4>找实时车位</h4></div>
+					<h4>找实时{$cat[catname]}</h4></div>
 				<div class="truck-content">
 					<p>
-						停车难时, 可以寻找您附近的车位，并请在指定时间内到达车位完成交接。
+                        {$cat[find_desc]}
 					</p>
 				</div>
 

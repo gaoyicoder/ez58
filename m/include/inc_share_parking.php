@@ -35,10 +35,19 @@ if($action == 'post'){
     }
     $lat = isset($lat) ? (float)$lat : '';
     $lng = isset($lng) ? (float)$lng : '';
-    $activetime	= $endtime 	= intval($endtime);
-    $endtime 	= ($endtime == 0)?0:($endtime*60)+$begintime;
+
+    $endtime = ($endtime == 0)?0:intval($endtime);
+    $activetime	= $endtime;
+    if($endtime) {
+        $endtime = ($endtime*60)+$begintime;
+    } else {
+        $endhour = $endhour?intval($endhour):0;
+        $endmin = $endmin?intval($endmin):0;
+        $endtime = $endhour * 3600 + $endmin * 60 + $begintime;
+    }
     $d = $db->getRow("SELECT catname,dir_typename,modid,gid FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $catname = $d['catname'];
+    $title = $catname." ".$title;
     $dir_typename = $d['dir_typename'];
     if(!$mixcode || $mixcode != md5($cookiepre)){
         errormsg('系统判断您的来路不正确！');
@@ -284,7 +293,7 @@ if($action == 'post'){
     }
 
     //信息填写页
-    $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint FROM `{$db_mymps}category` WHERE catid = '$catid'");
+    $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint,price_select,time_type,single_select,type_type,type_type_select,instruct_desc FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $cat['parentname'] = $db -> getOne("SELECT catname FROM `{$db_mymps}category` WHERE catid = '$cat[parentid]'");
     if($cat['parentid'] == 0){
         //如果为根分类

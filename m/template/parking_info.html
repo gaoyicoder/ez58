@@ -93,7 +93,7 @@
                 {/if}
 			</div>
             {/if}
-            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->共享有效期剩余时间: <span id="last_time"></span>秒</div>
+            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->共享有效期剩余时间: <span id="last_time"></span></div>
 
     <!-- 弹窗 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,22 +120,58 @@
 
         </div>
             <script>
+
+            	function toLiangWei(data) {
+            		if (data<10) {
+            			data = "0"+ data;
+            		}
+
+            		return data;
+            	}
+
+            	function getTimeFormat(timeLeft) {
+
+            		var h='小时';
+                    var m="分钟";
+                    var s="秒";
+            		var hour=Math.floor(timeLeft/3600);
+            		var min=Math.floor(timeLeft/60)%60;
+            		var sec=timeLeft%60;
+            		var hourPart = "";
+            		var minPart = "";
+            		var secPart = "";
+            		if (hour > 0) {
+            			hourPart = toLiangWei(hour)+h;
+            		}
+            		if (min>0 || hour>0) {
+            			minPart = toLiangWei(min)+m;
+            		}
+            		secPart = toLiangWei(sec)+s;
+            		t = hourPart + minPart +secPart;
+
+            		return t;
+            	}
+
                 var interval;
                 var intervalKey;
                 $(function(){
                     var end_time = {$row['endtime1']};
                     var timestamp=Math.round(new Date().getTime()/1000);
                     var timeover=end_time-timestamp;
+                    var t = getTimeFormat(timeover);
+
+                    $("#last_time").html(t);
+
                     intervalKey = setInterval(function(){
-                            if (timeover>0){
-                                 $("#last_time").html(timeover);
-                            } else {
-                                clearInterval(intervalKey);
 
-                                closeWindowAfter5();
-                            }
-                            timeover--;
-
+                    	if (timeover>0){
+                    		 t = getTimeFormat(timeover);
+                    		$("#last_time").html(t);
+                    	} else {
+                            clearInterval(intervalKey);
+                            closeWindowAfter5();
+                        }
+                        timeover--;
                         }, 1000);
 
                     interval = setInterval('updateParkingStatus()', 10000);

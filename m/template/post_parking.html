@@ -66,8 +66,9 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
        <input id="endtime{$v}" type="radio" name="endtime" value="{$v}" {if $temp_i == 0}checked{php $temp_i = 1;}{/if}/><label for="endtime{$v}">{$v}分钟</label>
        <!--{/loop}-->
        <!--{else}-->
-       <input style="width: 30px" type="text" name="endhour" value="">小时
-       <input style="width: 30px" type="text" name="endmin" value="">分钟
+       <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;
+       "  type="number" min="0" name="endhour"  value="">小时
+       <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="0" max="60" name="endmin" value="">分钟
        <!--{/if}-->
    </dd>
   </dl>

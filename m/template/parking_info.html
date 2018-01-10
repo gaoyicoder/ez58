@@ -169,7 +169,9 @@
                     		$("#last_time").html(t);
                     	} else {
                             clearInterval(intervalKey);
+                            <!--{if $row[book_uid]==""}-->
                             closeWindowAfter5();
+                            <!--{/if}-->
                         }
                         timeover--;
                         }, 1000);
@@ -339,12 +341,14 @@
 		</ul>
         {/if}
         {else}
+    <!--{if $row[book_uid]==""}-->
         <script type="text/javascript">
             $(function(){
                 closeWindowAfter5();
             });
 
         </script>
+    <!--{/if}-->
         <!-- <script>MympsWindowMsg1('',1,'该信息已过期，联系方式已被隐藏!', "index.php");</script> -->
         {/if}
         {/if}

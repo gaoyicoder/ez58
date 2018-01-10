@@ -25,7 +25,7 @@
     <ul>  
     	{loop $info_list $mymps}
         <li id="info{$mymps[id]}">
-            <h3>{if mgetcookie('refreshed'.$mymps[id]) == 1}<font color="red">[已刷新]</font>{/if}<a style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}" href="index.php?mod=parking_info&id={$mymps[id]}" {if $mymps[book_status]!=2}onclick="alert('该共享已经完成交接,不能查看。');return false;"{/if}>{$mymps[title]}</a></h3>
+            <h3>{if mgetcookie('refreshed'.$mymps[id]) == 1}<font color="red">[已刷新]</font>{/if}<a style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}" href="index.php?mod=parking_info&id={$mymps[id]}" {if $mymps[book_status]==2}onclick="alert('该共享已经完成交接,不能查看。');return false;"{/if}>{$mymps[title]}</a></h3>
             <dl class="cfix">
              <dt>
                  {if $mymps[book_uid] == ""}

@@ -17,7 +17,7 @@
 	
 	<div class="dl_nav">
 		<span>
-			<a href="index.php">首页</a>&gt;<a href="index.php?mod=member">会员中心</a>&gt;<a href="index.php?mod=member&action=mypost">我的实时分享</a>
+			<a href="index.php">首页</a>&gt;<a href="index.php?mod=member">会员中心</a>&gt;<a href="index.php?mod=member&action=mypost">我的实时共享</a>
 		</span>
 	</div>
 
@@ -25,13 +25,13 @@
     <ul>  
     	{loop $info_list $mymps}
         <li id="info{$mymps[id]}">
-            <h3>{if mgetcookie('refreshed'.$mymps[id]) == 1}<font color="red">[已刷新]</font>{/if}<a style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}" href="index.php?mod=parking_info&id={$mymps[id]}">{$mymps[title]}</a></h3>
+            <h3>{if mgetcookie('refreshed'.$mymps[id]) == 1}<font color="red">[已刷新]</font>{/if}<a style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}" href="index.php?mod=parking_info&id={$mymps[id]}" {if $mymps[book_status]!=2}onclick="alert('该共享已经完成交接,不能查看。');return false;"{/if}>{$mymps[title]}</a></h3>
             <dl class="cfix">
              <dt>
                  {if $mymps[book_uid] == ""}
                     {if $mymps[endtime] < $timestamp}<span style="color:green;">已过期</span>{else}<span>未过期</span>{/if}
                  {else}
-                    {if $mymps[book_status]==0}<span style="color:green;">已预订</span>{else}<span>已交接</span>{/if}
+                    {if $mymps[book_status]!=2}<span style="color:green;">已预订</span>{else}<span>已交接</span>{/if}
                  {/if}
                {if $mymps[ifred] == 1}<span style="color:red;">已套红</span>{/if}
                {if $mymps[ifbold] == 1}<span style="font-weight:bold;">已加粗</span>{/if}

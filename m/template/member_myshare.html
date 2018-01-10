@@ -28,7 +28,11 @@
             <h3>{if mgetcookie('refreshed'.$mymps[id]) == 1}<font color="red">[已刷新]</font>{/if}<a style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}" href="index.php?mod=parking_info&id={$mymps[id]}">{$mymps[title]}</a></h3>
             <dl class="cfix">
              <dt>
-               {if $mymps[endtime] < $timestamp}<span style="color:green;">已过期</span>{else}<span>未过期</span>{/if}
+                 {if $mymps[book_uid] == ""}
+                    {if $mymps[endtime] < $timestamp}<span style="color:green;">已过期</span>{else}<span>未过期</span>{/if}
+                 {else}
+                    {if $mymps[book_status]==0}<span style="color:green;">已预订</span>{else}<span>已交接</span>{/if}
+                 {/if}
                {if $mymps[ifred] == 1}<span style="color:red;">已套红</span>{/if}
                {if $mymps[ifbold] == 1}<span style="font-weight:bold;">已加粗</span>{/if}
                {if $mymps[upgrade_type_index] == 2 || $mymps[upgrade_type_list] == 2 || $mymps[upgrade_type] == 2}<span>置顶中</span>{/if}

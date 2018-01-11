@@ -58,9 +58,10 @@
 		padding:20px 0;
 	}
 	.truck .truck-content p{
-		color: #b2b2b2;
+		color: #222222;
 		font-size: 13px;
 		line-height: 1.8;
+		margin-bottom: 0;
 	}
 
 	.truck .truck-content .truck-img i{
@@ -98,16 +99,20 @@
 
 			<div class="truck-content">
 
-				<div class="truck-img">
-					<i class="icon-fenxiang iconfont"></i>
-				</div>
 				<div class="truck-title">
 					<h4>发实时{$cat[catname]}</h4></div>
+
 				<div class="truck-content">
 					<p>
                         {$cat[share_desc]}
 					</p>
 				</div>
+
+				<div class="truck-img">
+					<i class="icon-fenxiang iconfont"></i>
+				</div>
+
+
 
 			</div>
 
@@ -120,16 +125,18 @@
 
 			<div class="truck-content">
 
-				<div class="truck-img">
-					<i class="icon-find iconfont"></i>
-				</div>
-				<div class="truck-title">
+							<div class="truck-title">
 					<h4>找实时{$cat[catname]}</h4></div>
 				<div class="truck-content">
 					<p>
                         {$cat[find_desc]}
 					</p>
 				</div>
+
+				<div class="truck-img">
+					<i class="icon-find iconfont"></i>
+				</div>
+
 
 			</div>
 		</div>

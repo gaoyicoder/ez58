@@ -30,7 +30,7 @@ if($cityid) {
 }
 //if(!$cityid && $mod!='news' && $mod!='changecity' && $mod!='member') write_msg('','index.php?mod=changecity');
 
-!in_array($mod,array('category','index','items','information','login','register','post','search','member','history','news','goods','corp','store','changecity','sync', 'sync_map', 'message', 'message_detail', 'cate_index', 'share_parking', 'find_parking', 'parking_map', 'parking_info', 'parking_book', 'parking_exchange', 'parking_exchange_pre','parking_drive_map', 'parking_book_status')) && $mod = 'index';
+!in_array($mod,array('category','index','items','information','login','register','post','search','member','history','news','goods','corp','store','changecity','sync', 'sync_map', 'message', 'message_detail', 'cate_index', 'share_parking', 'find_parking', 'parking_map', 'parking_info', 'parking_book', 'parking_exchange', 'parking_exchange_pre','parking_drive_map', 'parking_book_status', 'contactus')) && $mod = 'index';
 
 $s_uid = $iflogin = NULL;
 include MYMPS_INC.'/member.class.php';

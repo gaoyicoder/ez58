@@ -23,8 +23,8 @@
     {/loop}
 </div>
 <!--{if $sharetype==isshare}-->
-<div>
-    Tips: 您可以将现有资源实时分享给他人
+<div class="tips">
+    <span>Tips:</span> 您可以将现有资源实时分享给他人
 </div>
 <!--{/if}-->
 <script type="text/javascript">(function(){$('.business dt').bind('click',function(){var _this=$(this).parent();if(_this.hasClass('exp')){_this.removeClass('exp')}else{var scrollTop=document.body.scrollTop;_this.addClass('exp');window.scrollTo(0,scrollTop)}})}());</script>
@@ -53,4 +53,22 @@
 </script>
 {template footer}
 </body>
+
+<style type="text/css">
+    .tips{
+        margin-top: 20px;
+        background: #ffffff;
+        padding: 20px 0 20px 16px;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+     .tips span{
+        color:#e67e22;
+
+     }
+     .footer{
+        padding-top: 80%;
+     }
+</style>
 </html>

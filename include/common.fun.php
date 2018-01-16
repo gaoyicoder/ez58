@@ -785,7 +785,7 @@ function mymps_count($table,$where='')
 
 function get_share_cat_id(){
     global $db,$db_mymps;
-    $cate_index_result = $db->getAll("SELECT url FROM {$db_mymps}mobile_nav WHERE url LIKE 'index.php?mod=cate_index&catid=%'");
+    $cate_index_result = $db->getAll("SELECT url FROM {$db_mymps}mobile_nav WHERE url LIKE 'index.php?mod=find_parking&catid=%'");
     $share_cat_ids = array();
     foreach($cate_index_result as $cat_index) {
         $share_cat_ids[] = substr($cat_index['url'],31);

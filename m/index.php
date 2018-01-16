@@ -152,7 +152,7 @@ function get_mobile_share_nav($typeid=1){
     static $res;
     $data = read_static_cache('mobile_share_nav');
     if($data === false){
-        $query = $GLOBALS['db'] -> query("SELECT * FROM `{$GLOBALS['db_mymps']}mobile_nav` WHERE isview = 2 AND url LIKE 'index.php?mod=cate_index%' ORDER BY displayorder ASC");
+        $query = $GLOBALS['db'] -> query("SELECT * FROM `{$GLOBALS['db_mymps']}mobile_nav` WHERE isview = 2 AND url LIKE 'index.php?mod=find_parking%' ORDER BY displayorder ASC");
         while($row = $GLOBALS['db'] -> fetchRow($query)){
             $res[$row['typeid']][$row['id']]['title'] = $row['title'];
             $res[$row['typeid']][$row['id']]['url'] = $row['url'];

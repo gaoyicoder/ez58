@@ -270,7 +270,12 @@ if($action == 'post'){
 	
 	if(!$catid && !$id){
 		//分类选择页
-		$categories = get_categories_tree(0,'category');
+        if ($sharetype == 'isshare') {
+            $categories = get_categories_tree_share(true);
+        } else {
+            $categories = get_categories_tree_share(false);
+        }
+
 		include mymps_tpl('post_cat');
 		exit;
 	}elseif(!$catid && $id && $s_uid){

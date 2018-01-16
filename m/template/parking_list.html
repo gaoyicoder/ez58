@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="template/css/list.css">
     <link type="text/css" rel="stylesheet" href="template/css/filter.css">
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_quv1sz23kg25ipb9.css">
-    <script>window['current'] = '{$city[cityname]}{$cat[catname]}';</script>
+    <script>window['current'] = '{$cat[catname]}';</script>
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
@@ -18,7 +18,7 @@
 
 	<div class="filter2" id="filter2">
 
-        <ul class="tab cfix">
+        <ul style="display: none;" class="tab cfix">
             {if $cat_list}<li style="display: none;" class="item"><a href="javascript:void(0);"><span id="str_a_node">分类</span><em></em></a></li>{/if}
             <li class="item"><a href="javascript:void(0);"><span id="str_b_node">区域</span><em></em></a></li>
         </ul>
@@ -107,7 +107,7 @@
     </style>
 
     <!--{if !$distance}
-    <div class="wrapper_nearby">
+    <div style="display: none;" class="wrapper_nearby">
     <li class="nearbyinfo" onclick="nearby(0.5,'','')">
         <span style=" margin-right: 4px"><img src="template/images/icon_location.png" height="20" style="vertical-align:middle;"></span>
         <span id="nearby">查看附近的信息</span>

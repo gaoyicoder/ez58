@@ -187,6 +187,55 @@ function get_categories_tree($catid = 0,$type = 'category',$ifview = '2')
     return $cat_arr;
 }
 
+
+/**
+ * 实时共享分类同级的所有分类以及该分类下的子分类
+ */
+function get_categories_tree_share( $isshare = 'false',$ifview = '2')
+{
+    $type = 'category';
+    $rewritetype = 'category';
+
+    $parentid = 0;
+
+    if ($isshare) {
+        $where_share = " AND a.if_share = 1";
+    } else {
+        $where_share = " AND a.if_share = 0";
+    }
+    $bif_view = ($ifview == '2' || $ifview == '1') ? " AND a.if_view = '$ifview' AND b.if_view = '$ifview'" : "";
+    $sql = "SELECT a.*, b.catid AS childid, b.catname AS childname, b.color AS childcolor,b.dir_typename AS child_dir_typename,b.htmlpath AS child_htmlpath,b.dir_typename AS child_dir_typename FROM `{$GLOBALS['db_mymps']}".$type."` AS a LEFT JOIN `{$GLOBALS['db_mymps']}".$type."` AS b ON b.parentid = a.catid WHERE a.parentid = '$parentid' {$where_share} {$bif_view} ORDER BY a.catorder ASC , b.catorder ASC";
+    $res = $GLOBALS['db']->getAll($sql);
+
+    $cat_arr = array();
+
+    foreach ($res AS $row){
+
+        if ($row['if_view']){
+            $cat_arr[$row['catid']]['catid']    = $row['catid'];
+            $cat_arr[$row['catid']]['catname']  = $row['catname'];
+            $cat_arr[$row['catid']]['color']	= $row['color'];
+            $cat_arr[$row['catid']]['if_view']  = $row['if_view'];
+            $cat_arr[$row['catid']]['dir_typename'] = $row['dir_typename'];
+            $cat_arr[$row['catid']]['uri']		= Rewrite($rewritetype,array('catid'=>$row['catid'],'dir_typename'=>$row['dir_typename'],'dir_typename'=>$row['dir_typename']));
+            $type == 'category' && $cat_arr[$row['catid']]['usecoin'] = $row['usecoin'];
+            $cat_arr[$row['catid']]['icon']    = $row['icon'];
+            if ($row['childid'] != NULL){
+                $cat_arr[$row['catid']]['children'][$row['childid']]['catid']    = $row['childid'];
+                $cat_arr[$row['catid']]['children'][$row['childid']]['catname']  = $row['childname'];
+                $cat_arr[$row['catid']]['children'][$row['childid']]['if_view']  = $row['if_view'];
+                $cat_arr[$row['catid']]['children'][$row['childid']]['color']= $row['childcolor'];
+                $cat_arr[$row['catid']]['children'][$row['childid']]['dir_typename'] = $row['child_dir_typename'];
+                $cat_arr[$row['catid']]['children'][$row['childid']]['uri'] 	 = Rewrite($rewritetype,array('catid'=>$row['childid'],'dir_typename'=>$row['child_dir_typename'],'dir_typename'=>$row['child_dir_typename']));
+                $type == 'category' && $cat_arr[$row['catid']]['children'][$row['childid']]['usecoin']  = $row['usecoin'];
+            }
+        }
+
+    }
+
+    return $cat_arr;
+}
+
 /**
  * 获得指定商家分类同级的所有分类以及该分类下的子分类
  */

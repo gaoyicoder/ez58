@@ -788,7 +788,7 @@ function get_share_cat_id(){
     $cate_index_result = $db->getAll("SELECT url FROM {$db_mymps}mobile_nav WHERE url LIKE 'index.php?mod=find_parking&catid=%'");
     $share_cat_ids = array();
     foreach($cate_index_result as $cat_index) {
-        $share_cat_ids[] = substr($cat_index['url'],31);
+        $share_cat_ids[] = substr($cat_index['url'],33);
     }
     return $share_cat_ids;
 }

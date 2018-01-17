@@ -12,14 +12,13 @@
 <div class="wrapper">
     {template header_search}
     {loop $categories $mymps}
-    <dl class="business">
-        <dt class="house"><i class="ico" style="background-size:40px 40px; border-radius:0;background-image:url({$mymps_global[SiteUrl]}/{$mymps[icon]});"></i>发布{$mymps[catname]}信息</dt>
-        <dd {if $catid}style="display:block"{/if}>
-            {loop $mymps[children] $c}
-            <a onclick="login_confirm({$c[catid]});return false;" href="index.php?mod=post&catid={$c[catid]}&cityid={$cityid}">{$c[catname]}</a>
-            {/loop}
-        </dd>
-    </dl>
+    {loop $mymps[children] $c}
+    <a onclick="login_confirm({$c[catid]});return false;" href="index.php?mod=post&catid={$c[catid]}&cityid={$cityid}">
+        <dl class="business">
+            <dt class="house"><i class="ico" style="background-size:40px 40px; border-radius:0;background-image:url({$mymps_global[SiteUrl]}/{$mymps[icon]});"></i>发布{$mymps[catname]}信息</dt>
+        </dl>
+    </a>
+    {/loop}
     {/loop}
 </div>
 <!--{if $sharetype==isshare}-->
@@ -27,7 +26,9 @@
     <span>Tips:</span> 您可以将现有资源实时分享给他人
 </div>
 <!--{/if}-->
+<!--
 <script type="text/javascript">(function(){$('.business dt').bind('click',function(){var _this=$(this).parent();if(_this.hasClass('exp')){_this.removeClass('exp')}else{var scrollTop=document.body.scrollTop;_this.addClass('exp');window.scrollTo(0,scrollTop)}})}());</script>
+-->
 <script>
 
     function login_confirm(catid){

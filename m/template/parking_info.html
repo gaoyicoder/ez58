@@ -402,25 +402,28 @@
 <script src="template/js/slide.js"></script>
 <script>
     function book_parking(id, obj){
-        $.ajax({
-            url: 'index.php?mod=parking_book&id='+id,
-            type:"POST",
-            dataType:"json",
-            data: {},
-            success:function(data){
-                if(data.result == true) {
-                    alert("{$cat['catname']}预定成功");
-                    window.location.reload();
+        var r = confirm("成功预订该<!--{$row[catname]}-->将会花费{$row[content]}金币, 是否确认?");
+        if(r) {
+            $.ajax({
+                url: 'index.php?mod=parking_book&id='+id,
+                type:"POST",
+                dataType:"json",
+                data: {},
+                success:function(data){
+                    if(data.result == true) {
+                        alert("{$cat['catname']}预定成功");
+                        window.location.reload();
 
-                    clearInterval(intervalKey);
-                    $("#info_count_down").hide();
+                        clearInterval(intervalKey);
+                        $("#info_count_down").hide();
 
-                    $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
-                } else {
-                    alert("{$cat['catname']}已被预订");
+                        $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
+                    } else {
+                        alert("{$cat['catname']}已被预订");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     function exchange_parking(id){
         $.ajax({

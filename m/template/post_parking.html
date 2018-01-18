@@ -67,7 +67,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
        <!--{/loop}-->
        <!--{else}-->
        <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;
-       "  type="number" min="0" name="endhour"  value="">小时
+       "  type="number" min="0" name="endhour"  value="">小时 或
        <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="0" max="60" name="endmin" value="">分钟
        <!--{/if}-->
    </dd>
@@ -188,22 +188,15 @@ if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)
     });
 
 $(document).ready(function(){
-// $('input[name="qq"]').each(function(){
-//  $(this).click(function(){
-//      if($(this).attr("checked")){
-//    $('#cfnone').css('display','none')
-//  }else{
-//     $('#cfnone').css('display','block')
-//  }
-//  })
-//
-// });
+    $("#closed").click(function(){
+        $("#Closedcontent").css('display','none')
+    });
 
-  $("#closed").click(function(){
-    $("#Closedcontent").css('display','none')
-  })
+    <!--{if $cat[time_type] != 1}-->
 
-  })
+    <!--{/if}-->
+
+  });
 </script>
 </body>
 </html>

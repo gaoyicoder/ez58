@@ -221,7 +221,7 @@
                             $("#close_count_span").html(timerlater)
                         }else{
                             clearInterval(intervaltimeover);
-                             window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
+                             window.location.href="index.php?mod=index";
 
                         }
                         timerlater--;
@@ -229,7 +229,7 @@
                     },1000);
                 }
                 $('#myModal').on('hidden.bs.modal', function (e) {
-                    window.location.href="index.php?mod=cate_index&catid={$row[catid]}";
+                    window.location.href="index.php?mod=index";
                 });
             </script>
 		</div>
@@ -430,7 +430,7 @@
             data: {},
             success:function(data){
                 alert("{$cat['catname']}交接成功");
-                window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
+                window.location.href= "index.php?mod=index";
             }
         });
     }
@@ -443,7 +443,7 @@
             data: {},
             success:function(data){
                 alert("{$cat['catname']}交接成功");
-                window.location.href= "index.php?mod=cate_index&catid={$row[catid]}";
+                window.location.href= "index.php?mod=index";
             }
         });
     }

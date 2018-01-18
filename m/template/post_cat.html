@@ -21,7 +21,7 @@
     {/loop}
     {/loop}
 </div>
-<!--{if $sharetype==isshare}-->
+<!--{if $sharetype=='isshare'}-->
 <div class="tips">
     <span>Tips:</span> 您可以将现有资源实时分享给他人
 </div>
@@ -35,14 +35,14 @@
         <!--{if $iflogin == 0}-->
         var r = confirm("请先登录");
         if (r) {
-            window.location.href = "index.php?mod=login&returnurl=<!--{echo urlencode('index.php?mod=cate_index&catid=')}{$cat[catid]}-->";
+            window.location.href = "index.php?mod=login&returnurl=<!--{echo urlencode('index.php?mod=post&sharetype=isshare')}-->";
         }
         <!--{else}-->
         var geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function(r){
             var lat = r.point.lat;
             var lng = r.point.lng;
-            <!--{if $sharetype==isshare}-->
+            <!--{if $sharetype=='isshare'}-->
             window.location.href = 'index.php?mod=share_parking&catid='+catid+'&new_lat='+lat+'&new_lng='+lng;
             <!--{else}-->
             window.location.href = 'index.php?mod=post&catid='+catid+'&cityid={$cityid}';

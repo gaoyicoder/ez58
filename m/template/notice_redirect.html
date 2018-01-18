@@ -10,6 +10,17 @@
 </head>
 
 <body>
-<script>MympsWindowMsg('',1,'{$redirectmsg}','{$url}');</script>
+<script>
+    $(function(){
+        showMsg('{$redirectmsg}', '{$url}');
+    });
+</script>
+<script>
+    function showMsg(str, url) {
+        alert(str);
+        url = decodeURIComponent(url);
+        window.location.href = url;
+    }
+</script>
 </body>
 </html>

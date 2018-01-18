@@ -81,7 +81,7 @@
                         <span style="color:#333;background: #999;padding: 6px; border-radius: 4px">已预订</span>
                     {/if}
                 </a>
-                {if $row[book_uid]==$s_uid&&$row[book_status]==0}
+                {if $s_uid&&$row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
                         交接中。请在完成交接完后点击交接按钮。
@@ -402,6 +402,7 @@
 <script src="template/js/slide.js"></script>
 <script>
     function book_parking(id, obj){
+        <!--{if $s_uid}-->
         var r = confirm("成功预订该<!--{$row[catname]}-->将会花费{$row[content]}金币, 是否确认?");
         if(r) {
             $.ajax({
@@ -424,6 +425,12 @@
                 }
             });
         }
+        <!--{else}-->
+        var r = confirm("请先登录");
+        if (r) {
+            window.location.href = "index.php?mod=login&returnurl=<!--{echo urlencode('index.php?mod=parking_info&id=')}--><!--{{$row[id]}}-->";
+        }
+        <!--{/if}-->
     }
     function exchange_parking(id){
         $.ajax({

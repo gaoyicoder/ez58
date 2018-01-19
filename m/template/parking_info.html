@@ -446,16 +446,19 @@
     }
 
     function exchange_parking_pre(id){
-        $.ajax({
-            url: 'index.php?mod=parking_exchange_pre&id='+id,
-            type:"POST",
-            dataType:"json",
-            data: {},
-            success:function(data){
-                alert("{$cat['catname']}交接成功");
-                window.location.href= "index.php?mod=index";
-            }
-        });
+        var r = confirm("请确保您已抵达交接位置, 并且完成当面交接后, 再点击确认按钮。请问是否确认交接?");
+        if(r) {
+            $.ajax({
+                url: 'index.php?mod=parking_exchange_pre&id='+id,
+                type:"POST",
+                dataType:"json",
+                data: {},
+                success:function(data){
+                    alert("{$cat['catname']}交接成功");
+                    window.location.href= "index.php?mod=index";
+                }
+            });
+        }
     }
 
 

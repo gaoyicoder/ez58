@@ -59,16 +59,16 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
      </dl>
   <dl class="cfix">
    <dt>有效期</dt>
-   <dd>
+   <dd id="inputchange">
        <!--{if $cat[time_type] == 1}-->
        <!--{php $temp_i = 0;}-->
        <!--{loop explode("\r\n",$cat[single_select]) $v}-->
        <input id="endtime{$v}" type="radio" name="endtime" value="{$v}" {if $temp_i == 0}checked{php $temp_i = 1;}{/if}/><label for="endtime{$v}">{$v}分钟</label>
        <!--{/loop}-->
        <!--{else}-->
-       <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;
-       "  type="number" min="0" name="endhour"  value="">小时 或
-       <input style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="0" max="60" name="endmin" value="">分钟
+       <input id="input1" style="width: 30px;border:0;border-bottom: 1px solid #878484;text-align: center;
+       "  type="number" min="0" name="endhour" onkeydown="" min="1" max="24"  placeholder="00"   value="">小时 或
+       <input id="input2" style="width: 30px; border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="1" max="59" name="endmin" value="" placeholder="00">分钟
        <!--{/if}-->
    </dd>
   </dl>
@@ -193,9 +193,35 @@ $(document).ready(function(){
     });
 
     <!--{if $cat[time_type] != 1}-->
-
+         $("#input1").focus(function(){
+           $("#input2").attr("min","0");
+           $("#input2").val("");
+        });
+         $("#input1").keyup(function(){
+          if(parseInt($(this).val())>24){
+              alert("输入值必须小于等于24小时");
+              $(this).val("");
+              $(this).focus();
+          }else{
+          };
+         });
+        $("#input2").keyup(function(){
+          if(parseInt($(this).val())>59){
+              alert("输入值必须小于等于59分钟");
+              $(this).val("");
+              $(this).focus();
+          };
+         });
+         $("#input2").focus(function(){
+           $("#input1").val("");
+         });
+         $(".fb").click(function(e){
+            if($("#input1").val()=="" && $("#input2").val()==""){
+              alert("有效期不能为空!请重新输入");
+              return false;
+            };
+         })
     <!--{/if}-->
-
   });
 </script>
 </body>

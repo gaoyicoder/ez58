@@ -47,7 +47,7 @@ if($action == 'post'){
     }
     $d = $db->getRow("SELECT catname,dir_typename,modid,gid FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $catname = $d['catname'];
-    $title = $catname." ".$title;
+//    $title = $catname." ".$title;
     $dir_typename = $d['dir_typename'];
     if(!$mixcode || $mixcode != md5($cookiepre)){
         errormsg('系统判断您的来路不正确！');

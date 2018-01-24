@@ -146,7 +146,9 @@ globalassign();
 
 if($tpl_index['banmian'] == 'portal'){
 	
-	$index_cat = get_categories_tree(0,'category');
+//	$index_cat = get_categories_tree(0,'category');
+
+    $index_cat = get_categories_tree_share(false);
 
 	if(ifplugin('group')){
 		require_once MYMPS_ROOT.'/plugin/group/include/functions.php';

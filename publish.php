@@ -329,8 +329,10 @@ if($act == 'dopost') {
 		$loc 		= get_location('post','','选择分类-发布分类信息');
 		$page_title = $loc['page_title'];
 		globalassign();
-		$categories = get_categories_tree(0,'category');
-		include mymps_tpl('info_post');
+//		$categories = get_categories_tree(0,'category');
+
+        $categories = get_categories_tree_share(false);
+        include mymps_tpl('info_post');
 		
 	}else{
 		

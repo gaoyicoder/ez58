@@ -58,6 +58,7 @@
     <td width="30">选择</td>
     <td width="40">缩略图</td>
 	<td width="30">状态</td>
+    <td width="60">是否过期</td>
     <td>信息标题</td>
     <td width="50">大顶</td>
 	<td width="50">小顶</td>
@@ -73,7 +74,14 @@
      <tr bgcolor="white" >
     <td><input type='checkbox' name='id[]' value='<?=$row[id]?>' class='checkbox' id="<?=$row[id]?>"></td>
      <td><?php $row['img_path'] = $row['img_path'] ? $mymps_global[SiteUrl].$row['img_path'] : $mymps_global[SiteUrl].'/images/nophoto.gif';?><img src="<?=$row[img_path]?>" width="48" height="36" style="border:1px #dddddd solid; padding:1px"></td>
-	<td><?=$row[info_level]?></td>
+    <td><?=$row[info_level]?></td>
+     <td>
+         <? if($row[endtime]<$timestamp) {?>
+             已过期
+         <? } else { ?>
+             未过期
+         <? }?>
+     </td>
     <td><?php if($row['img_path']){?><font color="green">[<?=$row['img_count']?>图]</font> <?php }?><a style="<?php if($row['ifred'] == 1) echo 'color:red;';?><?php if($row['ifbold'] == 1) echo 'font-weight:bold;';?>" href="<?=$row[uri]?>" target="_blank" title="<?=$row[id]?> - <?=$row[title]?>"><?php echo $row[title]; ?></a><a title="catID编号:<?=$row[catid]?>" target="_blank" href="<?=$row[uri_cat]?>" style="color:#333; margin-left:10px"><?=$row[catname]?></a><?php if($row[certify] == 1){?> <img title="认证信息" alt="认证信息" align="absmiddle" src="../images/company1.gif"><?}?></td>
  
     <td><div class="signin_button"  onmouseover="wsug(event, '<?php echo $row['upgrade_time']; ?>')" onmouseout="wsug(event, 0)"><?=$row[upgrade_type]?></div></td>

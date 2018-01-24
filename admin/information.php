@@ -269,6 +269,7 @@ switch ($part){
 				$arr['begintime']    = $row['begintime'];
 				$arr['ip']           = $row['ip'];
 				$arr['info_level']   = $information_level[$row[info_level]];
+                $arr['endtime'] = $row['endtime'];
 				
 				if($row['upgrade_time'] >= $timestamp){
 					if($row['upgrade_type']>1){

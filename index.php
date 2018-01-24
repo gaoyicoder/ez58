@@ -261,7 +261,8 @@ if($tpl_index['banmian'] == 'portal'){
 
 } elseif($tpl_index['banmian'] == 'classic'){
 
-	$index_cat = get_categories_tree(0,'category');
+//	$index_cat = get_categories_tree(0,'category');
+    $index_cat = get_categories_tree_share(false);
 	if(is_array($index_cat)){
 		foreach($index_cat as $firstcatkey => $firstcatval){
 			$idin = get_page_idin2("id","SELECT a.id FROM `{$db_mymps}information` AS a WHERE a.gid='$firstcatval[catid]' AND (a.info_level = 1 OR a.info_level = 2) {$city_limit} ORDER BY a.begintime DESC",$tpl_index['foreachinfo']);
@@ -290,7 +291,8 @@ if($tpl_index['banmian'] == 'portal'){
 		require_once MYMPS_ROOT.'/plugin/goods/include/functions.php';
 		$goods = mymps_get_goods($tpl_index['goods'],1,NULL,NULL,NULL,NULL,$cityid);
 	}
-	$index_cat = get_categories_tree(0,'category');
+//	$index_cat = get_categories_tree(0,'category');
+    $index_cat = get_categories_tree_share(false);
 	$firstcats = get_smplist_cats($tpl_index['smp_cats']['first'],$tpl_index['showstyle']);
 	$secondcats = get_smplist_cats($tpl_index['smp_cats']['second'],$tpl_index['showstyle']);
 	$thirdcats = get_smplist_cats($tpl_index['smp_cats']['third'],$tpl_index['showstyle']);

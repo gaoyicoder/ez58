@@ -48,6 +48,9 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
    {/if}
   </dl>
   {if !$child}
+     <div>
+         {$cat[post_desc]}
+     </div>
      <dl class="cfix">
          <dt>价格</dt>
          <dd>
@@ -138,7 +141,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
 </section>
         <div id="Closedcontent" style="padding: 10px; font-size: 14px; position:relative; " class="inp_Itembox">
           <i style="position: absolute; font-size: 20px; top:0; right: 4px; color: red" id="closed">&times;</i>
-            拖动地图上的标注位置。注意: 请在抵达您的分享所在位置的附近后再发布信息。
+            拖动地图上的标注位置。
         </div>
 
 {if $cat[if_upimg]==1}

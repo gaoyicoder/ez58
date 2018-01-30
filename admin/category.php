@@ -81,7 +81,7 @@ if (!submit_check(CURSCRIPT . '_submit')) {
 				$catorder++;
 				$len = strlen($value);
 				($len < 2 || $len > 30) && write_msg('分类名必须在2个至30个字符之间');
-				$db->query("INSERT INTO {$db_mymps}category (catname,usecoin,if_view,gid,parentid,modid,catorder,if_upimg,if_mappoint,dir_type,template,template_info,if_share,share_desc,find_desc,price_select,time_type,single_select,type_type,type_type_select,instruct_desc) VALUES ('{$value}','{$usecoin}','{$isview}','{$gid}','{$parentid}','{$modid}','{$catorder}','{$if_upimg}','{$if_mappoint}','{$dir_type}','{$template}','{$template_info}','{$if_share}','{$share_desc}','{$find_desc}','{$price_select}','{$time_type}','{$single_select}','{$type_type}','{$type_type_select}','{$instruct_desc}')");
+				$db->query("INSERT INTO {$db_mymps}category (catname,usecoin,if_view,gid,parentid,modid,catorder,if_upimg,if_mappoint,dir_type,template,template_info,if_share,share_desc,find_desc,price_select,time_type,single_select,type_type,type_type_select,instruct_desc, post_desc) VALUES ('{$value}','{$usecoin}','{$isview}','{$gid}','{$parentid}','{$modid}','{$catorder}','{$if_upimg}','{$if_mappoint}','{$dir_type}','{$template}','{$template_info}','{$if_share}','{$share_desc}','{$find_desc}','{$price_select}','{$time_type}','{$single_select}','{$type_type}','{$type_type_select}','{$instruct_desc}','{$post_desc}')");
 				$insert_id = $db->insert_id();
 				if ($parentid == 0) {
 					if ($dir_type == 1) {
@@ -150,7 +150,7 @@ if (!submit_check(CURSCRIPT . '_submit')) {
 			write_msg('您指定的目录名' . $mydir . '已存在，请换一个名称！');
 			die;
 		}
-		$sql = "UPDATE {$db_mymps}category SET gid='{$gid}',catname='{$catname}',icon='{$icon}',usecoin='{$usecoin}',if_view = '{$isview}',color='{$fontcolor}',title='{$title}',keywords='{$keywords}',description='{$description}',parentid='{$parentid}',modid='{$modid}',catorder='{$catorder}',dir_type = '{$dir_type}', dir_typename = '{$mydir}', html_dir = '{$html_dir}' ,if_upimg='{$if_upimg}',if_mappoint='{$if_mappoint}',template='{$template}',template_info='{$template_info}',if_share='{$if_share}',share_desc='{$share_desc}',find_desc='{$find_desc}',price_select='{$price_select}',time_type='{$time_type}',single_select='{$single_select}',type_type='{$type_type}',type_type_select='{$type_type_select}',instruct_desc='{$instruct_desc}' WHERE catid = '{$catid}'";
+		$sql = "UPDATE {$db_mymps}category SET gid='{$gid}',catname='{$catname}',icon='{$icon}',usecoin='{$usecoin}',if_view = '{$isview}',color='{$fontcolor}',title='{$title}',keywords='{$keywords}',description='{$description}',parentid='{$parentid}',modid='{$modid}',catorder='{$catorder}',dir_type = '{$dir_type}', dir_typename = '{$mydir}', html_dir = '{$html_dir}' ,if_upimg='{$if_upimg}',if_mappoint='{$if_mappoint}',template='{$template}',template_info='{$template_info}',if_share='{$if_share}',share_desc='{$share_desc}',find_desc='{$find_desc}',price_select='{$price_select}',time_type='{$time_type}',single_select='{$single_select}',type_type='{$type_type}',type_type_select='{$type_type_select}',instruct_desc='{$instruct_desc}',post_desc='{$post_desc}' WHERE catid = '{$catid}'";
 		$res = $db->query($sql);
 		if ($children_mod == '1') {
 			$db->query("UPDATE `{$db_mymps}category` SET modid = '{$modid}' WHERE " . get_children($catid, 'catid'));

@@ -177,6 +177,12 @@ function insertunit2(text) {
         <input name="instruct_desc" type="text" class="text" id="instruct_desc" value="<?=$cat[instruct_desc]?>" size="30">
     </td>
 </tr>
+<tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">发布提示： </td>
+    <td>
+        <input name="post_desc" type="text" class="text" id="post_desc" value="<?=$cat[post_desc]?>" size="30">
+    </td>
+</tr>
 </tbody>
 </table>
 </div>

@@ -157,6 +157,12 @@ function insertunit2(text) {
     </td>
 </tr>
 <tr bgcolor="white">
+    <td width="15%" bgcolor="#F1F5F8">发布提示： </td>
+    <td>
+        <input name="post_desc" type="text" class="text" id="post_desc" value="<?=$cat[post_desc]?>" size="30">
+    </td>
+</tr>
+<tr bgcolor="white">
   <td bgcolor="#F1F5F8">目录存放形式：<br /><i style="color:#666">生成静态目录时生效</i> </td>
   <td><?=GetHtmlType('2','dir_type','add')?></td>
 </tr>

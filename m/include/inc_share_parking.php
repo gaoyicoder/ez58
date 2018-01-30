@@ -293,7 +293,7 @@ if($action == 'post'){
     }
 
     //信息填写页
-    $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint,price_select,time_type,single_select,type_type,type_type_select,instruct_desc FROM `{$db_mymps}category` WHERE catid = '$catid'");
+    $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint,price_select,time_type,single_select,type_type,type_type_select,instruct_desc,post_desc FROM `{$db_mymps}category` WHERE catid = '$catid'");
     $cat['parentname'] = $db -> getOne("SELECT catname FROM `{$db_mymps}category` WHERE catid = '$cat[parentid]'");
     if($cat['parentid'] == 0){
         //如果为根分类

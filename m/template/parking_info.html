@@ -54,18 +54,18 @@
                 <div id="book_status_div" style="text-align: center">
                     <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    该{$cat[catename]}共享正在等待被预订中。若无人预订,该共享将在有效期剩余时间归零后自动过期。
+                    该{$cat[catename]}共享正在等待被预订中。若无人预订,该共享将在有效期剩余时间归零后自动过期。如果在您关闭浏览器的期间,有人预定了该共享,我们将会在下次登录时弹出提示。
                     {else}
-                    该共享已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a>
+                    该共享已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击收金币按钮完成交易<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a>
                     {/if}
                     </div>
                     {if $row[book_status]==1}
                     <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
-                        交接
+                        收金币
                     </a>
                     {else}
                     <a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">
-                        交接
+                        收金币
                     </a>
                     {/if}
                 </div>
@@ -84,10 +84,10 @@
                 {if $s_uid&&$row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
-                        交接中。请在完成交接完后点击交接按钮。
+                        交接中。请在完成交接完后点击付金币按钮。
                     </div>
                     <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
-                        交接
+                        付金币
                     </a>
                 </div>
                 {/if}
@@ -199,12 +199,12 @@
 
                                     var book_status_content;
                                     var book_status_button
-                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">该共享已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击交接按钮<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a></div>';
+                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">该共享已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击收金币按钮完成交易<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a></div>';
                                     if(data.rowContent.book_status == 1) {
                                         clearInterval(interval);
-                                        book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">交接</a>';
+                                        book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">收金币</a>';
                                     } else{
-                                        book_status_button = '<a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">交接</a>';
+                                        book_status_button = '<a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">收金币</a>';
                                     }
                                     $("#book_status_div").html(book_status_content+book_status_button);
                                 }

@@ -18,6 +18,15 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
     <style type="text/css">
         #container{width: 100%;height: 200px;overflow: hidden;margin:0;font-family:"微软雅黑";}
     </style>
+
+  <style type="text/css">
+  .toggle_tips{
+    background: #F4D4B6;
+    color: #111;
+    font-size: 15px;
+    padding: 4px 6px;
+  }
+</style>
 </head>
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
@@ -48,7 +57,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
    {/if}
   </dl>
   {if !$child}
-     <div>
+     <div class="toggle_tips">
          {$cat[post_desc]}
      </div>
      <dl class="cfix">
@@ -236,6 +245,12 @@ $(document).ready(function(){
     });
     <!--{/if}-->
   });
+</script>
+
+<script type="text/javascript">
+  $(function(){
+     $(".toggle_tips").delay(3000).slideToggle(1000)
+  })
 </script>
 </body>
 </html>

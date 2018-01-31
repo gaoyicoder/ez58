@@ -39,13 +39,20 @@
         .booked_tel{
             background: green;padding: 5px 10px;color: white; border-radius: 4px;
         }
+          .toggle_tips{
+    background: #F4D4B6;
+    color: #111;
+    font-size: 15px;
+    padding: 4px 6px;
+    text-align: center;
+  }
     </style>
 </head>
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
 	{template header_search}
     {if $row[userid]!=$s_uid}
-    <div>为了保证交易的成功，请先提前电话联系对方。</div>
+    <div class="toggle_tips">为了保证交易的成功，请先提前电话联系对方。</div>
     {/if}
 	<div class="detail">
 		<div class="tit_area">
@@ -469,5 +476,10 @@
 </script>
 </div>
 <script type="text/javascript" src="template/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+     $(".toggle_tips").delay(3000).slideToggle(1000)
+  })
+</script>
 </body>
 </html>

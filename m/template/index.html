@@ -8,6 +8,10 @@
 <link type="text/css" rel="stylesheet" href="template/css/global.css">
 <link type="text/css" rel="stylesheet" href="template/css/style.css">
 <link type="text/css" rel="stylesheet" href="template/css/index.css">
+    <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_l7izsre2gkb21emi.css">
+
+<script type="text/javascript" src="template/js/jquery.min.js"></script>
 <!--{if !$cityid && !$lat}-->
 <script>
 
@@ -24,11 +28,40 @@ geolocation.getCurrentPosition(function(r){
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
-<!--{if $has_unread != 0}-->
-<div>
+
+<!-- <div>
     您有分享被预订,点击<a href="index.php?mod=parking_info&id={$has_unread}">查看</a>。
-</div>
-<!--{/if}-->
+</div> -->
+
+
+    <!-- 弹窗 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" style="margin-top: 50%" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: 0; padding: 10px 15px 0 0;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size:26px" aria-hidden="true">&times;</span></button>
+                     <!-- <h4>提示</h4> -->
+
+                </div>
+                <div class="modal-body" style="text-align: center; padding: 0 15px 15px; margin-top: -10px;">
+                	 您有分享被预订,点击<a style="color:blue; text-decoration: initial;" href="index.php?mod=parking_info&id={$has_unread}">查看</a>。
+
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+        <script type="text/javascript">
+        	$(function(){
+        		$('#myModal').modal('show');
+        	})
+        </script>
+
+
+
+
+
 <div class="wrapper">
     {template header_search1}
     {template navigation}
@@ -251,6 +284,8 @@ geolocation.getCurrentPosition(function(r){
         IDC.tabADS($('#tab_01'))
     })(jQuery);
 </script>
+
+<script type="text/javascript" src="template/js/bootstrap.min.js"></script>
 <style type="text/css">
     .index-title{
         background: #fff;
@@ -260,6 +295,18 @@ geolocation.getCurrentPosition(function(r){
         color: #f63;
         font-size: 15px;
         font-weight: bold;
+    }
+    input{
+    	line-height: initial;
+    }
+    img{
+    	vertical-align: initial;
+    }
+    a{
+    	color:inherit;
+    }
+    .modai-header{
+    	padding: 10px;
     }
 </style>
 </body>

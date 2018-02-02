@@ -24,6 +24,11 @@ geolocation.getCurrentPosition(function(r){
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
+<!--{if $has_unread != 0}-->
+<div>
+    您有分享被预订,点击<a href="index.php?mod=parking_info&id={$has_unread}">查看</a>。
+</div>
+<!--{/if}-->
 <div class="wrapper">
     {template header_search1}
     {template navigation}
@@ -47,22 +52,22 @@ geolocation.getCurrentPosition(function(r){
     <!--{/if}-->
 
     <div class="mod_02" id="myPicsrc">
-                <div class="bd tab-cont">
-                    <ul class="list_normal list_news">
-                        <!--{loop $news $mymps}-->
-                        <li class="img">
-                            <a href="{$mymps[uri]}" class="link">
-                            <p class="img"><img src="{$mymps[imgpath]}" onerror="this.src='{$mymps_global[SiteUrl]}/images/nophoto.jpg'" /></p>
-                            <p class="tit"{if $mymps[iscommend] ==1}style="color:red"{/if}>{$mymps[title]}</p>
-                            <p class="txt">{echo cutstr($mymps[title],20)}</p>
-                            <p class="hot po_ab">{echo GetTime($mymps[begintime],'m-d')}</p>
-                            </a>
-                        </li>
-                        <!--{/loop}-->
-                    </ul>
-                </div>
+        <div class="bd tab-cont">
+            <ul class="list_normal list_news">
+                <!--{loop $news $mymps}-->
+                <li class="img">
+                    <a href="{$mymps[uri]}" class="link">
+                    <p class="img"><img src="{$mymps[imgpath]}" onerror="this.src='{$mymps_global[SiteUrl]}/images/nophoto.jpg'" /></p>
+                    <p class="tit"{if $mymps[iscommend] ==1}style="color:red"{/if}>{$mymps[title]}</p>
+                    <p class="txt">{echo cutstr($mymps[title],20)}</p>
+                    <p class="hot po_ab">{echo GetTime($mymps[begintime],'m-d')}</p>
+                    </a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
 
-            </div>
+    </div>
     <script src="template/js/slider.js"></script>
 	<script>
         (function($) {

@@ -152,7 +152,9 @@
                         <div style="color: darkred;">已过期</div>
                         {/if}
                     <div>
+                        {if $cat[if_mappoint] == 1}
                     <span style=" color: #3592E2; font-weight: bold; font-size: 14px;">距离: <ins class="parking_distance" data-lng="{$mymps['longitude']}" data-lat="$mymps['latitude']" id="distance_{$mymps[id]}" style="text-decoration: none">{$mymps[info_distance]}</ins>KM</span>
+                        {/if}
                     {if $mymps[is_online]}
                     <span style="color: red">(当前在线)</span>
                     </div>

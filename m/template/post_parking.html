@@ -180,7 +180,8 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
 if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)}else{}function showPosition(position){document.getElementById("lat").value=position.coords.latitude;document.getElementById("lng").value=position.coords.longitude}
 </script>
 <script>
-    //地图初始化
+    <!--{if $cat[if_mappoint] == 1}-->
+
     var bm = new BMap.Map("container");
 
     bm.addControl(new BMap.NavigationControl());
@@ -199,6 +200,7 @@ if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)
         bm.addOverlay(marker);
 
     });
+    <!--{/if}-->
 
 $(document).ready(function(){
     $("#closed").click(function(){

@@ -96,8 +96,8 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
      </dl>
      <!--{/if}-->
      <dl class="cfix" id="cfnone" style="">
-         <dt>说明</dt>
-         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="{$cat[instruct_desc]}" /></dd>
+         <dt>描述</dt>
+         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="{$cat[instruct_desc]}(必填)" /></dd>
      </dl>
      {if $cat[if_mappoint] == 1}
      <dl class="cfix" style="display:none">

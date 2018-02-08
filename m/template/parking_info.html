@@ -52,11 +52,11 @@
 <div class="wrapper">
 	{template header_search}
     {if $row[userid]!=$s_uid}
-    <div class="toggle_tips">为了保证交易的成功，请先提前电话联系对方。</div>
+    <div class="toggle_tips">为了保证预订成功，请先预定再联系对方。</div>
     {/if}
 	<div class="detail">
 		<div class="tit_area">
-			<h1 class="tit">{$row[title]}</h1>
+			<h1 class="tit">{$row[title]}、使用需付{$row[content]}金币</h1>
             {if $row[userid]==$s_uid}
             <div class="status_bar">
                 <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
@@ -64,21 +64,24 @@
                 <div id="book_status_div" style="text-align: center">
                     <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    该{$cat[catename]}共享正在等待被预订中。若无人预订,该共享将在有效期剩余时间归零后自动过期。如果在您关闭浏览器的期间,有人预定了该共享,我们将会在下次登录时弹出提示。
+                    等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心中更新刷新。
                     {else}
-                    该共享已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击收金币按钮完成交易<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a>
+                    已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击收金币<br/>
                     {/if}
+                        {if $row[book_status]==1}
+                        <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
+                            收金币
+                        </a>
+                        {else}
+                        <a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">
+                            收金币
+                        </a>
+                        {/if}
                     </div>
-                    {if $row[book_status]==1}
-                    <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
-                        收金币
-                    </a>
-                    {else}
-                    <a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">
-                        收金币
-                    </a>
-                    {/if}
                 </div>
+                {if $row[book_uid]!=""}
+                <a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:{$row[book_mobile]}">拨打对方电话</a>
+                {/if}
             </div>
             {else}
 			<div class="status_bar">
@@ -94,16 +97,16 @@
                 {if $s_uid&&$row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
-                        交接中。请在完成交接完后点击付金币按钮。
+                        交接中。请在完成后点击付金币。<br/>
+                        <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
+                            付金币
+                        </a>
                     </div>
-                    <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
-                        付金币
-                    </a>
                 </div>
                 {/if}
 			</div>
             {/if}
-            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->共享有效期剩余时间: <span id="last_time"></span></div>
+            <div {if $row[book_uid]!=""}style="display: none;"{/if} id="info_count_down"><!-- {echo ($row['endtime1']-time())} -->有效余时: <span id="last_time"></span></div>
 
     <!-- 弹窗 -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -208,15 +211,15 @@
                                     }
 
                                     var book_status_content;
-                                    var book_status_button
-                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">该共享已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击收金币按钮完成交易<br /><a class="booked_tel" href="tel:'+data.rowContent.book_mobile+'">拨打电话</a></div>';
+                                    var book_status_button;
                                     if(data.rowContent.book_status == 1) {
                                         clearInterval(interval);
                                         book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">收金币</a>';
                                     } else{
                                         book_status_button = '<a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">收金币</a>';
                                     }
-                                    $("#book_status_div").html(book_status_content+book_status_button);
+                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击收金币<br/>'+book_status_button+'</div><a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:'+data.rowContent.book_mobile+'">拨打对方电话</a>';
+                                    $("#book_status_div").html(book_status_content);
                                 }
                             }
                         }
@@ -300,9 +303,9 @@
                         {else}
                         {$row[tel]}
                         {/if}
-                    </a>&nbsp;&nbsp;{$row[contact_who]}</span>
+                    </a>&nbsp;&nbsp;</span>
 				</li>
-                <li>
+                <li style="display: none">
                     <span style="display: none;" class="attrName">车位金额：</span>
                     <span class="attrVal"> {$row[content]}金币</span>
                 </li>
@@ -341,7 +344,7 @@
 				</style>
 				<li>
 					<p class="mt10" style="display: flex; justify-content: space-around;">
-						<a {if $iflogin == 0}onclick="alert('您在登录后可以免费查看并拨打电话给商家')"{/if} href="{if $iflogin == 0}javascript:;{else}tel:{$row[tel]}{/if}" class="fangico dianhua"><i></i>拨打电话</a>
+						<a {if $iflogin == 0}onclick="alert('您在登录后可以免费查看并拨打电话给商家')"{/if} href="{if $iflogin == 0}javascript:;{else}tel:{$row[tel]}{/if}" class="fangico dianhua"><i></i>拨打对方电话</a>
 
                         <a href="#" class="znxx" style="display: none;"><i class="icon-xinxi"></i>站内信息</a>
 					</p>
@@ -414,8 +417,7 @@
 <script>
     function book_parking(id, obj){
         <!--{if $s_uid}-->
-        var r = confirm("成功预订该<!--{$row[catname]}-->将会花费{$row[content]}金币, 是否确认?");
-        if(r) {
+        if(1) {
             $.ajax({
                 url: 'index.php?mod=parking_book&id='+id,
                 type:"POST",
@@ -450,14 +452,14 @@
             dataType:"json",
             data: {},
             success:function(data){
-                alert("{$cat['catname']}交接成功");
+//                alert("{$cat['catname']}交接成功");
                 window.location.href= "index.php?mod=index";
             }
         });
     }
 
     function exchange_parking_pre(id){
-        var r = confirm("请确保您已抵达交接位置, 并且完成当面交接后, 再点击确认按钮。请问是否确认交接?");
+        var r = confirm("请问是否确认办好?");
         if(r) {
             $.ajax({
                 url: 'index.php?mod=parking_exchange_pre&id='+id,
@@ -465,7 +467,7 @@
                 dataType:"json",
                 data: {},
                 success:function(data){
-                    alert("{$cat['catname']}交接成功");
+//                    alert("{$cat['catname']}交接成功");
                     window.location.href= "index.php?mod=index";
                 }
             });

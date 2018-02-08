@@ -61,7 +61,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
          {$cat[post_desc]}
      </div>
      <dl class="cfix">
-         <dt>价格</dt>
+         <dt>需付</dt>
          <dd>
              <!--{php $temp_i = 0;}-->
              <!--{loop explode("\r\n",$cat[price_select]) $v}-->
@@ -70,7 +70,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
          </dd>
      </dl>
   <dl class="cfix">
-   <dt>有效期</dt>
+   <dt>有效时</dt>
    <dd id="inputchange">
        <!--{if $cat[time_type] == 1}-->
        <!--{php $temp_i = 0;}-->

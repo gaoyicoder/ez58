@@ -56,7 +56,8 @@
     {/if}
 	<div class="detail">
 		<div class="tit_area">
-			<h1 class="tit">{$row[title]}、使用需付{$row[content]}金币</h1>
+			<h1 class="tit">{$row[title]}</h1>
+            <h1 style="line-height: 28px; font-weight: normal;">需付{$row[content]}金币</h1>
             {if $row[userid]==$s_uid}
             <div class="status_bar">
                 <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
@@ -64,16 +65,16 @@
                 <div id="book_status_div" style="text-align: center">
                     <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心更新刷新。
+                    等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心更新刷新。<br/>
                     {else}
                     已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在完成后收金币<br/>
                     {/if}
                         {if $row[book_status]==1}
-                        <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
+                        <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 6px;color: #fff; font-size: 13px; font-weight: normal; border-radius: 4px;">
                             收金币
                         </a>
                         {else}
-                        <a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">
+                        <a href="javascript:;" style="background: gainsboro;padding:6px;color: grey; font-size: 13px; font-weight: normal; border-radius: 4px;">
                             收金币
                         </a>
                         {/if}
@@ -91,14 +92,16 @@
                     {if $row[book_uid]==""}
                         <span style="color:#fff;background: red;padding: 6px; border-radius: 4px">预订</span>
                     {else}
-                        <span style="color:#333;background: #999;padding: 6px; border-radius: 4px">已预订</span>
+                        <span style="color:#111;background: #fff;padding: 6px; border-radius: 4px; border:1px solid red;">已预订</span>
+
                     {/if}
                 </a>
                 {if $s_uid&&$row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
                         交接中。请在完成后付金币。<br/>
-                        <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
+                        <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 6px;color: #fff; font-weight: normal;
+                        font-size: 13px; border-radius: 4px;">
                             付金币
                         </a>
                     </div>
@@ -214,9 +217,9 @@
                                     var book_status_button;
                                     if(data.rowContent.book_status == 1) {
                                         clearInterval(interval);
-                                        book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">收金币</a>';
+                                        book_status_button = '<a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding:6px;color: #fff; font-size: 13px; font-weight: normal; border-radius: 4px;">收金币</a>';
                                     } else{
-                                        book_status_button = '<a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">收金币</a>';
+                                        book_status_button = '<a href="javascript:;" style="background: gainsboro;padding:6px;color: grey; font-size: 13px; font-weight: normal; border-radius: 4px;">收金币</a>';
                                     }
                                     book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在完成后收金币<br/>'+book_status_button+'</div><a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:'+data.rowContent.book_mobile+'">拨打对方电话</a>';
                                     $("#book_status_div").html(book_status_content);
@@ -295,7 +298,7 @@
 					<span class="attrVal"> {$row[qq]}</span>
 				</li>
 				{/if}
-				<li>
+<!-- 				<li>
 					<span class="attrName">联系电话：</span>
 					<span class="attrVal"><a class="fred" {if $iflogin == 0}onclick="alert('您在登录后可以免费查看并拨打电话给商家')"{/if} href="{if $iflogin == 0}javascript:;{else}tel:{$row[tel]}{/if}">
                         {if $iflogin == 0}
@@ -304,7 +307,7 @@
                         {$row[tel]}
                         {/if}
                     </a>&nbsp;&nbsp;</span>
-				</li>
+				</li> -->
                 <li style="display: none">
                     <span style="display: none;" class="attrName">车位金额：</span>
                     <span class="attrVal"> {$row[content]}金币</span>
@@ -431,7 +434,7 @@
                         clearInterval(intervalKey);
                         $("#info_count_down").hide();
 
-                        $(obj).html("<span style='color:#333;background: #999;padding: 6px; border-radius: 4px'>车位已预订</span>");
+                        // $(obj).html("<span style='color:#111;background: #fff;padding: 6px; border-radius: 4px; border:1px solid red;'>车位已预订</span>");
                     } else {
                         alert("{$cat['catname']}已被预订");
                     }

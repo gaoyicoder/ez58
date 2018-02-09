@@ -366,9 +366,9 @@ function check_upimage_wap($file="filename")
     global $mymps_global;
     $size=$mymps_global['cfg_upimg_size']*1024;
     $upimg_allow = explode(',',$mymps_global['cfg_upimg_type']);
-    if($_FILES[$file]['size']>$size){
-        redirectmsg('上传文件应小于'.$mymps_global['cfg_upimg_size'].'KB','javascript:history.back()');
-    }
+//    if($_FILES[$file]['size']>$size){
+//        redirectmsg('上传文件应小于'.$mymps_global['cfg_upimg_size'].'KB','javascript:history.back()');
+//    }
 
     if(!in_array(FileExt($_FILES[$file]['name']),$upimg_allow)){
         redirectmsg('系统只允许上传'.$mymps_global['cfg_upimg_type'].'格式的图片！','javascript:history.back()');

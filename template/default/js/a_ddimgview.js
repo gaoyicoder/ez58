@@ -6,7 +6,7 @@ jQuery.fn.extend({
             Img: "ImgPr",
             Width: 108,
             Height: 108,
-			MaxSize: 500,
+			MaxSize: 2000,
             ImgType: ["gif", "jpeg", "jpg", "png"],
             Callback: function () {}
         }, opts || {});
@@ -29,7 +29,9 @@ jQuery.fn.extend({
                     return false;
 					this.value = "";
                 }
-                if ($.browser.msie) {
+                alert("添加成功");
+                return false;
+                if (0) {
 					
                        
                     try {

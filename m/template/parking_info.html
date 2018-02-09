@@ -57,7 +57,7 @@
 	<div class="detail">
 		<div class="tit_area">
 			<h1 class="tit">{$row[title]}</h1>
-            <h1 style="line-height: 28px; font-weight: normal;">需付{$row[content]}金币</h1>
+            <h1 style="line-height: 28px; font-weight: normal;">{if $row[userid]==$s_uid}可收{else}需付{/if}{$row[content]}金币</h1>
             {if $row[userid]==$s_uid}
             <div class="status_bar">
                 <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>

@@ -51,8 +51,8 @@
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="wrapper">
 	{template header_search}
-    {if $row[userid]!=$s_uid}
-    <div class="toggle_tips">为了保证预订成功，请先预定再联系对方。</div>
+    {if $row[userid]!=$s_uid&&$row[book_uid]==""}
+    <div class="toggle_tips">为了保证快速成功，请先预定再联系对方。</div>
     {/if}
 	<div class="detail">
 		<div class="tit_area">
@@ -64,9 +64,9 @@
                 <div id="book_status_div" style="text-align: center">
                     <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
-                    等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心中更新刷新。
+                    等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心更新刷新。
                     {else}
-                    已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在交接完成后点击收金币<br/>
+                    已被用户<span>*{echo substr($row[book_mobile], -3)}</span>预订。<br/>请在完成后收金币<br/>
                     {/if}
                         {if $row[book_status]==1}
                         <a href="javascript:;" onclick="exchange_parking({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
@@ -78,10 +78,10 @@
                         </a>
                         {/if}
                     </div>
+                    {if $row[book_uid]!=""}
+                    <a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:{$row[book_mobile]}">拨打对方电话</a>
+                    {/if}
                 </div>
-                {if $row[book_uid]!=""}
-                <a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:{$row[book_mobile]}">拨打对方电话</a>
-                {/if}
             </div>
             {else}
 			<div class="status_bar">
@@ -97,7 +97,7 @@
                 {if $s_uid&&$row[book_uid]==$s_uid&&$row[book_status]==0}
                 <div style="text-align: center">
                     <div style="border:2px solid orange; text-align: center;line-height: 30px; font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px; margin-top: 12px;">
-                        交接中。请在完成后点击付金币。<br/>
+                        交接中。请在完成后付金币。<br/>
                         <a href="javascript:;" onclick="exchange_parking_pre({$row[id]})" style="background: red;padding: 8px 20px;color: #fff; border-radius: 4px;">
                             付金币
                         </a>
@@ -218,7 +218,7 @@
                                     } else{
                                         book_status_button = '<a href="javascript:;" style="background: gainsboro;padding: 8px 20px;color: grey; border-radius: 4px;">收金币</a>';
                                     }
-                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在交接完成后点击收金币<br/>'+book_status_button+'</div><a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:'+data.rowContent.book_mobile+'">拨打对方电话</a>';
+                                    book_status_content = '<div style="border:1px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">已被用户<span>*'+data.rowContent.book_mobile.substr(-3)+'</span>预订。<br/>请在完成后收金币<br/>'+book_status_button+'</div><a class="fangico dianhua" style="margin: 0 auto;display: block;" href="tel:'+data.rowContent.book_mobile+'">拨打对方电话</a>';
                                     $("#book_status_div").html(book_status_content);
                                 }
                             }

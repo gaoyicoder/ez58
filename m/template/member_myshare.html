@@ -8,6 +8,20 @@
 <link type="text/css" rel="stylesheet" href="template/css/member.css">
 <script>window['current'] = '会员中心';</script>
 <script>function refreshid(infoid){if(confirm("刷新一条信息需扣除{$mymps_global[cfg_member_info_refresh]}个金币，确定要刷新吗？")){var url='index.php?mod=member&action=mypost&dopost=1&act=refreshid&id='+infoid;$.get(url,function(data){if(data==='success'){MympsWindowMsg('',1,'该信息已被成功刷新!','index.php?mod=member&action=mypost');return true}else if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else{alert(data);return false}})}}function redid(infoid){if(confirm("给信息标题套红需扣除{$mymps_global[cfg_member_info_red]}个金币，确定要套红显示吗？")){var url='index.php?mod=member&action=mypost&dopost=1&act=redid&page={$page}&id='+infoid;$.get(url,function(data){if(data==='success'){MympsWindowMsg('',1,'该信息的标题已被成功套红!','index.php?mod=member&action=mypost&page={$page}');return true}else if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else{alert(data);return false}})}}function boldid(infoid){if(confirm("给信息标题加粗需扣除{$mymps_global[cfg_member_info_bold]}个金币，确定要加粗显示吗？")){var url='index.php?mod=member&action=mypost&dopost=1&act=boldid&page={$page}&id='+infoid;$.get(url,function(data){if(data==='success'){MympsWindowMsg('',1,'该信息的标题已被成功加粗!','index.php?mod=member&action=mypost&page={$page}');return true}else if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else{alert(data);return false}})}}function deleteid(infoid){if(confirm("确定要删除该信息吗？该操作不可恢复")){var url='index.php?mod=member&action=mypost&dopost=1&act=deleteid&id='+infoid;$.get(url,function(data){if(data==='success'){MympsWindowMsg('',0,'该信息已被成功删除!');$("#info"+infoid).hide();return true}else{alert(data);return false}})}}</script>
+    <script>
+        function deleteShare(infoid) {
+            if(confirm("确定要删除该信息吗？该操作不可恢复")){
+                var url='index.php?mod=parking_delete&id='+infoid;
+                $.get(url,function(data){
+                    if(data==='success'){
+                        alert('信息删除成功!');
+                        $("#info"+infoid).hide();
+                        return true
+                    }
+                })
+            }
+        }
+    </script>
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
@@ -40,13 +54,11 @@
              <dd>{echo GetTime($mymps[begintime])}</dd>
             </dl>
             {if $mymps[info_level] > 0}
-            <div style="display: none;" class="opear">
-             <span class="f5"><a href="javascript:void(0);" onclick="refreshid('{$mymps[id]}');">刷新</a></span>
-             <span class="gg"><a href="index.php?mod=member&action=mypost&act=upgrade&id={$mymps[id]}">置顶</a></span>
-             <span class="ired"><a href="javascript:void(0);" onclick="redid('{$mymps[id]}');">套红</a></span>
-             <span class="ibold"><a href="javascript:void(0);" onclick="boldid('{$mymps[id]}');">加粗</a></span>
-             <span class="edit"><a href="index.php?mod=post&id={$mymps[id]}">修改</a></span>
-             <span class="del"><a href="javascript:void(0);" onclick="deleteid('{$mymps[id]}');">删除</a></span>
+            <div style="" class="opear">
+                <span class="del"><a href="javascript:void(0);" onclick="deleteShare('{$mymps[id]}');">删除</a></span>
+                {if $mymps[endtime] < $timestamp}
+                <span class="edit"><a href="index.php?mod=parking_info&id={$mymps[id]}">延期</a></span>
+                {/if}
             </div>
             {/if}
         </li>

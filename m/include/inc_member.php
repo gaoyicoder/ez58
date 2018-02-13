@@ -312,8 +312,9 @@ if ($dopost == 1) {
             if($share_ids) {
                 $share_where = " AND catid IN ($share_ids)";
             }
-
-            $where = " WHERE userid = '{$s_uid}' AND (info_level = 1 OR info_level = 2)".$share_where;
+            $three_days_ago = $timestamp - 3600*24*3;
+            $time_between = " AND begintime > $three_days_ago";
+            $where = " WHERE userid = '{$s_uid}' AND (info_level = 1 OR info_level = 2)".$time_between.$share_where;
             $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
             $param = setparams(array('mod', 'userid', 'action'));
             $rows_num = $db->getOne("SELECT COUNT(id) FROM `{$db_mymps}information` {$where}");

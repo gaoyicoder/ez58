@@ -70,26 +70,24 @@
 
 	<div class="container-fluid" >
 
-<div class="row" ng-controller="ctrl">
-	<div ng-repeat="v in data" class="col-xs-6 ">
-		<div class="thumbnail">
-			<img src="{{v.image}}" alt="image1">
-			<div class="caption">
-				<h4>{{v.item}}</h4>
-				<p>
-					<span>{{v.name}}</span>
-					<a href="#" class="btn btn-primary" ng-click="goods.add()"  role="button"
-			>兑换</a>
-				</p>
-			</div>
-		</div>
+        <div class="row" ng-controller="ctrl">
+            <div ng-repeat="v in data" class="col-xs-6 ">
+                <div class="thumbnail">
+                    <img src="{{v.image}}" alt="image1">
+                    <div class="caption">
+                        <h4>{{v.item}}</h4>
+                        <p>
+                            <span>{{v.name}}</span>
+                            <a href="#" class="btn btn-primary" ng-click="goods.add()"  role="button"
+                    >兑换</a>
+                        </p>
+                    </div>
+                </div>
 
-	</div>
-
-
-
-</div>
-</div>
+            </div>
+        </div>
+    </div>
+    <div style="font-size:18px;text-align:center;color:#337ab7;letter-spacing:2px;">更多小礼品即将上线,敬请期待!</div>
 
 <script type="text/javascript">
 	var m=angular.module('hd',[]);

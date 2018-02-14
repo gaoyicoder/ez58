@@ -435,6 +435,8 @@
                         $("#info_count_down").hide();
 
                         // $(obj).html("<span style='color:#111;background: #fff;padding: 6px; border-radius: 4px; border:1px solid red;'>车位已预订</span>");
+                    } else if (data.status == 1){
+                        alert("您的金币余额不足");
                     } else {
                         alert("{$cat['catname']}已被预订");
                     }

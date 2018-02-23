@@ -72,10 +72,10 @@ function minPay() {
 		$("#money").val({$mymps_global[cfg_pay_min]});
 		$("#mustpay").html(Math.ceil({$mymps_global[cfg_pay_min]}/{$mymps_global[cfg_coin_fee]}));
 		return false;
-		}}function clickRadio(payid){if(!is_wxclient()&&payid=='5'){alert('请在微信客户端中使用该支付方式');return false}}
+		}}function clickRadio(payid){if(!is_wxclient()&&payid=='5'&&0){alert('请在微信客户端中使用该支付方式');return false}}
                 </script>
 			</div>
-			<button type="submit" class="save">立即支付</button>
+			<button type="submit" onclick="alert('付款通道正在开通中,如需充值,请拨打客服电话联系。');return false;" class="save">立即支付</button>
 			</form>
             <div class="clear"></div>
 		</div>

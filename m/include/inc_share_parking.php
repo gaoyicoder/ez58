@@ -286,7 +286,7 @@ if($action == 'post'){
     if ($new_lat && $new_lng) {
         $cityid = mgetcookie('cityid');
         $new_cityid = get_latlng2cityid($new_lat,$new_lng);
-        if ($new_cityid != $cityid) {
+        if (!$cityid) {
             msetcookie('cityid',$new_cityid);
             header("Location: index.php?mod=share_parking&catid=$catid");
         }

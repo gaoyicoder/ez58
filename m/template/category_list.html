@@ -33,16 +33,16 @@
             {/loop}
         </ul>
 
-        <div class="inner" style="display:none;">
-            {loop $cat_list $k $mymps}
-            <ul>
-                <a class="{echo $mymps[catid] == $catid ? 'selected' : '';}" href="index.php?mod=category&catid={$mymps[catid]}" class="t">不限</a></li>
-                {loop $mymps[children] $u $w}
-                <a class="{echo $w[catid] == $catid ? 'selected' : '';}" href="index.php?mod=category&catid={$w[catid]}">{$w[catname]}</a>
-                {/loop}
-            </ul>
-            {/loop}
-        </div>
+        <!--<div class="inner" style="display:none;">-->
+            <!--{loop $cat_list $k $mymps}-->
+            <!--<ul>-->
+                <!--<a class="{echo $mymps[catid] == $catid ? 'selected' : '';}" href="index.php?mod=category&catid={$mymps[catid]}" class="t">不限</a></li>-->
+                <!--{loop $mymps[children] $u $w}-->
+                <!--<a class="{echo $w[catid] == $catid ? 'selected' : '';}" href="index.php?mod=category&catid={$w[catid]}">{$w[catname]}</a>-->
+                <!--{/loop}-->
+            <!--</ul>-->
+            <!--{/loop}-->
+        <!--</div>-->
 
         {if $city[cityid]}
         <div class="inner" style="display:none;">

@@ -15,7 +15,7 @@
 	<link type="text/css" rel="stylesheet" href="template/css/info.css">
     <link rel="stylesheet" type="text/css" href="template/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_l7izsre2gkb21emi.css">
-    <script>window['current'] = '共享{$row[catname]}';</script>
+    <script>window['current'] = '{$row[catname]}';</script>
     <script>function seeContact(id){if(confirm("查看该信息联系方式需支付{$row[usecoin]}个金币，确定查看吗？")){var url='index.php?mod=information&action=seecontact&&id='+id;$.get(url,function(data){if(data==='余额不足'){MympsWindowMsg('',1,'您当前金币余额不足，请先充值','index.php?mod=member&action=pay');return false}else if(data==='请先登录'){MympsWindowMsg('',1,'您尚未登录，请先登录','index.php?mod=login&returnurl=');return false}else{$("#showContact").html(data);$("#djcklxfs").hide();$("#showContact").show();return true}})}}</script>
     <script type="text/javascript" src="template/js/jquery.min.js"></script>
 

@@ -15,7 +15,9 @@ if ($iflogin != 1) {
 } elseif ($action == 'index') {
     $share_ids = get_share_cat_id_sql_in();
     if($share_ids) {
-        $total['share'] = mymps_count('information', "WHERE userid = '{$s_uid}' AND catid IN ($share_ids)");
+        $three_days_ago = $timestamp - 3600*24*3;
+        $time_between = " AND begintime > $three_days_ago";
+        $total['share'] = mymps_count('information', "WHERE userid = '{$s_uid}' AND catid IN ($share_ids) $time_between");
         $total['info'] = mymps_count('information', "WHERE userid = '{$s_uid}' AND catid NOT IN ($share_ids)");
     } else {
         $total['share'] = 0;

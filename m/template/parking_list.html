@@ -133,12 +133,12 @@
 				{else}
 					<img class="thumbnail" src="template/images/noimg.gif" alt="nopic">
 				{/if}
-				<dl>
+				<dl style="color: #333">
 					<dt class="tit" style="{echo $mymps[ifred] == 1 ? 'color:red;' : ''}{echo $mymps[ifbold] == 1 ? 'font-weight:bold;' : ''}">{$mymps[title]}&nbsp;{if $mymps[img_path]}<span style="background:#339966; color:#FFFFFF; font-size:14px; padding:0 2px;text-align:center;">{$mymps[img_count]}图</span>{/if}{echo $mymps[upgrade_type] > 1 ? '<span class="ico ding"></span>' : '';}</dt>
-					<dd class="attr">
-                        <span>需付{$mymps[content]}金币</span>
+					<dd class="attr" style="color: #333">
+                        <span style="#333">需付{$mymps[content]}金币</span>
                     </dd>
-					<dd class="attr pr5" style="display: -webkit-box; display: flex;-webkit-box-pack:justify;justify-content:space-between;">
+					<dd class="attr pr5" style="color:#333;display: -webkit-box; display: flex;-webkit-box-pack:justify;justify-content:space-between;">
                     {loop $mymps[extra] $w}
                     {if strexists($w,'元')}
                     <span class="price">

@@ -122,7 +122,7 @@
                 </div>
                 <div class="modal-body">
                     {if $row[userid]==$s_uid}
-                     该共享信息已经过期, 如果您仍想继续分享, 请点击延期按钮。<a class="booked_tel" href="index.php?mod=parking_info&id={$row[id]}&is_renew=true">延期</a>
+                     该共享信息已经过期, 如果您仍想继续分享, 请点击延期按钮。<a class="booked_tel" href="index.php?mod=parking_info&id={$row[id]}&is_renew=true">延期</a> <a class="booked_tel" href="index.php?mod=share_parking&catid={$row[catid]}&infoid={$row[id]}">重新发布</a>
 
                     {else}
                     该共享信息已经过期, 请重新在找实时{$cat[catname]}面寻找新的{$cat[catname]}共享。

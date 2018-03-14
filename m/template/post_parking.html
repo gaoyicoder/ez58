@@ -64,7 +64,7 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
          <dt>需付</dt>
          <dd>
              <!--{if 1 == 1}-->
-             <input id="input" style="width: 30px; border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="1" max="10" name="content" value="" placeholder="0">
+             <input id="input" style="width: 30px; border:0;border-bottom: 1px solid #878484;text-align: center;"  type="number" min="1" max="10" name="content" value="{$info_row[content]}" placeholder="0">
              (1-10)金币 <span style="">(据共享价值自选)</span>
              <!--{else}-->
              <!--{php $temp_i = 0;}-->
@@ -102,13 +102,13 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
      <!--{/if}-->
      <dl class="cfix" id="cfnone" style="">
          <dt>描述</dt>
-         <dd><input name="title" id="title" type="text" size="26" value="{$info[title]}" placeholder="{$cat[instruct_desc]}(必填)" /></dd>
+         <dd><input name="title" id="title" type="text" size="26" value="{$info_row[title]}" placeholder="{$cat[instruct_desc]}(必填)" /></dd>
      </dl>
      {if $cat[if_mappoint] == 1}
      <dl class="cfix" style="display:none">
          <dt>地理位置</dt>
          <dd>
-             <input readonly="readonly" name="mappoint" id="mappoint" type="text" size="26" value="{$info[mappoint]}" placeholder="经纬坐标" />
+             <input readonly="readonly" name="mappoint" id="mappoint" type="text" size="26" value="{$info_row[mappoint]}" placeholder="经纬坐标" />
              <input style="display: none;" name="markmap" type="button" value="点击标注" class="mappoint" onclick="setbg('地图标注',300,500,'../map.php?action=markpoint&width=300&height=400')">
          </dd>
      </dl>

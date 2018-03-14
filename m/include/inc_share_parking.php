@@ -291,6 +291,14 @@ if($action == 'post'){
             header("Location: index.php?mod=share_parking&catid=$catid");
         }
     }
+    if ($infoid) {
+        $info_row = $db -> getRow("SELECT * FROM {$db_mymps}information WHERE id='$infoid'");
+        $cityid = mgetcookie('cityid');
+        if (!$cityid) {
+            msetcookie('cityid', $info_row['cityid']);
+            header("Location: index.php?mod=share_parking&catid=$catid&infoid=$infoid");
+        }
+    }
 
     //信息填写页
     $cat = $db -> getRow("SELECT catid,catname,parentid,modid,if_upimg,gid,if_mappoint,price_select,time_type,single_select,type_type,type_type_select,instruct_desc,post_desc FROM `{$db_mymps}category` WHERE catid = '$catid'");
@@ -335,6 +343,7 @@ if($action == 'post'){
         }else{
             $info['imgcode']= $authcodesettings['post'] == 1 ? 1 : '';
         }
+
         include mymps_tpl("post_parking");
     }
 

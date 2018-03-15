@@ -428,7 +428,7 @@ function get_upload_image_view_parking($if_upimg = 1 , $infoid = '',$number='')
 					<div class="clearfix"></div>
 					<div class="a_ddarea">
                     <input type="file" name="mymps_img_'.$i.'" id="mymps_img_'.$i.'" class="comment-pic-upd" />
-                    <img src="'.$mymps_global['SiteUrl'].'/template/default/images/post/addimg.gif" alt="上传照片" title="上传图片">
+                    <img id="upload_image_button" src="'.$mymps_global['SiteUrl'].'/template/default/images/post/addimg.gif" alt="上传照片" title="上传图片">
                     </div>
                 </div>';
         }

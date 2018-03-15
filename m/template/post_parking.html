@@ -184,7 +184,21 @@ function submitForm(){if($("#title").val()){if(!isNaN($("#title").val())){alert(
 <script>
 if(navigator.geolocation){navigator.geolocation.getCurrentPosition(showPosition)}else{}function showPosition(position){document.getElementById("lat").value=position.coords.latitude;document.getElementById("lng").value=position.coords.longitude}
 </script>
+<style>
+    #delete_image_button {
+        position: absolute;
+        top:0;
+        right: 0;
+    }
+</style>
 <script>
+    function delete_image() {
+        $("#delete_image_button").remove();
+        $("#mymps_img_0").val("");
+        $("#mymps_img_0").show();
+
+
+    }
     <!--{if $cat[if_mappoint] == 1}-->
 
     var bm = new BMap.Map("container");
@@ -267,6 +281,7 @@ $(document).ready(function(){
     });
     <!--{/if}-->
   });
+
 </script>
 
 <script type="text/javascript">

@@ -30,6 +30,8 @@ jQuery.fn.extend({
 					this.value = "";
                 }
                 alert("添加成功");
+                $(".a_ddarea").append('<img onclick="delete_image()" id="delete_image_button" src="/template/default/images/post/deleteimg.gif" alt="删除照片" title="删除图片">');
+                $("#mymps_img_0").hide();
                 return false;
                 if (0) {
 					

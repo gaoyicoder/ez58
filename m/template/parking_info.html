@@ -60,10 +60,10 @@
             <h1 style="line-height: 28px; font-weight: normal;">{if $row[userid]==$s_uid}可收{else}需付{/if}{$row[content]}金币</h1>
             {if $row[userid]==$s_uid}
             <div class="status_bar">
-                <span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
+                <span class="date" style="color: #333"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
                 <span style="display: none" class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
                 <div id="book_status_div" style="text-align: center">
-                    <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
+                    <div style="border:2px solid green; text-align: center;line-height: 30px;font-size:16px; padding: 4px; color: #333; font-weight:bold;border-radius: 3px;margin-bottom: 16px">
                     {if $row[book_uid]==""}
                     等待被预订中,建议勿离开此页。有效期余时归零,该信息过期。您可在个人中心更新刷新。<br/>
                     {else}
@@ -86,7 +86,7 @@
             </div>
             {else}
 			<div class="status_bar">
-				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
+				<span class="date" style="color: #333"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
 				<span style="display: none;" class="browse_num"><i class="ico"></i><span id="totalcount" >{$row[hit]}</span>次</span>
 				<a href="javascript:;" onclick="book_parking({$row[id]}, this)" >
                     {if $row[book_uid]==""}

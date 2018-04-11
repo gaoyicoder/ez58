@@ -397,7 +397,7 @@
                 });
                 transit.search(p1,p2);
                 <!--{else}-->
-                var ggPoint = new BMap.Point(r.point.lng,r.point.lat);
+                var ggPoint = new BMap.Point({$row[mappoint]});
                 map.centerAndZoom(ggPoint,12);
                 var marker = new BMap.Marker(ggPoint);
                 map.addOverlay(marker);

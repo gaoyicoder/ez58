@@ -187,20 +187,18 @@ geolocation.getCurrentPosition(function(r){
     <div class="index-title" style="position: relative; border-bottom: 1px #DDD solid;">分享嗨帮
 
 
-
-    </div>
-    <div style="text-align: center; margin-top: 20px ">
+        <div style="text-align: center; display: inline-block; position: absolute; right: 10px;top: -4px">
         <ul class="sites_title">
              <input id="biao1" name=""  value="https://www.hibang365.com" type="hidden" >
 
             <li class="title_caption sites_title_left" onClick="copyUrl2()">
-                 <button type="button" class="btn btn-primary" >复制网址</button>
+                 <button type="button" class="btn btn-primary" style="background: #f63 ;border:0"  >复制网址</button>
 
             </li>
 
 
-            <li class="title_caption sites_title_right" >
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">生成二维码</button>
+            <li class="title_caption sites_title_right" style="margin-left: 20px" >
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="background: #f63 ;border:0">生成二维码</button>
 
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                       <div class="modal-dialog modal-lg" role="document">
@@ -232,6 +230,11 @@ function copyUrl2()
 
 
     </div>
+
+
+
+    </div>
+
 
     <div class="clearfix"></div>
     <div id="tab_01" class="newsct">
@@ -333,6 +336,9 @@ function copyUrl2()
 
 <script type="text/javascript" src="template/js/bootstrap.min.js"></script>
 <style type="text/css">
+.btn{
+    padding: 2px 4px;
+}
     .sites_title{
         display: box;
         display: -webkit-box;

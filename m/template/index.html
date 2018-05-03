@@ -204,6 +204,7 @@ geolocation.getCurrentPosition(function(r){
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                         <h4 class="modal-title" style="margin:16px 0 ; font-size: 18px; color: #0ED27D">打开手机"扫一扫"，即刻分享身边好友</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                            <img src="template/images/Hibang.png" style="" width="50%">
                         </div>
@@ -336,6 +337,12 @@ function copyUrl2()
 
 <script type="text/javascript" src="template/js/bootstrap.min.js"></script>
 <style type="text/css">
+button.close{
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 24px;
+}
 .btn{
     padding: 2px 4px;
 }

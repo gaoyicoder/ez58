@@ -204,7 +204,7 @@
 
 		<!--{php if(ifplugin('goods')){$goods = mymps_get_goods($tpl_index['goods'],1,NULL,NULL,NULL,NULL,$cityid);}-->
         <div class="clearfix"></div>
-		<div class="goods">
+		<div class="goods" style="display: none">
         	<div class="ul">
 			<div class="hd">
 				<span class="hdleft">商品网购</span>
@@ -260,7 +260,7 @@
 		<!--{/if}-->
 
 		<div class="clear"></div>
-		<div class="flink">
+		<div class="flink" style="display: none" class="goods">
         <div class="ul">
         <div class="hd"><span class="hdleft">友情链接</span><span class="hd2"><a href="{$about[friendlink_uri]}">我要申请</a></span></div>
         <div class="bd">

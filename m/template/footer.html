@@ -3,9 +3,65 @@
 		<a href="index.php?mod=index" class="footer_hover" rel="nofollow">手机版</a>
 		<a href="{$mymps_global[SiteUrl]}/index.php?view=pc" rel="nofollow">电脑版</a>
 	</p>-->
+
+
     <div class="clear"></div>
 	<p class="footer_02">&copy;copyright{$mymps_global[SiteName]}<!-- <br /> -->{$mymps_global[SiteBeian]}&nbsp;&nbsp;</p>
-    <p class="footer_02" style="color: #666"><a href="index.php?mod=contactus">联系我们</a></p>
+		        <div style="text-align: center">
+        <ul class="sites_title" style="margin:0 24px">
+             <input id="biao1" name=""  value="https://www.hibang365.com" type="hidden" >
+
+            <li class="title_caption sites_title_left" onClick="copyUrl2()">
+                 <button type="button" class="btn btn-primary" style="background: #F2F2F2 ;border:0; color: #666;padding: 0"  >复制网址</button>
+
+            </li>
+
+
+
+            <li class="title_caption sites_title_right" style="" >
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="background: #F2F2F2 ;border:0;color: #666;padding: 0">获取二维码</button>
+
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                        <h4 class="modal-title" style="margin:16px 0 ; font-size: 18px; color: #0ED27D">打开手机"扫一扫"，即刻分享身边好友</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                           <img src="template/images/Hibang.png" style="" width="50%">
+                        </div>
+                      </div>
+                    </div>
+            </li>
+
+                        <li class="title_caption">
+				<p class="footer_02" style="color: #666;font-size: 14px"><a href="index.php?mod=contactus">联系我们</a></p>
+
+            </li>
+
+
+
+        </ul>
+<script type="text/javascript">
+function copyUrl2()
+    {
+        var url=document.getElementById("biao1");
+        url.type=""
+        url.select()
+        document.execCommand("Copy");
+        url.type="hidden"
+        alert('Hi帮网网址已经复制到您的剪切板中');
+    }
+</script>
+
+
+
+
+    </div>
+
+
+
+
+    <!-- <p class="footer_02" style="color: #666"><a href="index.php?mod=contactus">联系我们</a></p> -->
 	<p class="footer_02" style="display:none">{$mymps_global[SiteStat]}</p>
 </div>
 <div class="windowIframe" id="windowIframe" style="display:none;">
@@ -54,5 +110,8 @@
 		margin-right: 10px;
 		margin-bottom: 10px;
 		color: #666;
+	}
+	.btn{
+		padding: 0;
 	}
 </style>

@@ -9,15 +9,36 @@
 		<a href="{$mymps_global[SiteUrl]}/index.php?view=pc" rel="nofollow">电脑版</a>
 	</p>-->
 
-
+<!-- onClick="copyUrl2()" -->
     <div class="clear"></div>
 	<p class="footer_02">&copy;copyright{$mymps_global[SiteName]}<!-- <br /> -->{$mymps_global[SiteBeian]}&nbsp;&nbsp;</p>
-		        <div style="text-align: center">
+		        <div style="text-align: center; padding-bottom: 20px">
         <ul class="sites_title" style="margin:0 50px">
              <input id="biao1" name=""  value="https://www.hibang365.com" type="hidden" >
 
-            <li class="title_caption sites_title_left" onClick="copyUrl2()">
-                 <button type="button" class="btn btn-primary" style="background: #F2F2F2 ;border:0; color: #666;padding: 0"  >网址</button>
+            <li class="title_caption sites_title_left" >
+
+            	      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lgn" style="background: #F2F2F2 ;border:0;color: #666;padding: 0">网址</button>
+
+                    <div class="modal fade bs-example-modal-lgn" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content" style="text-align: left;">
+
+                        <section style="margin-bottom: 20px">
+								<div class="s-title">复制网址</div>
+								 <div class="s-content">
+								 	Hi帮网网址已经复制到剪切板中，您可直接粘贴到QQ或微信中。
+
+								 </div>
+							</section>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                 <!-- <button type="button" class="btn btn-primary" style="background: #F2F2F2 ;border:0; color: #666;padding: 0"  >网址</button> -->
 
             </li>
 
@@ -28,20 +49,73 @@
 
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                       <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                        <h4 class="modal-title" style="margin:16px 0 ; font-size: 18px; color: #0ED27D">打开手机"扫一扫"，即刻分享身边好友</h4>
+                        <div class="modal-content" style="text-align: left;">
+
+                        <section style="">
+								<div class="s-title">扫描二维码</div>
+								 <div class="s-content">
+								 	打开手机"扫一扫"，即刻分享身边好友
+
+
+								 </div>
+							</section>
+							 <section style="margin-bottom: 20px">
+								<div class="s-content" style="text-align: center;"><img src="template/images/Hibang.png" style="text-align: center;" width="50%">
+								 	</div>
+
+							</section>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                           <img src="template/images/Hibang.png" style="" width="50%">
+
                         </div>
                       </div>
                     </div>
             </li>
 
-                        <li class="title_caption">
-				<p class="footer_02" style="color: #666;font-size: 14px"><a href="index.php?mod=contactus">联系我们</a></p>
+             <li class="title_caption sites_title_right" >
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-log" style="background: #F2F2F2 ;border:0;color: #666;padding: 0">联系我们</button>
 
+                    <div class="modal fade bs-example-modal-log" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content" style="text-align: left;" >
+                        	<section style="margin-bottom: 20px">
+								<div class="s-title">联系地址</div>
+								<div class="s-content">陕西省西安市高新区长安科技产业园创业大道1号 <br />Hi帮网</div>
+							</section>
+
+							<section style="margin-bottom: 20px">
+								<div class="s-title">联系电话</div>
+								<div class="s-content"><a href="tel:02985692886">029-85692886 <span class="icon-dianhua iconfont"></span></a></div>
+							</section>
+
+							<section style="margin-bottom: 20px">
+								<div class="s-title">联系人</div>
+								<div class="s-content">高先生</div>
+							</section>
+
+						    <section>
+						        <div class="s-title">邮箱</div>
+						        <div class="s-content">hibang365@163.com</div>
+						    </section>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+
+                        </div>
+                      </div>
+                    </div>
             </li>
+
+
+
+                       <!--  <li class="title_caption">
+                       				<p class="footer_02" style="color: #666;font-size: 14px"><a href="index.php?mod=contactus">
+
+
+
+                       				联系我们</a></p>
+
+                                   </li> -->
 
 
 
@@ -151,7 +225,7 @@ function copyUrl2()
         margin-top: 50%;
     }
     .modal-content{
-        height: 280px;
+        /*height: 280px;*/
 
     }
     a{
@@ -163,4 +237,18 @@ function copyUrl2()
     .h1, .h2, .h3, h1, h2, h3{
     	margin-top: initial;
     }
+
+    	section{
+		padding: 0 15px;
+		background: #ffffff;
+	}
+	.s-title{
+		font-weight: bold;
+		padding: 12px 0;
+		border-bottom: 1px solid #959595;
+	}
+	.s-content{
+		line-height: 22px;
+		padding:10px 0;
+	}
 </style>

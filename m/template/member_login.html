@@ -14,28 +14,28 @@
 <div class="wrapper">
 
 	{template header_search}
-	
-  	<!--<div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">登录</a></span></div>--> 
+
+  	<!--<div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">登录</a></span></div>-->
   	<div class="m311 log_reg_box">
 		<div id="logRegTabCon">
-			<div class="log_reg_item">  
+			<div class="log_reg_item">
 				<form id="form1" method="post" action="index.php?mod=login&action=login" onSubmit="return checksubmit(this);">
 				<input type="hidden" name="returnurl" value="{$returnurl}">
 				<ul id="pptul" class="passport-login-input-ul">
 					<li style="display:none" class="passport-login-input-li">
 						<span id="loginTip" class="passport-login-tip"></span>
 					</li>
-					
+
 					<li id="loginUserNameLi" class="passport-login-input-li">
 						<span class="passport-login-input-span">账&nbsp;&nbsp;&nbsp;&nbsp;号</span>
 						<input autocomplete="off" id="userid" type="text" name="userid" class="passport-login-input passport-login-input-username" placeholder="账号/邮箱/手机">
 					</li>
-					
+
 					<li id="loginPasswordLi" class="passport-login-input-li">
 						<span class="passport-login-input-span">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
 						<input autocomplete="off" id="userpwd" type="password" name="userpwd" class="passport-login-input passport-login-input-password" placeholder="密码">
 					</li>
-				
+
                 	{if $authcodesettings[login] == 1}
 					<li id="loginCheckcodeLi" class="passport-login-input-li">
 						<span class="passport-login-input-span">验证码</span>
@@ -45,10 +45,10 @@
                     	<img src="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_authcodefile]}?mod=m" alt="看不清，请点击刷新" align="absmiddle" style="cursor:pointer; border:1px #ddd solid;" onClick="this.src=this.src+'?'"/>
                     </div>
 					{/if}
-					
+
 					<li id="loginButtonLi" class="passport-login-input-li">
 						<span class="passport-login-input-span" jqmoldstyle="block" style="display: none;">&nbsp;</span>
-						<label><input type="submit" name="button" value="登录" class="passport-login-button btn_log"></label>
+						<label style="display: inherit;"><input type="submit" name="button" value="登录" class="passport-login-button btn_log"></label>
 					</li>
 				</ul>
 				</form>
@@ -77,7 +77,7 @@
           <!--{/if}-->
 		</div>
   	</div>
-</div>	
+</div>
 {template footer}
 
 </body>
